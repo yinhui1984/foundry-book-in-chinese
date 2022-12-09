@@ -1,82 +1,82 @@
-## Dependencies
+## 依赖
 
-Forge manages dependencies using [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) by default, which means that it works with any GitHub repository that contains smart contracts.
+默认情况下，Forge 使用 [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) 管理依赖项，这意味着它可以与任何包含智能合约的 GitHub 存储库一起使用。
 
-### Adding a dependency
+### 添加依赖
 
-To add a dependency, run [`forge install`](../reference/forge/forge-install.md):
+要添加依赖项，请运行 [`forge install`](../reference/forge/forge-install.md)：
 
 ```sh
 {{#include ../output/deps/forge-install:all}}
 ```
 
-This pulls the `solmate` library, stages the `.gitmodules` file in git and makes a commit with the message "Installed solmate".
+这将拉取 `solmate` 库，在 git 中暂存 `.gitmodules` 文件并使用消息“Installed solmate”进行提交。
 
-If we now check the `lib` folder:
+如果我们现在检查 `lib` 文件夹：
 
 ```sh
 {{#include ../output/deps/tree:all}}
 ```
 
-We can see that Forge installed `solmate`!
+我们可以看到Forge安装了`solmate`！
 
-By default, `forge install` installs the latest master branch version. If you want to install a specific tag or commit, you can do it like so:
+默认情况下，`forge install` 安装最新的 master 分支版本。 如果你想安装一个特定的标签或提交，你可以这样做：
 
 ```sh
-$ forge install transmissions11/solmate@v7
+$ forge 安装 transmission11/solmate@v7
 ```
 
-### Remapping dependencies
+### 重新映射依赖项
 
-Forge can remap dependencies to make them easier to import. Forge will automatically try to deduce some remappings for you:
+Forge 可以重新映射依赖关系，使它们更容易导入。 Forge 将自动尝试为您推断出一些重新映射：
 
 ```sh
 {{#include ../output/deps/forge-remappings:all}}
 ```
 
-These remappings mean:
+这些重新映射意味着：
 
-- To import from `forge-std` we would write: `import "forge-std/Contract.sol";`
-- To import from `ds-test` we would write: `import "ds-test/Contract.sol";`
-- To import from `solmate` we would write: `import "solmate/Contract.sol";`
-- To import from `weird-erc20` we would write: `import "weird-erc20/Contract.sol";`
+- 要从 `forge-std` 导入，我们会写：`import "forge-std/Contract.sol";`
+- 要从 `ds-test` 导入，我们会这样写：`import "ds-test/Contract.sol";`
+- 要从 `solmate` 导入，我们会这样写：`import "solmate/Contract.sol";`
+- 要从 `weird-erc20` 导入，我们会写：`import "weird-erc20/Contract.sol";`
 
-You can customize these remappings by creating a `remappings.txt` file in the root of your project.
+您可以通过在项目的根目录中创建一个“remappings.txt”文件来自定义这些重新映射。
 
-Let's create a remapping called `solmate-utils` that points to the `utils` folder in the solmate repository!
+让我们创建一个名为 `solmate-utils` 的重映射，它指向 solmate 存储库中的 `utils` 文件夹！
 
 ```sh
 solmate-utils/=lib/solmate/src/utils/
 ```
 
-Now we can import any of the contracts in `src/utils` of the solmate repository like so:
+现在我们可以像这样导入 solmate 存储库的 `src/utils` 中的任何合约：
 
 ```solidity
-import "solmate-utils/Contract.sol";
+导入“solmate-utils/Contract.sol”；
 ```
 
-### Updating dependencies
+### 更新依赖
 
-You can update a specific dependency to the latest commit on the version you have specified using [`forge update <dep>`](../reference/forge/forge-update.md). For example, if we wanted to pull the latest commit from our previously installed master-version of `solmate`, we would run:
+您可以使用 [`forge update <dep>`](../reference/forge/forge-update.md) 将特定依赖项更新为您指定版本的最新提交。 例如，如果我们想从我们之前安装的 `solmate` 主版本中提取最新的提交，我们将运行：
 
 ```sh
-$ forge update lib/solmate
+$ forge 更新 lib/solmate
 ```
 
-Alternatively, you can do this for all dependencies at once by just running `forge update`.
+或者，您可以通过运行“forge update”一次对所有依赖项执行此操作。
 
-### Removing dependencies
+### 删除依赖
 
-You can remove dependencies using [`forge remove <deps>...`](../reference/forge/forge-remove.md), where `<deps>` is either the full path to the dependency or just the name. For example, to remove `solmate` both of these commands are equivalent:
+您可以使用 [`forge remove <deps>...`](../reference/forge/forge-remove.md) 删除依赖项，其中 `<deps>` 是依赖项的完整路径或只是名称 . 例如，要删除 `solmate`，这两个命令是等价的：
 
 ```ignore
-$ forge remove solmate
-# ... is equivalent to ...
-$ forge remove lib/solmate
+$ forge 删除 solmate
+# ... 等同于 ...
+$ forge 删除 lib/solmate
 ```
 
-### Hardhat compatibility
+### 安全帽兼容性
 
-Forge also supports Hardhat-style projects where dependencies are npm packages (stored in `node_modules`) and contracts are stored in `contracts` as opposed to `src`.
+Forge 还支持 Hardhat 风格的项目，其中依赖项是 npm 包（存储在 `node_modules` 中）并且合同存储在 `contracts` 中而不是 `src` 中。
 
-To enable Hardhat compatibility mode pass the `--hh` flag.
+要启用 Hardhat 兼容模式，请传递 `--hh` 标志。

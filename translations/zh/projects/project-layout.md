@@ -1,19 +1,17 @@
-## Project Layout
-
-Forge is flexible on how you structure your project. By default, the structure is:
+Forge 在您构建项目的方式上是灵活的。 默认情况下，结构为：
 
 ```ignore
 {{#include ../output/hello_foundry/tree-with-files:output}}
 ```
 
-- You can configure Foundry's behavior using `foundry.toml`.
-- Remappings are specified in `remappings.txt`.
-- The default directory for contracts is `src/`.
-- The default directory for tests is `test/`, where any contract with a function that starts with `test` is considered to be a test.
-- Dependencies are stored as git submodules in `lib/`.
+- 您可以使用 `foundry.toml` 配置 Foundry 的行为。
+- 重新映射在“remappings.txt”中指定。
+- 合约的默认目录是 `src/`。
+- 测试的默认目录是“test/”，其中任何具有以“test”开头的函数的合约都被视为测试。
+- 依赖项作为 git 子模块存储在 `lib/` 中。
 
-You can configure where Forge looks for both dependencies and contracts using the `--lib-paths` and `--contracts` flags respectively. Alternatively you can configure it in `foundry.toml`.
+您可以分别使用 `--lib-paths` 和 `--contracts` 标志配置 Forge 在何处查找依赖项和合同。 或者，您可以在 foundry.toml 中配置它。
 
-Combined with remappings, this gives you the flexibility needed to support the project structure of other toolchains such as Hardhat and Truffle.
+结合重新映射，这为您提供了支持其他工具链（例如 Hardhat 和 Truffle）的项目结构所需的灵活性。
 
-For automatic Hardhat support you can also pass the `--hh` flag, which sets the following flags: `--lib-paths node_modules --contracts contracts`.
+对于自动 Hardhat 支持，您还可以传递 `--hh` 标志，它设置以下标志：`--lib-paths node_modules --contracts contracts`。
