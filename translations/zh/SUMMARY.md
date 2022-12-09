@@ -47,7 +47,7 @@
 
 - [Anvil 概述](./anvil/README.md)
 
-＃ 配置
+# 配置
 
 - [使用foundry.toml进行配置](./config/README.md)
 - [持续集成](./config/continous-integration.md)
