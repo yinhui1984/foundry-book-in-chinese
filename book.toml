@@ -6,15 +6,7 @@ src = "src"
 title = "Foundry Book"
 description = "A book on all things Foundry"
 
-[output.html]
-git-repository-url = "https://github.com/foundry-rs/book"
-edit-url-template = "https://github.com/foundry-rs/book/edit/master/{path}"
-default-theme = "ayu"
-additional-js = ["src/static/solidity.min.js"]
-cname = "book.getfoundry.sh"
-no-section-label = true
-additional-css = ["src/static/custom.css"]
-
-[output.html.fold]
-enable = true
-level = 1
+[[output.i18n.translations]]
+language = "zh"
+translators = ["https://www.github.com/coldstar1993"]
+title = "Foundry 中文"
