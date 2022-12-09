@@ -1,81 +1,81 @@
-# Summary
+# 概括
 
 [介绍](./README.md)
 
-# Getting Started
+# 入门
 
 - [安装](./getting-started/installation.md)
 - [Foundry之旅的第一步](./getting-started/first-steps.md)
 
-# Projects
+# 项目
 
-- [Creating a New Project](./projects/creating-a-new-project.md)
-- [Working on an Existing Project](./projects/working-on-an-existing-project.md)
-- [Dependencies](./projects/dependencies.md)
-- [Project Layout](./projects/project-layout.md)
+- [创建新项目](./projects/creating-a-new-project.md)
+- [处理现有项目](./projects/working-on-an-existing-project.md)
+- [依赖项](./projects/dependencies.md)
+- [项目布局](./projects/project-layout.md)
 
-# Forge Overview
+# 锻造概述
 
-- [Overview of Forge](forge/README.md)
-- [Tests](./forge/tests.md)
-  - [Writing Tests](./forge/writing-tests.md)
-  - [Cheatcodes](./forge/cheatcodes.md)
-  - [Forge Standard Library Overview](./forge/forge-std.md)
-  - [Understanding Traces](./forge/traces.md)
-  - [Fork Testing](./forge/fork-testing.md)
-  <!--  - [Coverage Reports]() !-->
-- [Advanced Testing](./forge/advanced-testing.md)
-  - [Fuzz Testing](./forge/fuzz-testing.md)
-  - [Differential Testing](./forge/differential-ffi-testing.md)
-    <!--  - [Invariant Testing]() !-->
-    <!--  - [Symbolic Testing]() !-->
-    <!--  - [Table Testing]() !-->
-    <!--  - [Mutation Testing]() !-->
-    <!-- - [Linting and Formatting]() !-->
-    <!-- - [Generating Documentation]() !-->
-- [Deploying and Verifying](./forge/deploying.md)
-- [Gas Tracking](./forge/gas-tracking.md)
-  - [Gas Reports](./forge/gas-reports.md)
-  - [Gas Snapshots](./forge/gas-snapshots.md)
-- [Debugger](./forge/debugger.md)
+- [Forge概述](forge/README.md)
+- [测试](./forge/tests.md)
+   - [编写测试](./forge/writing-tests.md)
+   - [cheatcodes](./forge/cheatcodes.md)
+   - [Forge标准库概览](./forge/forge-std.md)
+   - [了解Traces](./forge/traces.md)
+   - [分叉测试](./forge/fork-testing.md)
+   <!-- - [覆盖率报告]() !-->
+- [高级测试](./forge/advanced-testing.md)
+   - [模糊测试](./forge/fuzz-testing.md)
+   - [差异测试](./forge/differential-ffi-testing.md)
+     <!-- - [不变测试]() !-->
+     <!-- - [符号测试]() !-->
+     <!-- - [表测试]() !-->
+     <!-- - [突变测试]() !-->
+     <!-- - [检查和格式化]() !-->
+     <!-- - [生成文档]() !-->
+- [部署和验证](./forge/deploying.md)
+- [Gas追踪](./forge/gas-tracking.md)
+   - [Gas报告](./forge/gas-reports.md)
+   - [Gas快照](./forge/gas-snapshots.md)
+- [调试器](./forge/debugger.md)
 
-# Cast Overview
+# Cast概览
 
-- [Overview of Cast](./cast/README.md)
+- [Cast概述](./cast/README.md)
 
-# Anvil Overview
+# Anvil概述
 
-- [Overview of Anvil](./anvil/README.md)
+- [Anvil 概述](./anvil/README.md)
 
-# Configuration
+＃ 配置
 
-- [Configuring with `foundry.toml`](./config/README.md)
-- [Continuous Integration](./config/continous-integration.md)
-- [Integrating with VSCode](./config/vscode.md)
+- [使用foundry.toml进行配置](./config/README.md)
+- [持续集成](./config/continous-integration.md)
+- [与 VSCode 集成](./config/vscode.md)
 - [Shell Autocompletion](./config/shell-autocompletion.md)
-- [Static Analyzers](./config/static-analyzers.md)
-- [Integrating with Hardhat](./config/hardhat.md)
+- [静态分析器](./config/static-analyzers.md)
+- [与Hardhat集成](./config/hardhat.md)
 
-# Tutorials
+# 教程
 
-- [Best Practices](./tutorials/best-practices.md)
-- [Creating an NFT with Solmate](./tutorials/solmate-nft.md)
-- [Docker and Foundry](./tutorials/foundry-docker.md)
-- [Testing EIP-712 Signatures](./tutorials/testing-eip712.md)
-- [Solidity Scripting](./tutorials/solidity-scripting.md)
-- [Forking Mainnet with Cast and Anvil](./tutorials/forking-mainnet-with-cast-anvil.md)
-<!-- - [Incremental Adoption]() !-->
+- [最佳实践](./tutorials/best-practices.md)
+- [使用 Solmate 创建 NFT](./tutorials/solmate-nft.md)
+- [Docker 和 Foundry](./tutorials/foundry-docker.md)
+- [测试EIP-712签名](./tutorials/testing-eip712.md)
+- [Solidity脚本](./tutorials/solidity-scripting.md)
+- [使用Cast和Anvil分叉主网](./tutorials/forking-mainnet-with-cast-anvil.md)
+<!-- - [增量采用]() !-->
 
 # Appendix
 
 - [FAQ](./faq.md)
 - [References](./reference/README.md)
-  - [`forge` Commands](./reference/forge/README.md)
-    - [General Commands](./reference/forge/general-commands.md)
+  - [`forge` 命令](./reference/forge/README.md)
+    - [常用命令](./reference/forge/general-commands.md)
       - [forge](./reference/forge/forge.md)
       - [forge help](./reference/forge/forge-help.md)
       - [forge completions](./reference/forge/forge-completions.md)
-    - [Project Commands](./reference/forge/project-commands.md)
+    - [Project 命令](./reference/forge/project-commands.md)
       - [forge init](./reference/forge/forge-init.md)
       - [forge install](./reference/forge/forge-install.md)
       - [forge update](./reference/forge/forge-update.md)
@@ -83,19 +83,19 @@
       - [forge config](./reference/forge/forge-config.md)
       - [forge remappings](./reference/forge/forge-remappings.md)
       - [forge tree](./reference/forge/forge-tree.md)
-    - [Build Commands](./reference/forge/build-commands.md)
+    - [Build 命令](./reference/forge/build-commands.md)
       - [forge build](./reference/forge/forge-build.md)
       - [forge clean](./reference/forge/forge-clean.md)
       - [forge inspect](./reference/forge/forge-inspect.md)
-    - [Test Commands](./reference/forge/test-commands.md)
+    - [Test 命令](./reference/forge/test-commands.md)
       - [forge test](./reference/forge/forge-test.md)
       - [forge snapshot](./reference/forge/forge-snapshot.md)
-    - [Deploy Commands](./reference/forge/deploy-commands.md)
+    - [Deploy 命令](./reference/forge/deploy-commands.md)
       - [forge create](./reference/forge/forge-create.md)
       - [forge verify-contract](./reference/forge/forge-verify-contract.md)
       - [forge verify-check](./reference/forge/forge-verify-check.md)
       - [forge flatten](./reference/forge/forge-flatten.md)
-    - [Utility Commands](./reference/forge/utility-commands.md)
+    - [Utility 命令](./reference/forge/utility-commands.md)
       - [forge debug](./reference/forge/forge-debug.md)
       - [forge bind](./reference/forge/forge-bind.md)
       - [forge cache](./reference/forge/forge-cache.md)
@@ -103,16 +103,16 @@
       - [forge cache ls](./reference/forge/forge-cache-ls.md)
       - [forge script](./reference/forge/forge-script.md)
       - [forge upload-selectors](./reference/forge/forge-upload-selectors.md)
-  - [`cast` Commands](./reference/cast/README.md)
-    - [General Commands](./reference/cast/general-commands.md)
+  - [`cast` 命令](./reference/cast/README.md)
+    - [常用命令](./reference/cast/general-commands.md)
       - [cast](./reference/cast/cast.md)
       - [cast help](./reference/cast/cast-help.md)
       - [cast completions](./reference/cast/cast-completions.md)
-    - [Chain Commands](./reference/cast/chain-commands.md)
+    - [Chain 命令](./reference/cast/chain-commands.md)
       - [cast chain-id](./reference/cast/cast-chain-id.md)
       - [cast chain](./reference/cast/cast-chain.md)
       - [cast client](./reference/cast/cast-client.md)
-    - [Transaction Commands](./reference/cast/transaction-commands.md)
+    - [Transaction 命令](./reference/cast/transaction-commands.md)
       - [cast publish](./reference/cast/cast-publish.md)
       - [cast receipt](./reference/cast/cast-receipt.md)
       - [cast send](./reference/cast/cast-send.md)
@@ -122,26 +122,26 @@
       - [cast run](./reference/cast/cast-run.md)
       - [cast estimate](./reference/cast/cast-estimate.md)
       - [cast access-list](./reference/cast/cast-access-list.md)
-    - [Block Commands](./reference/cast/block-commands.md)
+    - [Block 命令](./reference/cast/block-commands.md)
       - [cast find-block](./reference/cast/cast-find-block.md)
       - [cast gas-price](./reference/cast/cast-gas-price.md)
       - [cast block-number](./reference/cast/cast-block-number.md)
       - [cast basefee](./reference/cast/cast-basefee.md)
       - [cast block](./reference/cast/cast-block.md)
       - [cast age](./reference/cast/cast-age.md)
-    - [Account Commands](./reference/cast/account-commands.md)
+    - [Account 命令](./reference/cast/account-commands.md)
       - [cast balance](./reference/cast/cast-balance.md)
       - [cast storage](./reference/cast/cast-storage.md)
       - [cast proof](./reference/cast/cast-proof.md)
       - [cast nonce](./reference/cast/cast-nonce.md)
       - [cast code](./reference/cast/cast-code.md)
-    - [ENS Commands](./reference/cast/ens-commands.md)
+    - [ENS 命令](./reference/cast/ens-commands.md)
       - [cast lookup-address](./reference/cast/cast-lookup-address.md)
       - [cast resolve-name](./reference/cast/cast-resolve-name.md)
       - [cast namehash](./reference/cast/cast-namehash.md)
-    - [Etherscan Commands](./reference/cast/etherscan-commands.md)
+    - [Etherscan 命令](./reference/cast/etherscan-commands.md)
       - [cast etherscan-source](./reference/cast/cast-etherscan-source.md)
-    - [ABI Commands](./reference/cast/abi-commands.md)
+    - [ABI 命令](./reference/cast/abi-commands.md)
       - [cast abi-encode](./reference/cast/cast-abi-encode.md)
       - [cast 4byte](./reference/cast/cast-4byte.md)
       - [cast 4byte-decode](./reference/cast/cast-4byte-decode.md)
@@ -151,7 +151,7 @@
       - [cast --abi-decode](./reference/cast/cast--abi-decode.md)
       - [cast --calldata-decode](./reference/cast/cast--calldata-decode.md)
       - [cast upload-signature](./reference/cast/cast-upload-signature.md)
-    - [Conversion Commands](./reference/cast/conversion-commands.md)
+    - [Conversion 命令](./reference/cast/conversion-commands.md)
       - [cast --format-bytes32-string](./reference/cast/cast--format-bytes32-string.md)
       - [cast --from-bin](./reference/cast/cast--from-bin.md)
       - [cast --from-fix](./reference/cast/cast--from-fix.md)
@@ -170,7 +170,7 @@
       - [cast --to-wei](./reference/cast/cast--to-wei.md)
       - [cast shl](./reference/cast/cast-shl.md)
       - [cast shr](./reference/cast/cast-shr.md)
-    - [Utility Commands](./reference/cast/utility-commands.md)
+    - [Utility 命令](./reference/cast/utility-commands.md)
       - [cast sig](./reference/cast/cast-sig.md)
       - [cast keccak](./reference/cast/cast-keccak.md)
       - [cast compute-address](./reference/cast/cast-compute-address.md)
@@ -181,22 +181,22 @@
       - [cast --min-int](./reference/cast/cast--min-int.md)
       - [cast --max-uint](./reference/cast/cast--max-uint.md)
       - [cast --to-checksum-address](./reference/cast/cast--to-checksum-address.md)
-    - [Wallet Commands](./reference/cast/wallet-commands.md)
+    - [Wallet 命令](./reference/cast/wallet-commands.md)
       - [cast wallet](./reference/cast/cast-wallet.md)
       - [cast wallet new](./reference/cast/cast-wallet-new.md)
       - [cast wallet address](./reference/cast/cast-wallet-address.md)
       - [cast wallet sign](./reference/cast/cast-wallet-sign.md)
       - [cast wallet vanity](./reference/cast/cast-wallet-vanity.md)
       - [cast wallet verify](./reference/cast/cast-wallet-verify.md)
-  - [`anvil` Reference](./reference/anvil/README.md)
-  - [Config Reference](./reference/config/README.md)
+  - [`anvil`参考](./reference/anvil/README.md)
+  - [Config参考](./reference/config/README.md)
     - [Overview](./reference/config/overview.md)
     - [Project](./reference/config/project.md)
     - [Solidity Compiler](./reference/config/solidity-compiler.md)
     - [Testing](./reference/config/testing.md)
     - [Formatter](./reference/config/formatter.md)
     - [Etherscan](./reference/config/etherscan.md)
-  - [Cheatcodes Reference](./cheatcodes/README.md)
+  - [Cheatcodes参考](./cheatcodes/README.md)
     - [Environment](./cheatcodes/environment.md)
       - [`warp`](./cheatcodes/warp.md)
       - [`roll`](./cheatcodes/roll.md)
@@ -266,7 +266,7 @@
     - [Snapshots](./cheatcodes/snapshots.md)
     - [RPC](./cheatcodes/rpc.md)
     - [Files](./cheatcodes/fs.md)
-  - [Forge Standard Library Reference](./reference/forge-std/README.md)
+  - [Forge Standard Library参考](./reference/forge-std/README.md)
     - [Std Logs](./reference/forge-std/std-logs.md)
     - [Std Assertions](./reference/forge-std/std-assertions.md)
       - [`fail`](./reference/forge-std/fail.md)
@@ -312,6 +312,6 @@
       - [`computeCreateAddress`](./reference/forge-std/compute-create-address.md)
       - [`deriveRememberKey`](./reference/forge-std/derive-remember-key.md)
     - [Console Logging](./reference/forge-std/console-log.md)
-  - [DSTest Reference](./reference/ds-test.md)
+  - [DSTest参考](./reference/ds-test.md)
 - [Miscellaneous](./misc/README.md)
   - [Struct encoding](./misc/struct-encoding.md)
