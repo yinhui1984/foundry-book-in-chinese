@@ -1,81 +1,81 @@
-## Installation
+＃＃ 安装
 
-### On Linux and macOS
+### 在 Linux 和 macOS 上
 
-If you use Linux or macOS, there are two different ways to install Foundry.
+如果您使用 Linux 或 macOS，则有两种不同的方式来安装 Foundry。
 
-#### Install the latest release by using `foundryup`
+#### 使用 `foundryup` 安装最新版本
 
-This is the easiest option for Linux and macOS users.
+对于 Linux 和 macOS 用户来说，这是最简单的选择。
 
-Open your terminal and type in the following command:
+打开您的终端并输入以下命令：
 
 ```sh
 curl -L https://foundry.paradigm.xyz | bash
 ```
 
-This will download `foundryup`. Then install Foundry by running:
+这将下载`foundryup`。 然后通过运行安装 Foundry：
 
 ```sh
-foundryup
+铸造厂
 ```
 
-If everything goes well, you will now have three binaries at your disposal: `forge`, `cast`, and `anvil`.
+如果一切顺利，您现在可以使用三个二进制文件：`forge`、`cast` 和 `anvil`。
 
-If you use macOS and display below error, you need type `brew install libusb` to install Library
+如果您使用 macOS 并显示以下错误，您需要键入 `brew install libusb` 来安装库
 
 ```sh
-dyld[32719]: Library not loaded: /usr/local/opt/libusb/lib/libusb-1.0.0.dylib
+dyld[32719]：未加载库：/usr/local/opt/libusb/lib/libusb-1.0.0.dylib
 ```
 
-> 💡 **Tip**
+> 💡 **提示**
 >
->To update `foundryup` after installation, simply run `foundryup` again, and it will update to the latest Foundry release. You can also revert to a specific version of Foundry with `foundryup -v $VERSION`.
+>要在安装后更新 `foundryup`，只需再次运行 `foundryup`，它将更新到最新的 Foundry 版本。 您还可以使用“foundryup -v $VERSION”恢复到特定版本的 Foundry。
 
-#### Building from source
+#### 从源代码构建
 
-To build from source, you need to get [Rust](https://rust-lang.org) and Cargo. The easiest way to get both is by using `rustup`.
+要从源代码构建，您需要获取 [Rust](https://rust-lang.org) 和 Cargo。 获得两者的最简单方法是使用 `rustup`。
 
-On Linux and macOS, this is done as follows:
+在 Linux 和 macOS 上，这是按如下方式完成的：
 
 ```sh
-curl https://sh.rustup.rs -sSf | sh
+卷曲 https://sh.rustup.rs -sSf | sh
 ```
 
-It will download a script and start the installation.
+它将下载脚本并开始安装。
 
-### On Windows, build from source
+### 在 Windows 上，从源代码构建
 
-If you use Windows, you need to build from source to get Foundry.
+如果您使用 Windows，则需要从源代码构建以获取 Foundry。
 
-Download and run `rustup-init` from [rustup.rs](https://win.rustup.rs/x86_64). It will start the installation in a console.
+从 [rustup.rs](https://win.rustup.rs/x86_64) 下载并运行 `rustup-init`。 它将在控制台中开始安装。
 
-If you encouner an error, it is most likely the case that you do not have the VS Code Installer which you can [download here](https://visualstudio.microsoft.com/downloads/) and install.
+如果您遇到错误，很可能是因为您没有 VS 代码安装程序，您可以[在此处下载](https://visualstudio.microsoft.com/downloads/) 并进行安装。
 
-After this, run the following to build Foundry from source:
+在此之后，运行以下命令从源代码构建 Foundry：
 
 ```sh
 cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
 ```
 
-To update from source, run the same command again.
+要从源更新，请再次运行相同的命令。
 
-### Using with Docker
+### 与 Docker 一起使用
 
-Foundry can also be used entirely within a Docker container. If you don't have it, Docker can be installed directly from [Docker's website](https://docs.docker.com/get-docker/).
+Foundry 也可以完全在 Docker 容器中使用。 如果没有，可以直接从 [Docker 的网站](https://docs.docker.com/get-docker/) 安装 Docker。
 
-Once installed, you can download the latest release by running:  
+安装后，您可以通过运行以下命令下载最新版本：
 
 ```sh
 docker pull ghcr.io/foundry-rs/foundry:latest
 ```
 
-It is also possible to build the docker image locally. From the Foundry repository, run:
+也可以在本地构建 docker 镜像。 从 Foundry 存储库运行：
 
 ```sh
-docker build -t foundry .
+docker build -t 铸造厂。
 ```
 
-> ℹ️ **Note**
+> ℹ️ **注意**
 >
-> Some machines (including those with M1 chips) may be unable to build the docker image locally. This is a known issue.
+> 某些机器（包括带有 M1 芯片的机器）可能无法在本地构建 docker 镜像。 这是一个已知的问题。
