@@ -1,12 +1,12 @@
-## Cheatcodes
+## 秘籍
 
-Most of the time, simply testing your smart contracts outputs isn't enough. To manipulate the state of the blockchain, as well as test for specific reverts and events, Foundry is shipped with a set of cheatcodes.
+大多数时候，仅仅测试您的智能合约输出是不够的。 为了操纵区块链的状态，以及测试特定的恢复和事件，Foundry 附带了一组作弊代码。
 
-Cheatcodes allow you to change the block number, your identity, and more. They are invoked by calling specific functions on a specially designated address: `0x7109709ECfa91a80626fF3989D68f67F5b1DD12D`.
+作弊码允许您更改块号、您的身份等。 它们是通过在特别指定的地址上调用特定函数来调用的：`0x7109709ECfa91a80626fF3989D68f67F5b1DD12D`。
 
-You can access cheatcodes easily via the `vm` instance available in Forge Standard Library's `Test` contract. Forge Standard Library is explained in greater detail in the following [section](./forge-std.md).
+您可以通过 Forge 标准库的“测试”合约中提供的“vm”实例轻松访问作弊码。 Forge 标准库在以下 [section](./forge-std.md) 中有更详细的解释。
 
-Let's write a test for a smart contract that is only callable by its owner.
+让我们为只能由其所有者调用的智能合约编写一个测试。
 
 ```solidity
 {{#include ../../projects/cheatcodes/test/OwnerUpOnly.t.sol:prelude}}
@@ -19,80 +19,80 @@ Let's write a test for a smart contract that is only callable by its owner.
 }
 ```
 
-If we run `forge test` now, we will see that the test passes, since `OwnerUpOnlyTest` is the owner of `OwnerUpOnly`.
+如果我们现在运行`forge test`，我们将看到测试通过，因为`OwnerUpOnlyTest`是 `OwnerUpOnly` 的所有者。
 
 ```ignore
 $ forge test
 {{#include ../output/cheatcodes/forge-test-simple:output}}
 ```
 
-Let's make sure that someone who is definitely not the owner can't increment the count:
+让我们确保绝对不是所有者的人不能增加计数：
 
 ```solidity
 {{#include ../../projects/cheatcodes/test/OwnerUpOnly.t.sol:contract_prelude}}
 
-    // ...
+        // ...
 
 {{#include ../../projects/cheatcodes/test/OwnerUpOnly.t.sol:test_fail}}
 }
 ```
 
-If we run `forge test` now, we will see that all the test pass.
+如果我们现在运行“forge test”，我们将看到所有测试都通过了。
 
 ```ignore
 $ forge test
 {{#include ../output/cheatcodes/forge-test-cheatcodes:output}}
 ```
 
-The test passed because the `prank` cheatcode changed our identity to the zero address for the next call (`upOnly.increment()`). The test case passed since we used the `testFail` prefix, however, using `testFail` is considered an anti-pattern since it does not tell us anything about *why* `upOnly.increment()` reverted.
+测试通过是因为 `prank` 作弊代码将我们的身份更改为下一次调用的零地址 (`upOnly.increment()`)。 由于我们使用了 `testFail` 前缀，测试用例通过了，但是，使用 `testFail` 被认为是一种反模式，因为它没有告诉我们任何关于*为什么* `upOnly.increment()` 被恢复的信息。
 
-If we run the tests again with traces turned on, we can see that we reverted with the correct error message.
+如果我们在启用跟踪的情况下再次运行测试，我们可以看到我们恢复了正确的错误消息。
 
 ```ignore
 $ forge test -vvvv --match-test testFailIncrementAsNotOwner
 {{#include ../output/cheatcodes/forge-test-cheatcodes-tracing:output}}
 ```
 
-To be sure in the future, let's make sure that we reverted because we are not the owner using the `expectRevert` cheatcode:
+为了将来确定，让我们确保我们恢复了，因为我们不是使用 `expectRevert` 作弊代码的所有者：
 
 ```solidity
 {{#include ../../projects/cheatcodes/test/OwnerUpOnly.t.sol:contract_prelude}}
 
-    // ...
+     // ...
 
 {{#include ../../projects/cheatcodes/test/OwnerUpOnly.t.sol:test_expectrevert}}
 }
 ```
 
-If we run `forge test` one last time, we see that the test still passes, but this time we are sure that it will always fail if we revert for any other reason.
+如果我们最后一次运行 `forge test`，我们会看到测试仍然通过，但这次我们确信如果我们因为任何其他原因恢复它总是会失败。
 
 ```ignore
 $ forge test
 {{#include ../output/cheatcodes/forge-test-cheatcodes-expectrevert:output}}
 ```
 
-Another cheatcode that is perhaps not so intuitive is the `expectEmit` function. Before looking at `expectEmit`, we need to understand what an event is.
+另一个可能不那么直观的作弊码是 `expectEmit` 函数。 在查看 `expectEmit` 之前，我们需要了解什么是事件。
 
-Events are inheritable members of contracts. When you emit an event, the arguments are stored on the blockchain. The `indexed` attribute can be added to a maximum of three parameters of an event to form a data structure known as a "topic." Topics allow users to search for events on the blockchain.
+事件是契约的可继承成员。 当您发出事件时，参数存储在区块链上。 `indexed` 属性可以添加到事件的最多三个参数中，以形成称为 `Transfer` 的数据结构。 主题允许用户搜索区块链上的事件。
 
 ```solidity
 {{#include ../../projects/cheatcodes/test/EmitContract.t.sol:all}}
 ```
 
-When we call `vm.expectEmit(true, true, false, true);`, we want to check the 1st and 2nd `indexed` topic for the next event.
+当我们调用 `vm.expectEmit(true, true, false, true);` 时，我们想要检查下一个事件的第一个和第二个 `indexed` 主题。
 
-The expected `Transfer` event in `testExpectEmit()` means we are expecting that `from` is  `address(this)`, and `to` is `address(1337)`. This is compared against the event emitted from `emitter.t()`.
+`testExpectEmit()` 中预期的 `Transfer` 事件意味着我们期望 `from` 是 `address(this)`，而 `to` 是 `address(1337)`。 这与从 emitter.t() 发出的事件进行比较。
 
-In other words, we are checking that the first topic from `emitter.t()` is equal to `address(this)`. The 3rd argument in `expectEmit` is set to `false` because there is no need to check the third topic in the `Transfer` event, since there are only two. It does not matter even if we set to `true`.
+换句话说，我们正在检查来自 `emitter.t()` 的第一个主题是否等于 `address(this)` 。 `expectEmit` 中的第三个参数设置为 `false`，因为不需要检查 `Transfer` 事件中的第三个主题，因为只有两个。 即使我们设置为`true`也没关系。
 
-The 4th argument in `expectEmit` is set to `true`, which means that we want to check "non-indexed topics", also known as data.
+`expectEmit` 中的第 4 个参数设置为 `true`，这意味着我们要检查 "non-indexed topics"，也称为数据。
 
-For example, we want the data from the expected event in `testExpectEmit` - which is `amount` - to equal to the data in the actual emitted event. In other words, we are asserting that `amount` emitted by `emitter.t()` is equal to `1337`. If the fourth argument in `expectEmit` was set to `false`, we would not check `amount`.
+例如，我们希望来自 `testExpectEmit` 中预期事件的数据（即 `amount`）等于实际发出的事件中的数据。 换句话说，我们断言 `emitter.t()` 发出的 `amount ` 等于 `1337`。 如果 `expectEmit` 中的第四个参数设置为 `false`，我们将不会检查 `amount`。
 
-In other words, `testExpectEmitDoNotCheckData` is a valid test case, even though the amounts differ, since we do not check the data.
+换句话说，`testExpectEmitDoNotCheckData` 是一个有效的测试用例，即使数量不同，因为我们不检查数据。
 
 <br>
 
-> 📚 **Reference**
+> 📚 **参考**
 >
-> See the [Cheatcodes Reference](../cheatcodes/) for a complete overview of all the available cheatcodes.
+> 请参阅 [Cheatcodes Reference](../cheatcodes/) 以获得所有可用作弊码的完整概述。

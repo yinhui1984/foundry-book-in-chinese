@@ -1,3 +1,3 @@
-## Overview of Forge
+## 锻造概述
 
-Forge is a command-line tool that ships with Foundry. Forge tests, builds, and deploys your smart contracts.
+Forge 是 `Foundry` 附带的命令行工具。 Forge 测试、构建和部署您的智能合约。

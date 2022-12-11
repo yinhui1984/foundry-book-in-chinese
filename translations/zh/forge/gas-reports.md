@@ -1,24 +1,24 @@
-## Gas Reports
+## Gas 报告
 
-Forge can produce gas reports for your contracts. You can configure which contracts output gas reports via the `gas_reports` field in `foundry.toml`.
+Forge 可以为您的合约生成 gas 报告。 您可以通过 `foundry.toml` 中的 `gas_reports` 字段配置哪些合约输出 gas 报告。
 
-To produce reports for specific contracts:
+为特定合同生成报告：
 
 ```toml
 gas_reports = ["MyContract", "MyContractFactory"]
 ```
 
-To produce reports for all contracts:
+为所有合同生成报告：
 
 ```toml
 gas_reports = ["*"]
 ```
 
-To generate gas reports, run `forge test --gas-report`.
+要生成Gas报告，请运行“forge test --gas-report”。
 
-You can also use it in combination with other subcommands, such as `forge test --match-test testBurn --gas-report`, to generate only a gas report relevant to this test.
+您还可以将它与其他子命令结合使用，例如 `forge test --match-test testBurn --gas-report`，以仅生成与此测试相关的Gas报告。
 
-Example output:
+示例输出：
 
 ```ignore
 ╭───────────────────────┬─────────────────┬────────┬────────┬────────┬─────────╮
@@ -68,13 +68,13 @@ Example output:
 ╰───────────────────────┴─────────────────┴────────┴────────┴────────┴─────────╯
 ```
 
-You can also ignore contracts via the `gas_reports_ignore` field in `foundry.toml`:
+您还可以通过 `foundry.toml` 中的 `gas_reports_ignore` 字段忽略合约：
 
 ```toml
 gas_reports_ignore = ["Example"]
 ```
 
-This would change the output to:
+这会将输出更改为：
 
 ```ignore
 ╭───────────────────────┬─────────────────┬────────┬────────┬────────┬─────────╮
@@ -108,4 +108,5 @@ This would change the output to:
 ╰───────────────────────┴─────────────────┴────────┴────────┴────────┴─────────╯
 ```
 
-For more details on how the ignore-list works, see: [https://github.com/foundry-rs/foundry/pull/2528#issue-1323359692](https://github.com/foundry-rs/foundry/pull/2528#issue-1323359692)
+
+有关忽略列表如何工作的更多详细信息，请参阅：[https://github.com/foundry-rs/foundry/pull/2528#issue-1323359692](https://github.com/foundry-rs/foundry/pull/2528#issue-1323359692)

@@ -1,26 +1,26 @@
-## Fuzz Testing
+## 模糊测试
 
-Forge supports property based testing.
+Forge 支持基于属性的测试。
 
-Property-based testing is a way of testing general behaviors as opposed to isolated scenarios.
+基于属性的测试是一种测试一般行为而不是孤立场景的方法。
 
-Let's examine what that means by writing a unit test, finding the general property we are testing for, and converting it to a property-based test instead:
+让我们通过编写单元测试来检查这意味着什么，找到我们正在测试的一般属性，并将其转换为基于属性的测试：
 
 ```solidity
 {{#include ../../projects/fuzz_testing/test/Safe.t.sol.1:all}}
 ```
 
-Running the test, we see it passes:
+运行测试，我们看到它通过了：
 
 ```sh
 {{#include ../output/fuzz_testing/forge-test-no-fuzz:all}}
 ```
 
-This unit test _does test_ that we can withdraw ether from our safe. However, who is to say that it works for all amounts, not just 1 ether?
+这个单元测试_确实测试_我们可以从我们的保险箱中取出以太币。 但是，谁能说它适用于所有金额，而不仅仅是 1 个以太币？
 
-The general property here is: given a safe balance, when we withdraw, we should get whatever is in the safe.
+这里的一般性质是：给定一个安全的余额，当我们提取时，我们应该得到保险箱里的东西。
 
-Forge will run any test that takes at least one parameter as a property-based test, so let's rewrite:
+Forge 将运行任何至少采用一个参数的测试作为基于属性的测试，所以让我们重写：
 
 ```solidity
 {{#include ../../projects/fuzz_testing/test/Safe.t.sol.2:contract_prelude}}
@@ -30,26 +30,26 @@ Forge will run any test that takes at least one parameter as a property-based te
 }
 ```
 
-If we run the test now, we can see that Forge runs the property-based test, but it fails for high values of `amount`:
+如果我们现在运行测试，我们可以看到 Forge 运行基于属性的测试，但它因 amount 的高值而失败：
 
 ```sh
 $ forge test
 {{#include ../output/fuzz_testing/forge-test-fail-fuzz:output}}
 ```
 
-The default amount of ether that the test contract is given is `2**96 wei` (as in DappTools), so we have to restrict the type of amount to `uint96` to make sure we don't try to send more than we have:
+给测试合约的默认以太币数量是 `2**96 wei`（在 DappTools 中），所以我们必须将数量类型限制为 `uint96` 以确保我们不会尝试发送超过 我们有：
 
 ```solidity
 {{#include ../../projects/fuzz_testing/test/Safe.t.sol.3:signature}}
 ```
 
-And now it passes:
+现在它通过了：
 
 ```sh
 {{#include ../output/fuzz_testing/forge-test-success-fuzz:all}}
 ```
 
-You may want to exclude certain cases using the [`assume`](../cheatcodes/assume.md) cheatcode. In those cases, fuzzer will discard the inputs and start a new fuzz run:
+您可能希望使用 [`assume`](../cheatcodes/assume.md) 作弊代码排除某些情况。 在这些情况下，模糊器将丢弃输入并开始新的模糊测试运行：
 
 ```solidity
 function testWithdraw(uint96 amount) public {
@@ -58,12 +58,12 @@ function testWithdraw(uint96 amount) public {
 }
 ```
 
-There are different ways to run property-based tests, notably parametric testing and fuzzing. Forge only supports fuzzing.
+有多种方法可以运行基于属性的测试，特别是参数测试和模糊测试。 Forge 仅支持模糊测试。
 
-### Interpreting results
+### 解释结果
 
-You might have noticed that fuzz tests are summarized a bit differently compared to unit tests:
+您可能已经注意到，与单元测试相比，模糊测试的总结略有不同：
 
-- "runs" refers to the amount of scenarios the fuzzer tested. By default, the fuzzer will generate 256 scenarios, however, this can be configured using the [`FOUNDRY_FUZZ_RUNS`](../reference/config/testing.md#runs) environment variable.
-- "μ" (Greek letter mu) is the mean gas used across all fuzz runs
-- "~" (tilde) is the median gas used across all fuzz runs
+- "runs" 是指模糊器测试的场景数量。 默认情况下，模糊器将生成 256 个场景，但是，这可以使用 [`FOUNDRY_FUZZ_RUNS`](../reference/config/testing.md#runs) 环境变量进行配置。
+- “μ”（希腊字母 mu）是所有模糊运行中使用的平均气体
+- “~”（波浪号）是所有模糊运行中使用的中值气体
