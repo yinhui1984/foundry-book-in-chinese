@@ -17,7 +17,7 @@ curl -L https://foundry.paradigm.xyz | bash
 这将下载`foundryup`。 然后通过运行安装 Foundry：
 
 ```sh
-铸造厂
+foundryup
 ```
 
 如果一切顺利，您现在可以使用三个二进制文件：`forge`、`cast` 和 `anvil`。
@@ -25,7 +25,7 @@ curl -L https://foundry.paradigm.xyz | bash
 如果您使用 macOS 并显示以下错误，您需要键入 `brew install libusb` 来安装库
 
 ```sh
-dyld[32719]：未加载库：/usr/local/opt/libusb/lib/libusb-1.0.0.dylib
+dyld[32719]：Library not loaded：/usr/local/opt/libusb/lib/libusb-1.0.0.dylib
 ```
 
 > 💡 **提示**
@@ -39,7 +39,7 @@ dyld[32719]：未加载库：/usr/local/opt/libusb/lib/libusb-1.0.0.dylib
 在 Linux 和 macOS 上，这是按如下方式完成的：
 
 ```sh
-卷曲 https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh
 ```
 
 它将下载脚本并开始安装。
@@ -50,7 +50,7 @@ dyld[32719]：未加载库：/usr/local/opt/libusb/lib/libusb-1.0.0.dylib
 
 从 [rustup.rs](https://win.rustup.rs/x86_64) 下载并运行 `rustup-init`。 它将在控制台中开始安装。
 
-如果您遇到错误，很可能是因为您没有 VS 代码安装程序，您可以[在此处下载](https://visualstudio.microsoft.com/downloads/) 并进行安装。
+如果您遇到错误，很可能是因为您没有 VSCode安装程序，您可以[在此处下载](https://visualstudio.microsoft.com/downloads/) 并进行安装。
 
 在此之后，运行以下命令从源代码构建 Foundry：
 
@@ -73,9 +73,9 @@ docker pull ghcr.io/foundry-rs/foundry:latest
 也可以在本地构建 docker 镜像。 从 Foundry 存储库运行：
 
 ```sh
-docker build -t 铸造厂。
+docker build -t foundry。
 ```
 
 > ℹ️ **注意**
 >
-> 某些机器（包括带有 M1 芯片的机器）可能无法在本地构建 docker 镜像。 这是一个已知的问题。
+> 某些机器（包括带有 M1 芯片的机器）可能无法在本地构建 docker 镜像。 这是一个众所周知的问题。
