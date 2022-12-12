@@ -55,7 +55,7 @@ $ forge create --rpc-url <your_rpc_url> \
 建议将 `--verify` 标志与 `forge create` 一起使用，以在部署后自动验证 explorer 上的合约。
 请注意，对于 Etherscan，必须设置 [`ETHERSCAN_API_KEY`](../reference/config/etherscan.md#etherscan_api_key)。
 
-如果您正在验证已部署的合同，请继续阅读。
+如果您正在验证已部署的合约，请继续阅读。
 
 您可以使用 [`forge verify-contract`](../reference/forge/forge-verify-contract.md) 命令在 Etherscan、Sourcify 或 Blockscout 上验证合约。
 
@@ -107,14 +107,14 @@ Contract successfully verified.
 
 ＃＃＃ 故障排除
 
-##### `位置 1 处的无效字符 'x'`
+##### `位于 1 处的无效字符 'x'`
 
 确保私钥字符串不以“0x”开头。
 
 #####`EIP-1559 未激活`
 RPC 服务器不支持或未激活 EIP-1559。 传递 `--legacy` 标志以使用旧交易而不是 EIP-1559 交易。 如果您在本地环境中进行开发，则可以使用 Hardhat 而不是 Ganache。
 
-#####`无法解析令牌`
+#####`无法解析tokens`
 确保传递的参数类型正确。
 
 ##### `签名错误`
@@ -133,10 +133,10 @@ Version: 0.8.12+commit.f00d7308.Darwin.appleclang
 
 ### 已知的问题
 
-#### 验证具有不明确导入路径的合同
+#### 验证具有不明确导入路径的合约
 
 Forge 将源目录（`src`、`lib`、`test` 等）作为 `--include-path` 参数传递给编译器。
-这意味着给定以下项目树
+这意味着给定以下项目树结构
 
 ```text
 |- src

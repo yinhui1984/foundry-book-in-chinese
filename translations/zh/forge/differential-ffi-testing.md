@@ -1,6 +1,6 @@
 ## 差异化测试
 
-Forge 可用于差分测试和差分模糊测试。 您甚至可以使用 `ffi` [作弊码](../cheatcodes/ffi.md) 针对非 EVM 可执行文件进行测试。
+Forge 可用于差分测试和差分模糊测试。 您甚至可以使用 `ffi` [cheatcode](../cheatcodes/ffi.md) 针对非 EVM 可执行文件进行测试。
 
 ### 背景
 
@@ -18,7 +18,7 @@ Forge 可用于差分测试和差分模糊测试。 您甚至可以使用 `ffi` 
 
 以下是 Forge 如何用于差异测试的一些示例。
 
-### 入门：`ffi` 作弊码
+### 入门：`ffi` cheatcode
 
 [`ffi`](../cheatcodes/ffi.md) 允许您执行任意 shell 命令并捕获输出。 这是一个模拟示例：
 
@@ -39,7 +39,7 @@ contract TestContract is Test {
 }
 ```
 
-一个地址之前已经写入了`address.txt`，我们使用 FFI 作弊码读取了它。 现在可以在整个测试合同中使用此数据。
+一个地址之前已经写入了`address.txt`，我们使用 FFI cheatcode读取了它。 现在可以在整个测试合约中使用此数据。
 
 ### 示例：差异测试默克尔树实现
 
@@ -77,7 +77,7 @@ function testMerkleRootMatchesJSImplementationFuzzed(bytes32[] memory leaves) pu
 }
 ```
 
-> 注意：请参阅 Murky Repo 中的 [`Strings2.sol`](https://github.com/dmfxyz/murky/blob/main/differential_testing/test/utils/Strings2.sol) 以了解启用 `(bytes) 的库 内存).toHexString()`
+> 注意：请参阅 Murky Repo 中的 [`Strings2.sol`](https://github.com/dmfxyz/murky/blob/main/differential_testing/test/utils/Strings2.sol) 以了解启用 `(bytes memory).toHexString()`
 
 Forge 运行 `npm --prefix differential_testing/scripts/ --silent run generate-root-cli {numLeaves} {hexEncodedLeaves}`。 这使用参考 JavaScript 实现计算输入数据的 Merkle 根。 该脚本将根打印到标准输出，打印输出在 `vm.ffi()` 的返回值中被捕获为 `bytes`。
 
@@ -110,7 +110,7 @@ function testCompatabilityOpenZeppelinProver(bytes32[] memory _data, uint256 nod
 
 #### 针对参考数据的标准化测试
 
-FFI 还可用于将可重现的标准化数据注入测试环境。 在 Murky 库中，这被用作气体快照的基准（参见 [forge snapshot](./gas-snapshots.md)）。
+FFI 还可用于将可重现的标准化数据注入测试环境。 在 Murky 库中，这被用作gas快照的基准（参见 [forge snapshot](./gas-snapshots.md)）。
 
 ```solidity
 bytes32[100] data;
@@ -139,9 +139,9 @@ function testMerkleGenerateProofStandard() public view {
 0xf910ccaa307836354233316666386231414464306335333243453944383735313..423532
 ```
 
-标准化测试合约使用 ffi 读取文件。 它将数据解码为一个数组，然后在本例中为 8 个不同的叶子生成证明。 由于数据是恒定且标准的，我们可以使用此测试有意义地测量气体和性能改进。
+标准化测试合约使用 ffi 读取文件。 它将数据解码为一个数组，然后在本例中为 8 个不同的叶子生成证明。 由于数据是恒定且标准的，我们可以使用此测试有意义地测量gas和性能改进。
 
-> 当然，可以将数组硬编码到测试中！ 但这使得跨合同、实施等进行一致的测试变得更加困难。
+> 当然，可以将数组硬编码到测试中！ 但这使得跨合约、实施等进行一致的测试变得更加困难。
 
 ### 示例：差异测试渐进式荷兰式拍卖
 

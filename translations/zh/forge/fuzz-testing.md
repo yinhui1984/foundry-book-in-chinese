@@ -1,4 +1,4 @@
-## 模糊测试
+## 模糊测试(Fuzz Testing)
 
 Forge 支持基于属性的测试。
 
@@ -49,7 +49,7 @@ $ forge test
 {{#include ../output/fuzz_testing/forge-test-success-fuzz:all}}
 ```
 
-您可能希望使用 [`assume`](../cheatcodes/assume.md) 作弊代码排除某些情况。 在这些情况下，模糊器将丢弃输入并开始新的模糊测试运行：
+您可能希望使用 [`assume`](../cheatcodes/assume.md) cheatcodes排除某些情况。 在这些情况下，模糊器fuzzer将丢弃输入并开始新的模糊测试运行：
 
 ```solidity
 function testWithdraw(uint96 amount) public {
@@ -60,10 +60,10 @@ function testWithdraw(uint96 amount) public {
 
 有多种方法可以运行基于属性的测试，特别是参数测试和模糊测试。 Forge 仅支持模糊测试。
 
-### 解释结果
+### Interpreting results
 
 您可能已经注意到，与单元测试相比，模糊测试的总结略有不同：
 
-- "runs" 是指模糊器测试的场景数量。 默认情况下，模糊器将生成 256 个场景，但是，这可以使用 [`FOUNDRY_FUZZ_RUNS`](../reference/config/testing.md#runs) 环境变量进行配置。
-- “μ”（希腊字母 mu）是所有模糊运行中使用的平均气体
-- “~”（波浪号）是所有模糊运行中使用的中值气体
+- "runs" 是指模糊器fuzzer测试的场景数量。 默认情况下，模糊器fuzzer将生成 256 个场景，但是，这可以使用 [`FOUNDRY_FUZZ_RUNS`](../reference/config/testing.md#runs) 环境变量进行配置。
+- “μ”（希腊字母 mu）是所有模糊运行中使用的平均gas
+- “~”（波浪号）是所有模糊运行中使用的中值gas

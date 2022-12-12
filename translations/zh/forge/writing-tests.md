@@ -1,10 +1,10 @@
 ## 编写测试
 
-测试是用 Solidity 编写的。 如果测试功能恢复，则测试失败，否则通过。
+测试是用 Solidity 编写的。 如果测试功能revert，则测试失败，否则通过。
 
-让我们回顾一下最常见的编写测试的方式，使用 [Forge Standard Library](https://github.com/foundry-rs/forge-std) 的 `Test` 契约，这是编写测试的首选方式 与锻造。
+让我们回顾一下最常见的编写测试的方式，使用 [Forge Standard Library](https://github.com/foundry-rs/forge-std) 的 `Test` 契约，这是编写测试的首选方式 与Forge。
 
-在本节中，我们将使用 Forge Std 的“Test”合约中的函数复习基础知识，该合约本身是 [DSTest](https://github.com/dapphub/ds-test) 的超集。 您将学习如何使用 Forge 标准库中的更多高级内容 [很快](./forge-std.md)。
+在本节中，我们将使用 Forge Std 的“Test”合约中的函数复习基础知识，该合约本身是 [DSTest](https://github.com/dapphub/ds-test) 的超集。 您将学习如何使用 Forge 标准库中的更多高级内容 [soon](./forge-std.md)。
 
 DSTest 提供基本的日志记录和断言功能。 要访问这些函数，请导入 `forge-std/Test.sol` 并从测试合约中的 `Test` 继承：
 
@@ -29,12 +29,12 @@ Forge 在测试中使用以下关键字：
 {{#include ../../projects/writing_tests/test/Basic.t.sol:testNumberIs42}}
 ```
 
-- `testFail`: `test` 前缀的倒数 - 如果函数没有恢复，则测试失败
+- `testFail`: `test` 前缀的倒数 - 如果函数没有revert，则测试失败
 ```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:testFailSubtract43}}
 ```
-一个好的做法是将类似 `testCannot` 的东西与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用（作弊码在下面的 [section](./cheatcodes .MD））。
-现在，不使用 `testFail`，您确切地知道恢复了什么：
+一个好的做法是将类似 `testCannot` 的东西与 [`expectRevert`](../cheatcodes/expect-revert.md) cheatcodes结合使用（cheatcodes在下面的 [section](./cheatcodes.md)）。
+现在，不使用 `testFail`，您确切地知道revert了什么：
 
 ```solidity
 {{#include ../../projects/writing_tests/test/Basic2.t.sol:testCannotSubtract43}}
@@ -47,7 +47,7 @@ Forge 在测试中使用以下关键字：
 
 > ⚠️ **注意**
 >
-> 测试函数必须具有`外部`或`公共`可见性。 声明为`内部`或
+> 测试函数必须具有`external`或`public`可见性。 声明为`internal`或
 > `private` 不会被 Forge 选中，即使它们以 `test` 为前缀。
 
 ### 共享设置
@@ -80,4 +80,4 @@ contract MyOtherContractTest is Test, HelperContract {
 
 > 💡 **提示**
 >
-> 使用 [`getCode`](../cheatcodes/get-code.md) 作弊代码部署具有不兼容 Solidity 版本的合约。
+> 使用 [`getCode`](../cheatcodes/get-code.md) cheatcodes部署具有不兼容 Solidity 版本的合约。

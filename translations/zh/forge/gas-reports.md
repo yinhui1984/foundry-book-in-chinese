@@ -2,13 +2,13 @@
 
 Forge 可以为您的合约生成 gas 报告。 您可以通过 `foundry.toml` 中的 `gas_reports` 字段配置哪些合约输出 gas 报告。
 
-为特定合同生成报告：
+为特定合约生成报告：
 
 ```toml
 gas_reports = ["MyContract", "MyContractFactory"]
 ```
 
-为所有合同生成报告：
+为所有合约生成报告：
 
 ```toml
 gas_reports = ["*"]

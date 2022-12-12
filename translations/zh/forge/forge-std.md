@@ -6,7 +6,7 @@ Forge Standard Library（简称 Forge Std）是一个有用的合约集合，可
 
 它提供了开始编写测试所需的所有基本功能：
 
-- `Vm.sol`：最新的作弊码界面
+- `Vm.sol`：最新的cheatcodes界面
 - `console.sol` 和 `console2.sol`：Hardhat 风格的日志记录功能
 -`Script.sol`：[Solidity 脚本] 的基本实用程序(../tutorials/solidity-scripting.md)
 - `Test.sol`：DSTest 的超集，包含标准库、作弊代码实例 (`vm`) 和 Hardhat 控制台
@@ -56,15 +56,15 @@ import "forge-std/console2.sol";
 
 Forge Std 目前由六个标准库组成。
 
-#### 标准日志
+#### Std Logs
 
-标准日志扩展了 [`DSTest`](../reference/ds-test.md#logging) 库中的日志记录事件。
+Std Logs扩展了 [`DSTest`](../reference/ds-test.md#logging) 库中的日志记录事件。
 
-#### 标准断言
+#### Std Assertions
 
-标准断言扩展了 [`DSTest`](../reference/ds-test.md#asserting) 库中的断言函数。
+Std Assertions扩展了 [`DSTest`](../reference/ds-test.md#asserting) 库中的断言函数。
 
-#### 标准秘籍
+#### Std Cheats
 
 Std Cheats 是 Forge 作弊代码的包装器，使它们更安全地使用和改进 DX。
 
@@ -75,18 +75,18 @@ Std Cheats 是 Forge 作弊代码的包装器，使它们更安全地使用和�
 hoax(alice, 100 ether);
 ```
 
-#### 标准错误
+#### Std Errors
 
-Std Errors 提供围绕常见内部 Solidity 错误和恢复的包装器。
+Std Errors 提供围绕常见内部 Solidity 错误errors和恢复reverts的包装器。
 
-标准错误与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用最有用，因为您不需要自己记住内部 Solidity 恐慌代码。 请注意，您必须通过 stdError 访问它们，因为这是一个库。
+Std Errors与 [`expectRevert`](../cheatcodes/expect-revert.md) cheatcodes结合使用最有用，因为您不需要自己记住内部 Solidity panic codes。 请注意，您必须通过 stdError 访问它们，因为这是一个库。
 
 ```solidity
 // expect an arithmetic error on the next call (e.g. underflow)
 vm.expectRevert(stdError.arithmeticError);
 ```
 
-#### 标准存储
+#### Std Storage
 
 Std Storage 使操作合约存储变得容易。 它可以找到并写入与特定变量关联的存储槽。
 
@@ -101,7 +101,7 @@ stdstore
     .checked_write(10);
 ```
 
-#### 标准数学
+#### Std Math
 
 Std Math 是一个库，其中包含 Solidity 中未提供的有用的数学函数。
 

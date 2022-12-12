@@ -1,12 +1,12 @@
-## 铁砧概述
+## Anvil概述
 
-Anvil 是 Foundry 附带的本地测试网节点。 您可以使用它从前端测试您的合同或通过 RPC 进行交互。
+Anvil 是 Foundry 附带的本地测试网节点。 您可以使用它从前端测试您的合约或通过 RPC 进行交互。
 
 Anvil 是 Foundry 套件的一部分，与`forge`和 `cast` 一起安装。 如果您还没有安装 Foundry，请参阅 [Foundry installation](../getting-started/installation.md)。
 
 > 注意：如果您安装了旧版本的 Foundry，则需要重新安装 `foundryup` 才能下载 Anvil。
 
-### 如何使用铁砧
+### 如何使用Anvil
 
 要使用 Anvil，只需输入 `anvil`。 您应该会看到可用的帐户和私钥列表，以及节点正在侦听的地址和端口。
 
