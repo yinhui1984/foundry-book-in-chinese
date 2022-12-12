@@ -8,7 +8,7 @@
 
 这将从默认模板创建一个新目录“hello_foundry”。 这也会初始化一个新的 `git` 存储库。
 
-如果你想使用不同的模板创建一个新项目，你可以传递 `--template` 标志，如下所示：
+如果你想使用不同的模板创建一个新项目，你可以传递 `--template` 指令，如下所示：
 
 ```sh
 $ forge init --template https://github.com/foundry-rs/forge-template hello_template
@@ -21,7 +21,7 @@ $ cd hello_foundry
 {{#include ../output/hello_foundry/tree:all}}
 ```
 
-默认模板安装了一个依赖项：Forge 标准库。 这是用于 Foundry 项目的首选测试库。 此外，该模板还附带一个空的入门合同和一个简单的测试。
+默认模板安装了一个依赖项：Forge 标准库。 这是用于 Foundry 项目的首选测试库。 此外，该模板还附带一个空的入门合约和一个简单的测试。
 
 让我们构建项目：
 
@@ -37,4 +37,4 @@ $ cd hello_foundry
 
 您会注意到弹出了两个新目录：`out` 和 `cache`。
 
-`out` 目录包含您的合约工件，例如 ABI，而 `cache` 被 `forge` 使用以仅重新编译必要的内容。
+`out` 目录包含您的合约结构文件，例如 ABI，而 `cache` 被 `forge` 使用来仅仅重新编译必要的内容。
