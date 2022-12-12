@@ -1,8 +1,8 @@
 <img src="images/foundry-banner.png" style="border-radius: 20px">
 
-Foundry is a smart contract development toolchain.
+Foundry是一个智能合约开发工具链。
 
-Foundry manages your dependencies, compiles your project, runs tests, deploys, and lets you interact with the chain from the command-line and via Solidity scripts.
+Foundry管理您的依赖关系、编译项目、运行测试、部署，并允许您通过命令行和Solidity脚本与链交互。
 
 > 📖 **Contributing**
 >
@@ -12,19 +12,19 @@ Foundry manages your dependencies, compiles your project, runs tests, deploys, a
 
 **[Getting Started](getting-started/installation.md)**
 
-To get started with Foundry, install Foundry and set up your first project.
+要开始使用Foundry，请安装Foundry并设置第一个项目。
 
 **[Projects](projects/creating-a-new-project.md)**
 
-This section will give you an overview of how to create and work with existing projects.
+本节将向您概述如何创建和使用现有项目。
 
 **[Forge Overview](forge)**
 
-The overview will give you all you need to know about how to use `forge` to develop, test, and deploy smart contracts.
+本节概述将为您提供有关如何使用“伪造”来开发、测试和部署智能合约所需的所有知识。 
 
 **[Cast Overview](cast)**
 
-Learn how to use `cast` to interact with smart contracts, send transactions, and get chain data from the command-line.
+了解如何使用“cast”与智能合约交互、发送事务以及从命令行获取链数据。
 
 **[Anvil Overview](anvil)**
 
@@ -32,24 +32,24 @@ Learn about `anvil`, Foundry's local node.
 
 **Configuration**
 
-Guides on configuring Foundry.
+配置Foundry的指引:
 
-- [Configuring with `foundry.toml`](./config/)
-- [Continuous Integration](./config/continous-integration.md)
-- [Integrating with VSCode](./config/vscode.md)
+- [配置 `foundry.toml`](./config/)
+- [持续集成CI](./config/continous-integration.md)
+- [与VSCode集成](./config/vscode.md)
 - [Shell Autocompletion](./config/shell-autocompletion.md)
 - [Static Analyzers](./config/static-analyzers.md)
-- [Integrating with Hardhat](./config/hardhat.md)
+- [与Hardhat集成](./config/hardhat.md)
 
 **Tutorials**
 
-Tutorials on building smart contracts with Foundry.
+ 与Foundry建立智能合约的教程。
 
-- [Creating an NFT with Solmate](./tutorials/solmate-nft.md)
+- [使用Solmate创建NFT](./tutorials/solmate-nft.md)
 - [Docker and Foundry](./tutorials/foundry-docker.md)
-- [Testing EIP-712 Signatures](./tutorials/testing-eip712.md)
+- [测试EIP-712签名](./tutorials/testing-eip712.md)
 - [Solidity Scripting](./tutorials/solidity-scripting.md)
-- [Forking Mainnet with Cast and Anvil](./tutorials/forking-mainnet-with-cast-anvil.md)
+- [使用Cast和Anvil分叉主网](./tutorials/forking-mainnet-with-cast-anvil.md)
 <!-- - [Incremental Adoption]() -->
 
 **Appendix**
@@ -57,13 +57,13 @@ Tutorials on building smart contracts with Foundry.
 References, troubleshooting, and more.
 
 - [FAQ](./faq.md)
-- [forge Commands](./reference/forge/)
-- [cast Commands](./reference/cast/)
-- [anvil commands](./reference/anvil/)
-- [Config Reference](./reference/config/)
-- [Cheatcodes Reference](./cheatcodes/)
-- [Forge Standard Library Reference](./reference/forge-std/)
-- [DSTest Reference](./reference/ds-test.md)
+- [forge 命令](./reference/forge/)
+- [cast 命令](./reference/cast/)
+- [anvil 命令](./reference/anvil/)
+- [Config 参考](./reference/config/)
+- [Cheatcodes 参考](./cheatcodes/)
+- [Forge Standard Library 参考](./reference/forge-std/)
+- [DSTest 参考](./reference/ds-test.md)
 - [Miscellaneous](misc)
 
 <br>
