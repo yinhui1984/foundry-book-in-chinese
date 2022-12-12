@@ -1,21 +1,21 @@
-## Fork Testing
+## 分叉测试
 
-Forge supports testing in a forked environment with two different approaches:
+Forge 支持使用两种不同的方法在分叉环境中进行测试：
 
-- [**Forking Mode**](#forking-mode) — use a single fork for all your tests via the `forge test --fork-url` flag
-- [**Forking Cheatcodes**](#forking-cheatcodes) — create, select, and manage multiple forks directly in Solidity test code via [forking cheatcodes](../cheatcodes/forking.md)
+- [**Forking Mode**](#forking-mode) — 通过`forge test --fork-url` 标志对所有测试使用一个分支
+- [**Forking Cheatcodes**](#forking-cheatcodes) — 通过 [forking cheatcodes](../cheatcodes/forking.md) 在 Solidity 测试代码中直接创建、选择和管理多个分叉
 
-Which approach to use? Forking mode affords running an entire test suite against a specific forked environment, while forking cheatcodes provide more flexibility and expressiveness to work with multiple forks in your tests. Your particular use case and testing strategy will help inform which approach to use.
+使用哪种方法？ 分叉模式提供针对特定分叉环境运行整个测试套件，而分叉作弊代码提供更大的灵活性和表现力，可以在测试中使用多个分叉。 您的特定用例和测试策略将有助于告知使用哪种方法。
 
-### Forking Mode
+### 分叉模式
 
-To run all tests in a forked environment, such as a forked Ethereum mainnet, pass an RPC URL via the `--fork-url` flag:
+要在分叉环境（例如分叉的以太坊主网）中运行所有测试，请通过 --fork-url 标志传递 RPC URL：
 
 ```bash
 forge test --fork-url <your_rpc_url>
 ```
 
-The following values are changed to reflect those of the chain at the moment of forking:
+以下值已更改以反映分叉时链的值：
 
 - [`block_number`](../reference/config/testing.md#block_number)
 - [`chain_id`](../reference/config/testing.md#chain_id)
@@ -26,64 +26,65 @@ The following values are changed to reflect those of the chain at the moment of 
 - [`block_timestamp`](../reference/config/testing.md#block_timestamp)
 - [`block_difficulty`](../reference/config/testing.md#block_difficulty)
 
-It is possible to specify a block from which to fork with `--fork-block-number`:
+可以使用 `--fork-block-number` 指定要从中分叉的块：
 
 ```bash
 forge test --fork-url <your_rpc_url> --fork-block-number 1
 ```
 
-Forking is especially useful when you need to interact with existing contracts. You may choose to do integration testing this way, as if you were on an actual network.
+当您需要与现有合约进行交互时，分叉特别有用。 您可以选择以这种方式进行集成测试，就好像您在实际网络上一样。
 
-#### Caching
+#### 缓存
 
-If both `--fork-url` and `--fork-block-number` are specified, then data for that block is cached for future test runs.
+如果同时指定了 `--fork-url` 和 `--fork-block-number`，那么该块的数据将被缓存以供将来的测试运行。
 
-The data is cached in `~/.foundry/cache/rpc/<chain name>/<block number>`. To clear the cache, simply remove the directory or run [`forge clean`](../reference/forge/forge-clean.md) (removes all build artifacts and cache directories).
+数据缓存在 `~/.foundry/cache/rpc/<chain name>/<block number>` 中。 要清除缓存，只需删除目录或运行 [`forge clean`](../reference/forge/forge-clean.md)（删除所有构建工件和缓存目录）。
 
-It is also possible to ignore the cache entirely by passing `--no-storage-caching`, or with `foundry.toml` by configuring [`no_storage_caching`](../reference/config/testing.md#no_storage_caching) and [`rpc_storage_caching`](../reference/config/testing.md#rpc_storage_caching).
+也可以通过传递 `--no-storage-caching` 或通过配置 [`no_storage_caching`](../reference/config/testing.md#no_storage_caching) 和 `foundry.toml` 完全忽略缓存 [`rpc_storage_caching`](../reference/config/testing.md#rpc_storage_caching)。
 
-#### Improved traces
+#### 改进的痕迹
 
-Forge supports identifying contracts in a forked environment with Etherscan.
+Forge 支持使用 Etherscan 在分叉环境中识别合约。
 
-To use this feature, pass the Etherscan API key via the `--etherscan-api-key` flag:
+要使用此功能，请通过 `--etherscan-api-key` 标志传递 `Etherscan API ` 密钥：
 
 ```bash
 forge test --fork-url <your_rpc_url> --etherscan-api-key <your_etherscan_api_key>
 ```
 
-Alternatively, you can set the `ETHERSCAN_API_KEY` environment variable.
+或者，您可以设置 `ETHERSCAN_API_KEY` 环境变量。
 
-### Forking Cheatcodes
+### 分叉秘籍
 
-Forking cheatcodes allow you to enter forking mode programatically in your Solidity test code. Instead of configuring forking mode via `forge` CLI arguments, these cheatcodes allow you to use forking mode on a test-by-test basis and work with multiple forks in your tests. Each fork is identified via its own unique `uint256` identifier.
+分叉作弊代码允许您在 Solidity 测试代码中以编程方式进入分叉模式。 这些作弊码允许您在逐个测试的基础上使用分叉模式，并在测试中使用多个分叉，而不是通过 `forge` CLI 参数配置分叉模式。 每个叉子都通过其自己唯一的 `uint256` 标识符进行识别。
 
-#### Usage
+#### 用法
 
-Important to keep in mind that _all_ test functions are isolated, meaning each test function is executed with a _copy_ of the state _after_ `setUp` and is executed in its own stand-alone EVM.
+重要的是要记住，_所有_测试函数都是隔离的，这意味着每个测试函数都使用状态_after_ `setUp` 的_副本_执行，并在其自己的独立 EVM 中执行。
 
-Therefore forks created during `setUp` are available in tests. The code example below uses [`createFork`](../cheatcodes/create-fork.md) to create two forks, but does _not_ select one initially. Each fork is identified with a unique identifier (`uint256 forkId`), which is assigned when it is first created.
+因此，在 setUp 期间创建的分支可用于测试。 下面的代码示例使用 [`createFork`](../cheatcodes/create-fork.md) 创建两个分叉，但_不_一开始就选择一个。 每个 fork 都有一个唯一标识符 (`uint256 forkId`)，该标识符在首次创建时分配。
 
-Enabling a specific fork is done via passing that `forkId` to [`selectFork`](../cheatcodes/select-fork.md).
+通过将该 forkId 传递给 [`selectFork`](../cheatcodes/select-fork.md) 来启用特定的分叉。
 
-[`createSelectFork`](../cheatcodes/create-select-fork.md) is a one-liner for `createFork` plus `selectFork`.
+[`createSelectFork`](../cheatcodes/create-select-fork.md) 是 `createFork` 加上 `selectFork` 的单行代码。
 
-There can only be one fork active at a time, and the identifier for the currently active fork can be retrieved via [`activeFork`](../cheatcodes/active-fork.md).
+一次只能有一个活动分叉，当前活动分叉的标识符可以通过 [`activeFork`](../cheatcodes/active-fork.md) 检索。
 
-Similar to [`roll`](../cheatcodes/roll.md), you can set `block.number` of a fork with [`rollFork`](../cheatcodes/roll-fork.md).
+类似于 [`roll`](../cheatcodes/roll.md)，您可以使用 [`rollFork`](../cheatcodes/roll-fork.md) 设置分叉的 `block.number`。
 
-To understand what happens when a fork is selected, it is important to know how the forking mode works in general:
+要了解选择分叉时会发生什么，了解分叉模式的一般工作方式很重要：
 
-Each fork is a standalone EVM, i.e. all forks use completely independent storage. The only exception is the state of the `msg.sender` and the test contract itself, which are persistent across fork swaps. 
-In other words all changes that are made while fork `A` is active (`selectFork(A)`) are only recorded in fork `A`'s storage and are not available if another fork is selected. However, changes recorded in the test contract itself (variables) are still available because the test contract is a _persistent_ account.
-
-
-The `selectFork` cheatcode sets the _remote_ section with the fork's data source, however the _local_ memory remains persistent across fork swaps. This also means `selectFork` can be called at all times with any fork, to set the _remote_ data source. However, it is important to keep in mind the above rules for `read/write` access always apply, meaning _writes_ are persistent across fork swaps.
+每个分叉都是一个独立的 EVM，即所有分叉都使用完全独立的存储。 唯一的例外是 `msg.sender` 的状态和测试合约本身，它们在分叉交换中是持久的。
+换句话说，在 fork `A` 处于活动状态（`selectFork(A)`）时所做的所有更改仅记录在 fork `A` 的存储中，如果选择了另一个 fork，则不可用。 但是，测试合约本身（变量）中记录的更改仍然可用，因为测试合约是一个 `_persistent_` 帐户。
 
 
-#### Examples
+`selectFork` 作弊代码将 _remote_ 部分设置为分叉的数据源，但是 _local_ 内存在分叉交换期间保持不变。 这也意味着可以使用任何分叉随时调用 selectFork，以设置_remote_ 数据源。 但是，重要的是要记住上述“读/写”访问规则始终适用，这意味着_writes_在分叉交换中是持久的。
 
-##### Create and Select Forks
+
+#### 例子
+
+##### 创建和选择分叉
+
 
 ```solidity
 contract ForkTest is Test {
@@ -144,13 +145,13 @@ contract ForkTest is Test {
 }
 ```
 
-##### Separated and persistent storage
+#### 分离和持久存储
 
-As mentioned each fork is essentially an independent EVM with separated storage.
+如前所述，每个分叉本质上都是一个独立的 EVM，具有独立的存储空间。
 
-Only the accounts of `msg.sender` and the test contract (`ForkTest`) are persistent when forks are selected. But any account can be turned into a persistent account: [`makePersistent`](../cheatcodes/make-persistent.md).
+选择分叉时，只有 `msg.sender` 和测试合约（`ForkTest`）的账户是持久的。 但是任何帐户都可以变成持久帐户：[`makePersistent`](../cheatcodes/make-persistent.md)。
 
-An account that is _persistent_ is unique, i.e. it exists on all forks
+_persistent_ 帐户是唯一的， i.e.即它存在于所有分叉上
 
 ```solidity
 contract ForkTest is Test {
@@ -223,5 +224,4 @@ contract SimpleStorageContract {
 }
 ```
 
-
-For more details and examples, see the [forking cheatcodes](../cheatcodes/forking.md) reference.
+有关更多详细信息和示例，请参阅 [forking cheatcodes](../cheatcodes/forking.md) 参考。

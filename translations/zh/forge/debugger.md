@@ -1,90 +1,92 @@
-## Debugger
+## 调试器
 
-Forge ships with an interactive debugger.
+Forge 附带一个交互式调试器。
 
-The debugger is accessible on [`forge debug`](../reference/forge/forge-debug.md) and on [`forge test`](../reference/forge/forge-test.md).
+调试器可在 [`forge debug`](../reference/forge/forge-debug.md) 和 [`forge test`](../reference/forge/forge-test.md) 上访问。
 
-Using `forge test`:
+使用 `forge test`:
 
 ```sh
 $ forge test --debug $FUNC
 ```
 
-Where `$FUNC` is the signature of the function you want to debug. For example:
+其中 `$FUNC` 是您要调试的函数的签名。 例如：
 
 ```sh
 $ forge test --debug "testSomething()"
 ```
 
-If you have multiple contracts with the same function name, you need to limit the matching functions down to only one case using `--match-path` and `--match-contract`.
+如果您有多个具有相同函数名称的合约，则需要使用 `--match-path` 和 `--match-contract` 将匹配函数限制为只有一种情况。
 
-If the matching test is a fuzz test, the debugger will open the first failing fuzz scenario, or the last successful one, whichever comes first.
+如果匹配测试是模糊测试，调试器将打开第一个失败的模糊场景，或者最后一个成功的场景，以先到者为准。
 
-Using `forge debug`:
+使用 `forge test`：
 
 ```sh
 $ forge debug --debug $FILE --sig $FUNC
 ```
 
-Where `$FILE` is the path to the contract you want to debug, and `$FUNC` is the signature of the function you want to debug. For example:
+其中 `$FILE` 是您要调试的合约的路径，`$FUNC` 是您要调试的函数的签名。 例如：
 
 ```sh
-$ forge debug --debug src/SomeContract.sol --sig "myFunc(uint256,string)" 123 "hello"
+$ forge debug --debug src/SomeContract.sol --sig "myFunc(uint256,string)" 123 "你好"
 ```
 
-You can also specify raw calldata using `--sig` instead of a function signature.
+您还可以使用`--sig`而不是函数签名来指定原始调用数据。
 
-If your source file contains more than one contract, specify the contract you want to debug using the `--target-contract` flag.
+如果您的源文件包含多个合约，请使用`--target-contract`标志指定要调试的合约。
 
-### Debugger layout
+
+### 调试器布局
 
 ![An image of the debugger UI](../images/debugger.png)
 
-When the debugger is run, you are presented with a terminal divided into four quadrants:
 
-- **Quadrant 1**: The opcodes in the debugging session, with the current opcode highlighted. Additionally, the address of the current account, the program counter and the accumulated gas usage is also displayed
-- **Quadrant 2**: The current stack, as well as the size of the stack
-- **Quadrant 3**: The source view
-- **Quadrant 4**: The current memory of the EVM
+### 导航
 
-As you step through your code, you will notice that the words in the stack and memory sometimes change color.
+当调试器运行时，您会看到一个分为四个象限的终端：
 
-For the memory:
+- **Quadrant 1**:调试会话中的操作码，当前操作码突出显示。 此外，还会显示当前账户地址、程序计数器和累计gas用量
+- **Quadrant 2**：当前栈，以及栈的大小
+- **Quadrant 3**:源视图
+- **Quadrant 4**:EVM 的当前内存
 
-- **Red words** are about to be written to by the current opcode
-- **Green words** were written to by the previous opcode
-- **Cyan words** are being read by the current opcode
+在逐步执行代码时，您会注意到堆栈和内存中的单词有时会改变颜色。
 
-For the stack, **cyan words** are either being read or popped by the current opcode.
+对于内存：
 
-### Navigating
+- **Red words** 即将被当前操作码写入
+- **Green words** 被之前的操作码写入
+- **Cyan words** 正在被当前操作码读取
 
-### General
+对于堆栈，**cyan words**正在被当前操作码读取或弹出。
+
+### 导航
+
+### 常用
 
 - <kbd>q</kbd>: Quit the debugger
 
-### Navigating calls
+### 导航调用
 
-- <kbd>0-9</kbd> + <kbd>k</kbd>: Step a number of times backwards (alternatively scroll up with your mouse)
-- <kbd>0-9</kbd> + <kbd>j</kbd>: Step a number of times forwards (alternatively scroll down with your mouse)
-- <kbd>g</kbd>: Move to the beginning of the transaction
-- <kbd>G</kbd>: Move to the end of the transaction
-- <kbd>c</kbd>: Move to the previous call-type instruction (i.e. [`CALL`][op-call], [`STATICCALL`][op-staticcall], [`DELEGATECALL`][op-delegatecall], and [`CALLCODE`][op-callcode]).
-- <kbd>C</kbd>: Move to the next call-type instruction
-- <kbd>a</kbd>: Move to the previous [`JUMP`][op-jump] or [`JUMPI`][op-jumpi] instruction
-- <kbd>s</kbd>: Move to the next [`JUMPDEST`][op-jumpdest] instruction
+- <kbd>0-9</kbd> + <kbd>k</kbd>：向后移动数次（或者用鼠标向上滚动）
+- <kbd>0-9</kbd> + <kbd>j</kbd>：向前走几步（或者用鼠标向下滚动）
+- <kbd>g</kbd>: 移动到事务的开头
+- <kbd>G</kbd>：移至事务末尾
+- <kbd>c</kbd>：移至上一个调用类型指令（即 [`CALL`][op-call]、[`STATICCALL`][op-staticcall]、[`DELEGATECALL`][op- delegatecall] 和 [`CALLCODE`][op-callcode]）。
+- <kbd>C</kbd>: 移动到下一个调用类型指令
+- <kbd>a</kbd>: 移动到上一个 [`JUMP`][op-jump] 或 [`JUMPI`][op-jumpi] 指令
+- <kbd>s</kbd>: 移动到下一个 [`JUMPDEST`][op-jumpdest] 指令
 
-### Navigating memory
+### 导航内存
+- <kbd>Ctrl</kbd> + <kbd>j</kbd>：向下滚动内存视图
+- <kbd>Ctrl</kbd> + <kbd>k</kbd>：向上滚动内存视图
+- <kbd>m</kbd>: 将内存显示为 UTF8
 
-- <kbd>Ctrl</kbd> + <kbd>j</kbd>: Scroll the memory view down
-- <kbd>Ctrl</kbd> + <kbd>k</kbd>: Scroll the memory view up
-- <kbd>m</kbd>: Show memory as UTF8
-
-### Navigating the stack
-
-- <kbd>J</kbd>: Scroll the stack view down
-- <kbd>K</kbd>: Scroll the stack view up
-- <kbd>t</kbd>: Show labels on the stack to see what items the current op will consume
+### 导航堆栈
+- <kbd>J</kbd>：向下滚动堆栈视图
+- <kbd>K</kbd>：向上滚动堆栈视图
+- <kbd>t</kbd>: 在堆栈上显示标签以查看当前操作将消耗哪些项目
 
 [op-call]: https://www.evm.codes/#f1
 [op-staticcall]: https://www.evm.codes/#fa

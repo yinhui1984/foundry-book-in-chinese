@@ -1,18 +1,18 @@
-## Overview of Anvil
+## 铁砧概述
 
-Anvil is a local testnet node shipped with Foundry. You can use it for testing your contracts from frontends or for interacting over RPC.
+Anvil 是 Foundry 附带的本地测试网节点。 您可以使用它从前端测试您的合同或通过 RPC 进行交互。
 
-Anvil is part of the Foundry suite and is installed alongside `forge` and `cast`. If you haven't installed Foundry yet, see [Foundry installation](../getting-started/installation.md). 
+Anvil 是 Foundry 套件的一部分，与`forge`和 `cast` 一起安装。 如果您还没有安装 Foundry，请参阅 [Foundry installation](../getting-started/installation.md)。
 
-> Note: If you have an older version of Foundry installed, you'll need to re-install `foundryup` in order for Anvil to be downloaded.
+> 注意：如果您安装了旧版本的 Foundry，则需要重新安装 `foundryup` 才能下载 Anvil。
 
-### How to use Anvil
+### 如何使用铁砧
 
-To use Anvil, simply type `anvil`. You should see a list of accounts and private keys available for use, as well as the address and port that the node is listening on. 
+要使用 Anvil，只需输入 `anvil`。 您应该会看到可用的帐户和私钥列表，以及节点正在侦听的地址和端口。
 
-Anvil is highly configurable. You can run `anvil -h` to see all the configuration options.
+Anvil 是高度可配置的。 您可以运行 `anvil -h` 查看所有配置选项。
 
-Some basic options are:
+一些基本选项是：
 
 ```bash
 #  Number of dev accounts to generate and configure. [default: 10]
@@ -25,7 +25,7 @@ anvil --hardfork <HARDFORK>
 anvil  -p, --port <PORT>
 ```
 
-> 📚 **Reference**
+> 📚 **参考**
 >
-> See the [`anvil` Reference](../reference/anvil/) for in depth information on Anvil and its capabilities.
+> 有关 Anvil 及其功能的深入信息，请参阅 [`anvil` 参考](../reference/anvil/)。
 

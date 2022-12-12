@@ -1,26 +1,26 @@
-## Differential Testing
+## 差异化测试
 
-Forge can be used for differential testing and differential fuzzing. You can even test against non-EVM executables using the `ffi` [cheatcode](../cheatcodes/ffi.md).
+Forge 可用于差分测试和差分模糊测试。 您甚至可以使用 `ffi` [作弊码](../cheatcodes/ffi.md) 针对非 EVM 可执行文件进行测试。
 
-### Background
+### 背景
 
-[Differential testing](https://en.wikipedia.org/wiki/Differential_testing) cross references multiple implementations of the same function by comparing each one's output. Imagine we have a function specification `F(X)`, and two implementations of that specification: `f1(X)` and `f2(X)`. We expect `f1(x) == f2(x)` for all x that exist in an appropriate input space. If `f1(x) != f2(x)`, we know that at least one function is incorrectly implementing `F(X)`. This process of testing for equality and identifying discrepancies is the core of differential testing.
+[Differential testing](https://en.wikipedia.org/wiki/Differential_testing) 通过比较每个实现的输出来交叉引用同一功能的多个实现。 假设我们有一个函数规范 `F(X)`，以及该规范的两个实现：`f1(X)` 和`f2(X)`。 对于存在于适当输入空间中的所有 x，我们期望 `f1(x) == f2(x)`。 如果 `f1(x) != f2(x)`，我们知道至少有一个函数错误地实现了 `F(X)`。 这种测试平等和识别差异的过程是差异测试的核心。
 
-Differential fuzzing is an extension of differential testing. Differential fuzzing programatically generates many values of `x` to find discrepancies and edge cases that manually chosen inputs might not reveal.
+差分模糊测试是差分测试的扩展。 差分模糊以编程方式生成许多`x`值，以发现手动选择的输入可能无法揭示的差异和边缘情况。
 
-> Note: the `==` operator in this case can be a custom definition of equality. For example, if testing floating point implementations, you might use approximate equality with a certain tolerance.
+> 注意：本例中的 `==` 运算符可以是相等性的自定义定义。 例如，如果测试浮点实现，您可以使用具有一定公差的近似相等。
 
-Some real life uses of this type of testing include:
+这种类型的测试在现实生活中的一些用途包括：
 
-- Comparing upgraded implementations to their predecessors
-- Testing code against known reference implementations
-- Confirming compatibility with third party tools and dependencies
+- 将升级后的实施与其前身进行比较
+- 针对已知参考实现测试代码
+- 确认与第三方工具和依赖项的兼容性
 
-Below are some examples of how Forge is used for differential testing.
+以下是 Forge 如何用于差异测试的一些示例。
 
-### Primer: The `ffi` cheatcode
+### 入门：`ffi` 作弊码
 
-[`ffi`](../cheatcodes/ffi.md) allows you to execute an arbitrary shell command and capture the output. Here's a mock example:
+[`ffi`](../cheatcodes/ffi.md) 允许您执行任意 shell 命令并捕获输出。 这是一个模拟示例：
 
 ```solidity
 import "forge-std/Test.sol";
@@ -39,17 +39,17 @@ contract TestContract is Test {
 }
 ```
 
-An address has previously been written to `address.txt`, and we read it in using the FFI cheatcode. This data can now be used throughout your test contract.
+一个地址之前已经写入了`address.txt`，我们使用 FFI 作弊码读取了它。 现在可以在整个测试合同中使用此数据。
 
-### Example: Differential Testing Merkle Tree Implementations
+### 示例：差异测试默克尔树实现
 
-[Merkle Trees](https://en.wikipedia.org/wiki/Merkle_tree) are a cryptographic commitment scheme frequently used in blockchain applications. Their popularity has led to a number of different implementations of Merkle Tree generators, provers, and verifiers. Merkle roots and proofs are often generated using a language like JavaScript or Python, while proof verification usually occurs on-chain in Solidity.
+[默克尔树](https://en.wikipedia.org/wiki/Merkle_tree) 是区块链应用程序中经常使用的密码承诺方案。 它们的流行导致了默克尔树生成器、证明器和验证器的许多不同实现。 Merkle 根和证明通常使用 JavaScript 或 Python 等语言生成，而证明验证通常发生在 Solidity 的链上。
 
-[Murky](https://github.com/dmfxyz/murky) is a complete implementation of Merkle roots, proofs, and verification in Solidity. Its test suite includes differential tests against OpenZeppelin's Merkle proof library, as well as root generation tests against a reference JavaScript implementation. These tests are powered by Foundry's fuzzing and `ffi` capabilities.
+[Murky](https://github.com/dmfxyz/murky) 是在 Solidity 中 Merkle 根、证明和验证的完整实现。 它的测试套件包括针对 OpenZeppelin 的 Merkle 证明库的差异测试，以及针对参考 JavaScript 实现的根生成测试。 这些测试由 Foundry 的模糊测试和`ffi`功能提供支持。
 
-#### Differential fuzzing against a reference TypeScript implementation
+#### 针对参考 TypeScript 实现的差异模糊测试
 
-Using the `ffi` cheatcode, Murky tests its own Merkle root implementation against a TypeScript implementation using data provided by Forge's fuzzer:
+使用 `ffi` 作弊代码，Murky 使用 Forge 的模糊器提供的数据针对 TypeScript 实现测试自己的 Merkle 根实现：
 
 ```solidity
 function testMerkleRootMatchesJSImplementationFuzzed(bytes32[] memory leaves) public {
@@ -77,17 +77,17 @@ function testMerkleRootMatchesJSImplementationFuzzed(bytes32[] memory leaves) pu
 }
 ```
 
-> Note: see [`Strings2.sol`](https://github.com/dmfxyz/murky/blob/main/differential_testing/test/utils/Strings2.sol) in the Murky Repo for the library that enables `(bytes memory).toHexString()`
+> 注意：请参阅 Murky Repo 中的 [`Strings2.sol`](https://github.com/dmfxyz/murky/blob/main/differential_testing/test/utils/Strings2.sol) 以了解启用 `(bytes) 的库 内存).toHexString()`
 
-Forge runs `npm --prefix differential_testing/scripts/ --silent run generate-root-cli {numLeaves} {hexEncodedLeaves}`. This calculates the Merkle root for the input data using the reference JavaScript implementation. The script prints the root to stdout, and that printout is captured as `bytes` in the return value of `vm.ffi()`.
+Forge 运行 `npm --prefix differential_testing/scripts/ --silent run generate-root-cli {numLeaves} {hexEncodedLeaves}`。 这使用参考 JavaScript 实现计算输入数据的 Merkle 根。 该脚本将根打印到标准输出，打印输出在 `vm.ffi()` 的返回值中被捕获为 `bytes`。
 
-The test then calculates the root using the Solidity implementation.
+然后测试使用 Solidity 实现计算根。
 
-Finally, the test asserts that the both roots are exactly equal. If they are not equal, the test fails.
+最后，测试断言两个根完全相等。 如果它们不相等，则测试失败。
 
-#### Differential fuzzing against OpenZeppelin's Merkle Proof Library
+#### 针对 OpenZeppelin 的 Merkle 证明库的差异模糊测试
 
-You may want to use differential testing against another Solidity implementation. In that case, `ffi` is not needed. Instead, the reference implementation is imported directly into the test.
+您可能希望对另一个 Solidity 实现使用差异测试。 在这种情况下，不需要 `ffi`。 相反，参考实现直接导入到测试中。
 
 ```solidity
 import "openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
@@ -104,13 +104,13 @@ function testCompatabilityOpenZeppelinProver(bytes32[] memory _data, uint256 nod
 }
 ```
 
-#### Differential testing against a known edge case
+#### 针对已知边缘情况的差异测试
 
-Differential tests are not always fuzzed -- they are also useful for testing known edge cases. In the case of the Murky codebase, the initial implementation of the `log2ceil` function did not work for certain arrays whose lengths were close to a power of 2 (like 129). As a safety check, a test is always run against an array of this length and compared to the TypeScript implementation. You can see the full test [here](https://github.com/dmfxyz/murky/blob/main/differential_testing/test/DifferentialTests.t.sol#L21).
+差异测试并不总是模糊的——它们对于测试已知的边缘情况也很有用。 在 Murky 代码库的情况下，`log2ceil` 函数的初始实现不适用于某些长度接近 2 的幂（如 129）的数组。 作为安全检查，始终针对此长度的数组运行测试，并与 TypeScript 实现进行比较。 您可以在 [此处](https://github.com/dmfxyz/murky/blob/main/differential_testing/test/DifferentialTests.t.sol#L21) 查看完整测试。
 
-#### Standardized Testing against reference data
+#### 针对参考数据的标准化测试
 
-FFI is also useful for injecting reproducible, standardized data into the testing environment. In the Murky library, this is used as a benchmark for gas snapshotting (see [forge snapshot](./gas-snapshots.md)).
+FFI 还可用于将可重现的标准化数据注入测试环境。 在 Murky 库中，这被用作气体快照的基准（参见 [forge snapshot](./gas-snapshots.md)）。
 
 ```solidity
 bytes32[100] data;
@@ -133,28 +133,28 @@ function testMerkleGenerateProofStandard() public view {
 }
 ```
 
-`src/test/standard_data/StandardInput.txt` is a text file that contains an encoded `bytes32[100]` array. It's generated outside of the test and can be used in any language's Web3 SDK. It looks something like:
+`src/test/standard_data/StandardInput.txt` 是一个包含编码的 `bytes32[100]` 数组的文本文件。 它是在测试之外生成的，可以在任何语言的 Web3 SDK 中使用。 它看起来像：
 
 ```ignore
 0xf910ccaa307836354233316666386231414464306335333243453944383735313..423532
 ```
 
-The standardized testing contract reads in the file using `ffi`. It decodes the data into an array and then, in this example, generates proofs for 8 different leaves. Because the data is constant and standard, we can meaningfully measure gas and performance improvements using this test.
+标准化测试合约使用 ffi 读取文件。 它将数据解码为一个数组，然后在本例中为 8 个不同的叶子生成证明。 由于数据是恒定且标准的，我们可以使用此测试有意义地测量气体和性能改进。
 
-> Of course, one could just hardcode the array into the test! But that makes it much harder to do consistent testing across contracts, implementations, etc.
+> 当然，可以将数组硬编码到测试中！ 但这使得跨合同、实施等进行一致的测试变得更加困难。
 
-### Example: Differential Testing Gradual Dutch Auctions
+### 示例：差异测试渐进式荷兰式拍卖
 
-The reference implementation for Paradigm's [Gradual Dutch Auction](https://www.paradigm.xyz/2022/04/gda) mechanism contains a number of differential, fuzzed tests. It is an excellent repository to further explore differential testing using `ffi`.
+Paradigm 的 [Gradual Dutch Auction](https://www.paradigm.xyz/2022/04/gda) 机制的参考实现包含许多差异化的模糊测试。 它是一个很好的存储库，可以进一步探索使用 `ffi` 的差异测试。
 
 - Differential tests for [Discrete GDAs](https://github.com/FrankieIsLost/gradual-dutch-auction/blob/master/src/test/DiscreteGDA.t.sol#L78)
 - Differential tests for [Continuous GDAs](https://github.com/FrankieIsLost/gradual-dutch-auction/blob/master/src/test/ContinuousGDA.t.sol#L89)
 - Reference [Python implementation](https://github.com/FrankieIsLost/gradual-dutch-auction/blob/master/analysis/compute_price.py)
 
-### Reference Repositories
+### 参考资料库
 
 - [Gradual Dutch Auctions](https://github.com/FrankieIsLost/gradual-dutch-auction)
 - [Murky](https://www.github.com/dmfxyz/murky)
 - [Solidity Fuzzing Template](https://github.com/patrickd-/solidity-fuzzing-boilerplate)
 
-If you have another repository that would serve as a reference, please contribute it!
+如果您有另一个可以作为参考的存储库，请贡献它！

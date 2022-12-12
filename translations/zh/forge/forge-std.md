@@ -1,17 +1,17 @@
-## Forge Standard Library Overview
+## Forge 标准库概览
 
-Forge Standard Library (Forge Std for short) is a collection of helpful contracts that make writing tests easier, faster, and more user-friendly.
+Forge Standard Library（简称 Forge Std）是一个有用的合约集合，可以让编写测试更简单、更快速、更人性化。
 
-Using Forge Std is the preferred way of writing tests with Foundry.
+使用 Forge Std 是使用 Foundry 编写测试的首选方式。
 
-It provides all the essential functionality you need to get started writing tests:
+它提供了开始编写测试所需的所有基本功能：
 
-- `Vm.sol`: Up-to-date cheatcodes interface
-- `console.sol` and `console2.sol`: Hardhat-style logging functionality
-- `Script.sol`: Basic utilities for [Solidity scripting](../tutorials/solidity-scripting.md)
-- `Test.sol`: A superset of DSTest containing standard libraries, a cheatcodes instance (`vm`), and Hardhat console
+- `Vm.sol`：最新的作弊码界面
+- `console.sol` 和 `console2.sol`：Hardhat 风格的日志记录功能
+-`Script.sol`：[Solidity 脚本] 的基本实用程序(../tutorials/solidity-scripting.md)
+- `Test.sol`：DSTest 的超集，包含标准库、作弊代码实例 (`vm`) 和 Hardhat 控制台
 
-Simply import `Test.sol` and inherit from `Test` in your test contract:
+只需导入 `Test.sol` 并从测试合约中的 `Test` 继承：
 
 ```solidity
 import "forge-std/Test.sol";
@@ -19,7 +19,7 @@ import "forge-std/Test.sol";
 contract ContractTest is Test { ...
 ```
 
-Now, you can:
+现在你可以：
 
 ```solidity
 // Access Hevm via the `vm` instance
@@ -35,7 +35,8 @@ console.log(alice.balance);
 deal(address(dai), alice, 10000e18);
 ```
 
-To import the `Vm` interface or the `console` library individually:
+
+要单独导入 `Vm` 界面或 `console` 库：
 
 ```solidity
 import "forge-std/Vm.sol";
@@ -45,51 +46,51 @@ import "forge-std/Vm.sol";
 import "forge-std/console.sol";
 ```
 
-**Note:** `console2.sol` contains patches to `console.sol` that allows Forge to decode traces for calls to the console, but it is not compatible with Hardhat.
+**注意：** `console2.sol` 包含 `console.sol` 的补丁，允许 Forge 解码控制台调用的跟踪，但它与 `Hardhat` 不兼容。
 
 ```solidity
 import "forge-std/console2.sol";
 ```
 
-### Standard libraries
+### 标准库
 
-Forge Std currently consists of six standard libraries.
+Forge Std 目前由六个标准库组成。
 
-#### Std Logs
+#### 标准日志
 
-Std Logs expand upon the logging events from the [`DSTest`](../reference/ds-test.md#logging) library.
+标准日志扩展了 [`DSTest`](../reference/ds-test.md#logging) 库中的日志记录事件。
 
-#### Std Assertions
+#### 标准断言
 
-Std Assertions expand upon the assertion functions from the [`DSTest`](../reference/ds-test.md#asserting) library.
+标准断言扩展了 [`DSTest`](../reference/ds-test.md#asserting) 库中的断言函数。
 
-#### Std Cheats
+#### 标准秘籍
 
-Std Cheats are wrappers around Forge cheatcodes that make them safer to use and improve the DX.
+Std Cheats 是 Forge 作弊代码的包装器，使它们更安全地使用和改进 DX。
 
-You can access Std Cheats by simply calling them inside your test contract, as you would any other internal function:
+你可以通过简单地在你的测试合约中调用它们来访问 Std Cheats，就像你调用任何其他内部函数一样：
 
 ```solidity
 // set up a prank as Alice with 100 ETH balance
 hoax(alice, 100 ether);
 ```
 
-#### Std Errors
+#### 标准错误
 
-Std Errors provide wrappers around common internal Solidity errors and reverts.
+Std Errors 提供围绕常见内部 Solidity 错误和恢复的包装器。
 
-Std Errors are most useful in combination with the [`expectRevert`](../cheatcodes/expect-revert.md) cheatcode, as you do not need to remember the internal Solidity panic codes yourself. Note that you have to access them through `stdError`, as this is a library.
+标准错误与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用最有用，因为您不需要自己记住内部 Solidity 恐慌代码。 请注意，您必须通过 stdError 访问它们，因为这是一个库。
 
 ```solidity
 // expect an arithmetic error on the next call (e.g. underflow)
 vm.expectRevert(stdError.arithmeticError);
 ```
 
-#### Std Storage
+#### 标准存储
 
-Std Storage makes manipulating contract storage easy. It can find and write to the storage slot(s) associated with a particular variable.
+Std Storage 使操作合约存储变得容易。 它可以找到并写入与特定变量关联的存储槽。
 
-The `Test` contract already provides a `StdStorage` instance `stdstore` through which you can access any std-storage functionality. Note that you must add `using stdStorage for StdStorage` in your test contract first.
+`Test` 合约已经提供了一个 `StdStorage` 实例 `stdstore`，您可以通过它访问任何标准存储功能。 请注意，您必须先在测试合约中添加“使用 stdStorage 来存储 StdStorage”。
 
 ```solidity
 // find the variable `score` in the contract `game`
@@ -100,11 +101,11 @@ stdstore
     .checked_write(10);
 ```
 
-#### Std Math
+#### 标准数学
 
-Std Math is a library with useful mathematical functions that are not provided in Solidity.
+Std Math 是一个库，其中包含 Solidity 中未提供的有用的数学函数。
 
-Note that you have to access them through `stdMath`, as this is a library.
+请注意，您必须通过 `stdMath` 访问它们，因为这是一个库。
 
 ```solidity
 // get the absolute value of -10
@@ -113,6 +114,6 @@ uint256 ten = stdMath.abs(-10)
 
 <br>
 
-> 📚 **Reference**
+> 📚 **参考**
 >
-> See the [Forge Standard Library Reference](../reference/forge-std/) for a complete overview of Forge Standard Library.
+> 有关 Forge 标准库的完整概述，请参阅 [Forge 标准库参考](../reference/forge-std/)。

@@ -1,56 +1,58 @@
-## Writing Tests
+## 编写测试
 
-Tests are written in Solidity. If the test function reverts, the test fails, otherwise it passes.
+测试是用 Solidity 编写的。 如果测试功能恢复，则测试失败，否则通过。
 
-Let's go over the most common way of writing tests, using the [Forge Standard Library](https://github.com/foundry-rs/forge-std)'s `Test` contract, which is the preferred way of writing tests with Forge.
+让我们回顾一下最常见的编写测试的方式，使用 [Forge Standard Library](https://github.com/foundry-rs/forge-std) 的 `Test` 契约，这是编写测试的首选方式 与锻造。
 
-In this section, we'll go over the basics using the functions from the Forge Std's `Test` contract, which is itself a superset of [DSTest](https://github.com/dapphub/ds-test). You will learn how to use more advanced stuff from the Forge Standard Library [soon](./forge-std.md). 
+在本节中，我们将使用 Forge Std 的“Test”合约中的函数复习基础知识，该合约本身是 [DSTest](https://github.com/dapphub/ds-test) 的超集。 您将学习如何使用 Forge 标准库中的更多高级内容 [很快](./forge-std.md)。
 
-DSTest provides basic logging and assertion functionality. To get access to the functions, import `forge-std/Test.sol` and inherit from `Test` in your test contract:
+DSTest 提供基本的日志记录和断言功能。 要访问这些函数，请导入 `forge-std/Test.sol` 并从测试合约中的 `Test` 继承：
 
 ```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:import}}
 ```
 
-Let's examine a basic test:
+让我们检查一个基本测试：
 
 ```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:all}}
 ```
 
-Forge uses the following keywords in tests:
+Forge 在测试中使用以下关键字：
 
-- `setUp`: An optional function invoked before each test case is run
-    ```solidity
+- `setUp`：在每个测试用例运行之前调用的可选函数
+```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:setUp}}
-    ```
-- `test`: Functions prefixed with `test` are run as a test case
-    ```solidity
+```
+- `test`：以 `test` 为前缀的函数作为测试用例运行
+```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:testNumberIs42}}
-    ```
-- `testFail`: The inverse of the `test` prefix - if the function does not revert, the test fails
-    ```solidity
+```
+
+- `testFail`: `test` 前缀的倒数 - 如果函数没有恢复，则测试失败
+```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:testFailSubtract43}}
-    ```
-    A good practice is to use something like `testCannot` in combination with the [`expectRevert`](../cheatcodes/expect-revert.md) cheatcode (cheatcodes are explained in greater detail in the following [section](./cheatcodes.md)).  
-    Now, instead of using `testFail`, you know exactly what reverted:
-    ```solidity
+```
+一个好的做法是将类似 `testCannot` 的东西与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用（作弊码在下面的 [section](./cheatcodes .MD））。
+现在，不使用 `testFail`，您确切地知道恢复了什么：
+
+```solidity
 {{#include ../../projects/writing_tests/test/Basic2.t.sol:testCannotSubtract43}}
-    ```
+```
 <br>
 
-Tests are deployed to `0xb4c79daB8f259C7Aee6E5b2Aa729821864227e84`. If you deploy a contract within your test, then
-`0xb4c...7e84` will be its deployer. If the contract deployed within a test gives special permissions to its deployer,
-such as `Ownable.sol`'s `onlyOwner` modifier, then the test contract `0xb4c...7e84` will have those permissions.
+测试部署到 `0xb4c79daB8f259C7Aee6E5b2Aa729821864227e84`。 如果您在测试中部署合同，则
+`0xb4c...7e84` 将是它的部署者。 如果在测试中部署的合约向其部署者授予特殊权限，
+例如 `Ownable.sol` 的 `onlyOwner` 修饰符，那么测试合约 `0xb4c...7e84` 将具有这些权限。
 
-> ⚠️ **Note**
+> ⚠️ **注意**
 >
-> Test functions must have either `external` or `public` visibility. Functions declared as `internal` or
-> `private` won't be picked up by Forge, even if they are prefixed with `test`.
+> 测试函数必须具有`外部`或`公共`可见性。 声明为`内部`或
+> `private` 不会被 Forge 选中，即使它们以 `test` 为前缀。
 
-### Shared setups
+### 共享设置
 
-It is possible to use shared setups by creating helper abstract contracts and inheriting them in your test contracts:
+可以通过创建辅助抽象合约并在测试合约中继承它们来使用共享设置：
 
 ```solidity
 abstract contract HelperContract {
@@ -76,6 +78,6 @@ contract MyOtherContractTest is Test, HelperContract {
 
 <br>
 
-> 💡 **Tip**
+> 💡 **提示**
 >
-> Use the [`getCode`](../cheatcodes/get-code.md) cheatcode to deploy contracts with incompatible Solidity versions.
+> 使用 [`getCode`](../cheatcodes/get-code.md) 作弊代码部署具有不兼容 Solidity 版本的合约。
