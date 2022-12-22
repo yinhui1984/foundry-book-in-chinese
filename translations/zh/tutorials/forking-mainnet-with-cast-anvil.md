@@ -1,22 +1,22 @@
-## Forking Mainnet with Cast and Anvil
+## 使用 Cast 和 Anvil 分叉主网
 
-### Introduction
+### 介绍
 
-By combining [Anvil][anvil] and [Cast][cast], you can fork and test by interacting with contracts on a real network. The goal of this tutorial is to show you how to transfer Dai tokens from someone who holds Dai to an account created by Anvil.
+通过结合 [Anvil][anvil] 和 [Cast][cast]，您可以通过与真实网络上的合约交互来进行分叉和测试。 本教程的目的是向您展示如何将 Dai 代币从持有 Dai 的人转移到 Anvil 创建的帐户。
 
-### Set Up
+### 设置
 
-Let's start by forking mainnet.
+让我们从分叉主网开始。
 
 ```sh
 anvil --fork-url https://mainnet.infura.io/v3/$INFURA_KEY
 ```
 
-You will see 10 accounts are created with their public and private keys. We will work with `0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266` (Let's call this user Alice).
+您将看到使用公钥和私钥创建了 10 个帐户。 我们将使用`0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266`（我们称此用户为 Alice）。
 
-### Transferring Dai
+### 转账 Dai
 
-Go to Etherscan and search for holders of Dai tokens ([here](https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f#balances)). Let's pick a random account. In this example we will be using `0xad0135af20fa82e106607257143d0060a7eb5cbf`. Let's export our contracts and accounts as environment variables:
+转到 Etherscan 并搜索 Dai 代币的持有者（[此处](https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f#balances)）。 让我们选择一个随机帐户。 在此示例中，我们将使用`0xad0135af20fa82e106607257143d0060a7eb5cbf`。 让我们将合同和帐户导出为环境变量：
 
 ```sh
 export ALICE=0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
@@ -24,7 +24,7 @@ export DAI=0x6b175474e89094c44da98b954eedeac495271d0f
 export LUCKY_USER=0xad0135af20fa82e106607257143d0060a7eb5cbf
 ```
 
-We can check Alice's balance using [`cast call`][cast-call]:
+我们可以使用 [`cast call`][cast-call] 检查 Alice 的余额：
 
 ```sh
 $ cast call $DAI \
@@ -33,7 +33,7 @@ $ cast call $DAI \
 0
 ```
 
-Similarly, we can also check our lucky user's balance using `cast call`:
+同样，我们也可以使用 `cast call` 查看幸运用户的余额：
 
 ```sh
 $ cast call $DAI \
@@ -42,7 +42,7 @@ $ cast call $DAI \
 71686045944718512103110072
 ```
 
-Let's transfer some tokens from the lucky user to Alice using [`cast send`][cast-send]:
+让我们使用 [`cast send`][cast-send] 将一些代币从幸运用户转移给 Alice：
 
 ```sh
 # This calls Anvil and lets us impersonate our lucky user
@@ -57,7 +57,7 @@ blockNumber             15052891
 ...
 ```
 
-Let's check that the transfer worked:
+让我们检查传输是否有效：
 
 ```sh
 cast call $DAI \

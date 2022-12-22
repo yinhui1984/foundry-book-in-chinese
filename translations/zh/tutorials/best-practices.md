@@ -1,127 +1,130 @@
-# Best Practices
+# 最佳实践
 
-This guide documents the suggested best practices when developing with Foundry.
-In general, it's recommended to handle as much as possible with [`forge fmt`](../reference/config/formatter.md), and anything this doesn't handle is below.
+本指南记录了使用 Foundry 进行开发时建议的最佳实践。
+一般而言，建议尽可能使用 [`forge fmt`](../reference/config/formatter.md) 处理，不处理的内容如下。
 
-- [General Contract Guidance](#general-contract-guidance)
-- [Tests](#tests)
-  - [General Test Guidance](#general-test-guidance)
-  - [Fork Tests](#fork-tests)
-  - [Test Harnesses](#test-harnesses)
-    - [Internal Functions](#internal-functions)
-    - [Private Functions](#private-functions)
-    - [Workaround Functions](#workaround-functions)
-  - [Best practices](#best-practices)
-  - [Taint Analysis](#taint-analysis)
-- [Scripts](#scripts)
-- [Comments](#comments)
-- [Resources](#resources)
+- [一般合同指南](#general-contract-guidance)
+- [测试](#tests)
+   - [一般测试指南](#general-test-guidance)
+   - [分叉测试](#fork-tests)
+   - [测试工具](#test-harnesses)
+     - [内部函数](#internal-functions)
+     - [私有函数](#private-functions)
+     - [解决方法函数](#workaround-functions)
+   - [最佳实践](#best-practices)
+   - [污点分析](#taint-analysis)
+- [脚本](#scripts)
+- [评论](#comments)
+- [资源](#resources)
 
-## General Contract Guidance
+## 一般合同指南
 
-1. Always use named import syntax, don't import full files. This restricts what is being imported to just the named items, not everything in the file. Importing full files can result in solc complaining about duplicate definitions and slither erroring, especially as repos grow and have more dependencies with overlapping names.
+1. 始终使用命名导入语法，不要导入完整文件。 这将导入的内容限制为仅指定的项目，而不是文件中的所有内容。 导入完整文件可能会导致 solc 抱怨重复定义和滑动错误，尤其是当 repos 增长并且具有更多具有重叠名称的依赖项时。
 
-   - Good: `import {MyContract} from "src/MyContract.sol"` to only import `MyContract`.
-   - Bad: `import "src/MyContract.sol"` imports everything in `MyContract.sol`. (Importing `forge-std/Test` or `Script` can be an exception here, so you get the console library, etc).
+    - Good：`import {MyContract} from "src/MyContract.sol"` 只导入 `MyContract`。
+    - Bad：`import "src/MyContract.sol"` 导入 `MyContract.sol` 中的所有内容。 （导入 `forge-std/Test` 或 `Script` 在这里可能是个例外，因此您可以获得控制台库等）。
 
-1. Sort imports by `forge-std/` first, then dependencies, `test/`, `script/`, and finally `src/`. Within each, sort alphabetically by path (not by the explicit named items being imported). _(Note: This may be removed once [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) is merged)._
+1. 首先按 `forge-std/` 对导入进行排序，然后是依赖项、`test/`、`script/`，最后是 `src/`。 在每个中，按路径字母顺序排序（而不是按导入的显式命名项）。 _（注意：一旦 [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) 合并，这可能会被删除）。_
 
-1. Similarly, sort named imports. _(Note: This may be removed once [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) is resolved)._
+1. 同样，对命名导入进行排序。 _（注意：一旦 [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) 得到解决，这可能会被删除）。_
 
-   - Good: `import {bar, foo} from "src/MyContract.sol"`
-   - Bad: `import {foo, bar} from "src/MyContract.sol"`
+    - Good：`从“src/MyContract.sol”导入{bar，foo}`
+    - Bad：`从“src/MyContract.sol”导入 {foo, bar}`
 
-1. Note the tradeoffs between absolute and relative paths for imports (where absolute paths are relative to the repo root, e.g. `"src/interfaces/IERC20.sol"`), and choose the best approach for your project:
+1. 注意导入的绝对路径和相对路径之间的权衡（绝对路径是相对于 repo 根的，例如`"src/interfaces/IERC20.sol"`），并为您的项目选择最佳方法：
 
-   - Absolute paths make it easier to see where files are from and reduces churn when moving files around.
-   - Relative paths make it more likely your editor can provide features like linting and autocomplete, since editors/extensions may not understand your remappings.
+    - 绝对路径可以更轻松地查看文件的来源并减少移动文件时的流失。
+    - 相对路径使您的编辑器更有可能提供 linting 和自动完成等功能，因为编辑器/扩展可能无法理解您的重新映射。
 
-1. If copying a library from a dependency (instead of importing it), use the `ignore = []` option in the config file to avoid formatting that file. This makes diffing it against the original simpler for reviewers and auditors.
+1. 如果从依赖项中复制库（而不是导入它），请在配置文件中使用 `ignore = []` 选项以避免格式化该文件。 这使得审阅者和审计员可以更轻松地将其与原始版本进行比较。
 
-1. Similarly, feel free to use the `// forgefmt: disable-*` comment directives to ignore lines/sections of code that look better with manual formatting. Supported values for `*` are:
+1. 同样，随意使用 `// forgefmt: disable-*` 注释指令来忽略手动格式化后看起来更好的代码行/部分。 `*` 支持的值是：
 
-   - `disable-line`
-   - `disable-next-line`
-   - `disable-next-item`
-   - `disable-start`
-   - `disable-end`
+    - `禁用线`
+    - `禁用下一行`
+    - `禁用下一项`
+    - `禁用启动`
+    -`禁用结束`
 
-Additional best practices from [samsczun](https://twitter.com/samczsun)'s [How Do You Even Write Secure Code Anyways](https://www.youtube.com/watch?v=Wm3t8Fuiy1E) talk:
+来自 [samsczun](https://twitter.com/samczsun) 的 [How Do You Even Write Secure Code Anyways](https://www.youtube.com/watch?v=Wm3t8Fuiy1E) 谈话的其他最佳实践：
 
-- Use descriptive variable names.
-- Limit the number of active variables.
-- No redundant logic.
-- Early exit as much as possible to reduce mental load when seeing the code.
-- Related code should be placed near each other.
-- Delete unused code.
+- 使用描述性变量名称。
+- 限制活动变量的数量。
+- 没有多余的逻辑。
+- 尽可能提前退出，减少看到代码时的心理负担。
+- 相关代码应彼此靠近放置。
+- 删除未使用的代码。
 
-## Tests
+## 测试
 
-### General Test Guidance
+### 一般测试指导
 
-1. For testing `MyContract.sol`, the test file should be `MyContract.t.sol`. For testing `MyScript.s.sol`, the test file should be `MyScript.t.sol`.
+1. 为了测试`MyContract.sol`，测试文件应该是`MyContract.t.sol`。 为了测试 `MyScript.s.sol`，测试文件应该是 `MyScript.t.sol`。
 
-   - If the contract is big and you want to split it over multiple files, group them logically like `MyContract.owner.t.sol`, `MyContract.deposits.t.sol`, etc.
+    - 如果合约很大并且您想将其拆分为多个文件，请将它们按逻辑分组，如 `MyContract.owner.t.sol`、`MyContract.deposits.t.sol` 等。
 
-1. Never make assertions in the `setUp` function, instead use a dedicated test like `test_SetUpState()` if you need to ensure your `setUp` function does what you expected. More info on why in [foundry-rs/foundry#1291](https://github.com/foundry-rs/foundry/issues/1291)
+1. 永远不要在 `setUp` 函数中做出断言，如果您需要确保 `setUp` 函数执行预期的操作，请使用像 `test_SetUpState()` 这样的专用测试。 有关原因的更多信息，请参见 [foundry-rs/foundry#1291](https://github.com/foundry-rs/foundry/issues/1291)
 
-1. For unit tests, there are two major ways to organize the tests:
-   1. Treat contracts as describe blocks:
-      - `contract Add` holds all unit tests for the `add` method.
-      - `contract Supply` holds all tests for the `supply` method.
-      - `contract Constructor` hold all tests for the constructor.
-      - One benefit of this approach is that smaller contracts should compile faster than large ones, so this approach of many small contracts should save time as test suites get large.
-   2. Have a Test contract per contract-under-test, with as many utilities and fixtures as you want:
-      - `contract VaultTest` tests `contract Vault`, but also it inherits from `contract BaseTestFixture` and `contract TestUtilities`.
-      - Test functions should be written in the same order as the original functions exist in the contract-under-test.
-      - All test functions that test the same function should live serially in the test file.
-1. Integration tests should live in the same `test` directory, with a clear naming convention. These may be in dedicated files, or they may live next to related unit tests in existing test files.
+1. 对于单元测试，组织测试的方式主要有两种：
+    1. 将合约视为描述块：
+       - `contract Add` 包含 `add` 方法的所有单元测试。
+       - `contract Supply` 包含 `supply` 方法的所有测试。
+       - `contract Constructor` 保存构造函数的所有测试。
+       - 这种方法的一个好处是较小的合约应该比较大的合约编译得更快，因此随着测试套件变大，许多小型合约的这种方法应该可以节省时间。
+    2. 每个被测合同都有一个测试合同，其中包含您想要的任意数量的实用程序和固定装置：
+       - `contract VaultTest` 测试 `contract Vault`，但它也继承自 `contract BaseTestFixture` 和 `contract TestUtilities`。
+       - 测试函数的编写顺序应与被测合约中存在的原始函数相同。
+       - 测试同一功能的所有测试功能都应连续存在于测试文件中。
+1. 集成测试应该放在同一个 `test` 目录中，并有明确的命名约定。 这些可能位于专用文件中，或者它们可能与现有测试文件中的相关单元测试相邻。
 
-1. Be consistent with test naming, as it's helpful for filtering tests (e.g. for gas reports you might want to filter out revert tests). When combining naming conventions, keep them alphabetical.
+1. 与测试命名保持一致，因为它有助于过滤测试（例如，对于气体报告，您可能希望过滤掉还原测试）。 组合命名约定时，请按字母顺序排列。
 
-   - `test_Description` for standard tests.
-   - `testFuzz_Description` for fuzz tests.
-   - `test_Revert[If|When]_Condition` for tests expecting a revert.
-   - `testFork_Description` for tests that fork from a network.
-   - `testForkFuzz_Revert[If|When]_Condition` for a fuzz test that forks and expects a revert.
+    - 用于标准测试的 `test_Description`。
+    - `testFuzz_Description` 用于模糊测试。
+    - `test_Revert[If|When]_Condition` 用于期望恢复的测试。
+    - `testFork_Description` 用于从网络分叉的测试。
+    - `testForkFuzz_Revert[If|When]_Condition` 用于分叉并期望恢复的模糊测试。
 
-1. When using assertions like `assertEq`, consider leveraging the last string param to make it easier to identify failures. These can be kept brief, or even just be numbers&mdash;they basically serve as a replacement for showing line numbers of the revert, e.g. `assertEq(x, y, "1")` or `assertEq(x, y, "sum1")`. _(Note: [foundry-rs/foundry#2328](https://github.com/foundry-rs/foundry/issues/2328) tracks integrating this natively)._
+1. 当使用像 assertEq 这样的断言时，考虑利用最后一个字符串参数来更容易地识别失败。 这些可以保持简短，甚至只是数字——它们基本上可以替代显示还原的行号，例如 `assertEq(x, y, "1")` 或 `assertEq(x, y, "sum1")`。 _（注意：[foundry-rs/foundry#2328](https://github.com/foundry-rs/foundry/issues/2328) 跟踪本地集成）。_
 
-1. When testing events, prefer setting all `expectEmit` arguments to `true`, i.e. `vm.expectEmit(true, true, true, true)`. Benefits:
+1. 测试事件时，最好将所有 `expectEmit` 参数设置为 `true`，即 `vm.expectEmit(true, true, true, true)`。 好处：
 
-   - This ensures you test everything in your event.
-   - If you add a topic (i.e. a new indexed parameter), it's now tested by default.
-   - Even if you only have 1 topic, the extra `true` arguments don't hurt.
+    - 这可确保您测试活动中的所有内容。
+    - 如果您添加一个主题（即一个新的索引参数），它现在默认进行测试。
+    - 即使你只有 1 个主题，额外的 `true` 论点也没有坏处。
 
-1. Remember to write invariant tests! For the assertion string, use a verbose english description of the invariant: `assertEq(x + y, z, "Invariant violated: the sum of x and y must always equal z")`. More info on best practices coming soon.
+1. 记得写不变测试！ 对于断言字符串，使用不变量的冗长英文描述：`assertEq(x + y, z, "Invariant violated: the sum of x and y must always equal z")`。 有关最佳实践的更多信息即将推出。
 
-### Fork Tests
 
-1. Don't feel like you need to give forks tests special treatment, and use them liberally:
+### 分叉测试
 
-   - Mocks are _required_ in closed-source web2 development—you have to mock API responses because the code for that API isn't open source so you cannot just run it locally. But for blockchains that's not true: any code you're interacting with that's already deployed can be locally executed and even modified for free. So why introduce the risk of a wrong mock if you don't need to?
-   - A common reason to avoid fork tests and prefer mocks is that fork tests are slow. But this is not always true. By pinning to a block number, forge caches RPC responses so only the first run is slower, and subsequent runs are significantly faster. See [this benchmark](https://github.com/mds1/convex-shutdown-simulation/), where it took forge 7 minutes for the first run with a remote RPC, but only half a second once data was cached results. Alchemy and Infura both offer free archive data, so pinning to a block shouldn't be problematic. (Note that you may need to configure your CI to cache the RPC responses between runs).
+1. 不要觉得你需要给分叉测试特殊待遇，并自由使用它们：
 
-1. Be careful with with fuzz tests on a fork to avoid burning through RPC requests with non-deterministic fuzzing. If the input to your fork fuzz test is some parameter which is used in an RPC call to fetch data (e.g. querying the token balance of an address), each run of a fuzz test uses at least 1 RPC request, so you'll quickly hit rate limits or usage limits. Solutions to consider:
+    - 闭源 web2 开发中_需要_模拟——您必须模拟 API 响应，因为该 API 的代码不是开源的，所以您不能只在本地运行它。 但对于区块链而言，情况并非如此：您正在与之交互的任何已部署代码都可以在本地执行，甚至可以免费修改。 那么，如果不需要，为什么要引入错误模拟的风险呢？
+    - 避免分叉测试而更喜欢模拟的一个常见原因是分叉测试很慢。 但这并不总是正确的。 通过固定到一个块号，forge 缓存 RPC 响应，因此只有第一次运行速度较慢，而后续运行速度明显更快。 请参阅[this benchmark](https://github.com/mds1/convex-shutdown-simulation/)，第一次使用远程 RPC 运行需要 7 分钟，但一旦数据被缓存结果只需要半秒。 Alchemy 和 Infura 都提供免费存档数据，因此固定到一个块应该没有问题。 （请注意，您可能需要配置 CI 以缓存运行之间的 RPC 响应）。
 
-    - Replace multiple RPC calls with a single [multicall](https://github.com/mds1/multicall).
-    - Specify a fuzz/invariant [seed](/src/reference/config/testing.md#seed): this makes sure each `forge test` invocation uses the same fuzz inputs. RPC results are cached locally, so you'll only query the node the first time.
-    - Structure your tests so the data you are fuzzing over is computed locally by your contract, and not data that is used in an RPC call (may or may not be feasible based on what you're doing).
-    - Lastly, you can of course always run a local node or bump your RPC plan.
-1. When writing fork tests, do not use the `--fork-url` flag. Instead, prefer the following approach for it's improved flexibility:
+1. 小心使用分叉上的模糊测试，以避免使用非确定性模糊测试破坏 RPC 请求。 如果你的分叉模糊测试的输入是一些在 RPC 调用中使用的参数来获取数据（例如查询地址的代币余额），每次运行模糊测试至少使用 1 个 RPC 请求，所以你会很快 命中率限制或使用限制。 要考虑的解决方案：
 
-   - Define `[rpc_endpoints]` in the `foundry.toml` config file and use the [forking cheatcodes](../forge/fork-testing.md#forking-cheatcodes).
-   - Access the RPC URL endpoint in your test with forge-std's `stdChains.ChainName.rpcUrl`. See the list of supported chains and expected config file aliases [here](https://github.com/foundry-rs/forge-std/blob/ff4bf7db008d096ea5a657f2c20516182252a3ed/src/StdCheats.sol#L255-L271).
-   - Always pin to a block so tests are deterministic and RPC responses are cached.
-   - More info on this fork test approach can be found [here](https://twitter.com/msolomon44/status/1564742781129502722) (this predates `StdChains` so that aspect is a bit out of date).
+     - 用单个 [multicall](https://github.com/mds1/multicall) 替换多个 RPC 调用。
+     - 指定模糊/不变 [seed](/src/reference/config/testing.md#seed)：这确保每个“伪造测试”调用都使用相同的模糊输入。 RPC 结果缓存在本地，因此您只会在第一次查询节点。
+     - 构建您的测试，以便您模糊测试的数据由您的合同在本地计算，而不是 RPC 调用中使用的数据（根据您正在做的事情可能可行也可能不可行）。
+     - 最后，您当然可以始终运行本地节点或修改您的 RPC 计划。
+1. 编写 fork 测试时，不要使用 `--fork-url` 标志。 相反，更喜欢以下方法，因为它提高了灵活性：
 
-### Test Harnesses
+    - 在`foundry.toml`配置文件中定义 `[rpc_endpoints]` 并使用[forking cheatcodes](../forge/fork-testing.md#forking-cheatcodes)。
+    - 使用 forge-std 的“stdChains.ChainName.rpcUrl”访问测试中的 RPC URL 端点。 请参阅[此处](https://github.com/foundry-rs/forge-std/blob/ff4bf7db008d096ea5a657f2c20516182252a3ed/src/StdCheats.sol#L255-L271) 的支持链列表和预期的配置文件别名。
+    - 始终固定到一个块，以便测试具有确定性并缓存 RPC 响应。
+    - 有关此分叉测试方法的更多信息，请参见 [此处](https://twitter.com/msolomon44/status/1564742781129502722)（这早于 `StdChains`，因此该方面有点过时了）。
 
-#### Internal Functions
 
-To test `internal` functions, write a harness contract that inherits from the contract under test (CuT). Harness contracts that inherit from the CuT expose the `internal` functions as `external` ones.
 
-Each `internal` function that is tested should be exposed via an external one with a name that follows the pattern `exposed_<function_name>`. For example:
+### 测试工具
+
+#### 内部函数
+
+要测试 `internal` 功能，请编写一个继承自被测合同 (CuT) 的线束合同。 从 CuT 继承的线束合约将 `internal` 功能公开为 `external` 功能。
+
+每个被测试的 `internal` 函数都应该通过一个名称遵循 `exposed_<function_name>` 模式的外部函数公开。 例如：
 
 ```solidity
 // file: src/MyContract.sol
@@ -142,57 +145,57 @@ contract MyContractHarness is MyContract {
 }
 ```
 
-#### Private Functions
+#### 私有函数
 
-Unfortunately there is currently no good way to unit test `private` methods since they cannot be accessed by any other contracts. Options include:
+不幸的是，目前没有好的方法来对 `private`方法进行单元测试，因为它们不能被任何其他合约访问。 选项包括：
 
-- Converting `private` functions to `internal`.
-- Copy/pasting the logic into your test contract and writing a script that runs in CI check to ensure both functions are identical.
+- 将 `private` 函数转换为 `internal` 。
+- 将逻辑复制/粘贴到您的测试合约中，并编写一个在 CI 检查中运行的脚本，以确保两个功能相同。
 
-#### Workaround Functions
+#### 变通函数
 
-Harnesses can also be used to expose functionality or information otherwise unavailable in the original smart contract. The most straightforward example is when we want to test the length of a public array. The functions should follow the pattern: `workaround_<function_name>`, such as `workaround_queueLength()`.
+Harnesses 还可用于公开原始智能合约中不可用的功能或信息。 最直接的例子是当我们想要测试公共数组的长度时。 这些函数应遵循以下模式：`workaround_<function_name>`，例如 `workaround_queueLength()`。
 
-Another use case for this is tracking data that you would not track in production to help test invariants. For example, you might store a list of all token holders to simplify validation of the invariant "sum of all balances must equal total supply". These are often known as "ghost variables". You can learn more about this in [Rikard Hjort](https://twitter.com/rikardhjort)'s [Formal Methods for the Working DeFi Dev](https://youtu.be/TiuEWMo6w8U?t=3142) talk.
+另一个用例是跟踪您不会在生产中跟踪的数据，以帮助测试不变量。 例如，您可以存储所有代币持有者的列表，以简化不变的“所有余额的总和必须等于总供应量”的验证。 这些通常被称为“幽灵变量”。 您可以在 [Rikard Hjort](https://twitter.com/rikardhjort) 的 [工作 DeFi 开发的正式方法](https://youtu.be/TiuEWMo6w8U?t=3142) 演讲中了解更多相关信息。
 
-### Best practices
+### 最佳实践
 
-Thanks to [@samsczun](https://twitter.com/samczsun)'s [How Do You Even Write Secure Code Anyways](https://www.youtube.com/watch?v=Wm3t8Fuiy1E) talk for the tips in this section and the following section.
+感谢 [@samsczun](https://twitter.com/samczsun) 的 [How Do You Even Write Secure Code Anyways](https://www.youtube.com/watch?v=Wm3t8Fuiy1E) 讨论技巧 在本节和下一节中。
 
-- Don't optimize for coverage, optimize for well thought-out tests.
-- Write positive and negative unit tests.
-  - Write _positive_ unit tests for things that the code should handle. Validate _all_ state that changes from these tests.
-  - Write _negative_ unit tests for things that the code should _not_ handle. It's helpful to follow up (as an adjacent test) with the positive test and make the change that it needs to pass.
-  - Each code path should have it's own unit test.
-- Write integration tests to test entire features.
-- Write fork tests to verify the correct behavior with existing deployed contract.
+- 不要针对覆盖范围进行优化，而是针对经过深思熟虑的测试进行优化。
+- 编写正面和负面的单元测试。
+   - 为代码应该处理的事情编写_positive_单元测试。 验证从这些测试中更改的_all_状态。
+   - 为代码不应该处理的事情编写_negative_ 单元测试。 跟进（作为相邻测试）阳性测试并进行需要通过的更改很有帮助。
+   - 每个代码路径都应该有自己的单元测试。
+- 编写集成测试来测试整个功能。
+- 编写分叉测试以验证现有已部署合约的正确行为。
 
-### Taint Analysis
+### 污点分析
 
-When testing, you should prioritize functions that an attacker can affect, that means functions that accept some kind of user input. These are called _sources_.
+测试时，您应该优先考虑攻击者可以影响的功能，即接受某种用户输入的功能。 这些被称为_sources_。
 
-Consider that input data as _tainted_ until it has been checked by the code, at which point it's considered _clean_.
+将输入数据视为_污染_，直到它被代码检查过，此时它被认为是_干净_。
 
-A _sink_ is a part of the code where some important operation is happening. For example, in MakerDAO that would be `vat.sol`.
+_sink_ 是发生某些重要操作的代码的一部分。 例如，在 MakerDAO 中，它将是`vat.sol`。
 
-You should _ensure_ that no _tainted_ data ever reaches a _sink_. That means that all data that find themselves in the sink, should, at some point, have been checked by you. So, you need to define what the data _should_ be and then make sure your checks _ensure_ that the data will be how you expect it to be.
+您应该_确保_没有_污染_数据到达_接收器_。 这意味着所有发现自己在接收器中的数据都应该在某个时候由您检查过。 因此，您需要定义数据_应该_是什么，然后确保您的检查_确保_数据符合您的预期。
 
-## Scripts
+## 脚本
 
-1. Stick with `run` as the default function name for clarity.
+1. 为清晰起见，坚持使用 `run` 作为默认函数名称。
 
-1. Any methods that are not intended to be called directly in the script should be `internal` or `private`. Generally the only public method should be `run`, as it's easier to read/understand when each script file just does one thing.
+1. 任何不打算在脚本中直接调用的方法都应该是 `internal` 或 `private`。 一般来说，唯一的公共方法应该是 `run`，因为当每个脚本文件只做一件事时，它更容易阅读/理解。
 
-1. Consider prefixing scripts with a number based on the order they're intended to be run over the protocol's lifecycle. For example, `01_Deploy.s.sol`, `02_TransferOwnership.s.sol`. This makes things more self-documenting. This may not always apply depending on your project.
+1. 考虑根据脚本在协议生命周期中的运行顺序为脚本添加前缀。 例如，`01_Deploy.s.sol`、`02_TransferOwnership.s.sol`。 这使事情更加自我记录。 这可能并不总是适用，具体取决于您的项目。
 
-1. Test your scripts.
+1. 测试你的脚本。
 
-   - Unit test them by writing tests that assert on the state changes made from running the script.
-   - Write your deploy script and scaffold tests by running that script. Then, run all tests against the state resulting from your production deployment script. This is a great way to gain confidence in a deploy script.
+    - 通过编写测试来对它们进行单元测试，这些测试断言运行脚本所做的状态更改。
+    - 通过运行该脚本编写您的部署脚本和脚手架测试。 然后，针对生产部署脚本产生的状态运行所有测试。 这是获得对部署脚本的信心的好方法。
 
-1. **Carefully audit which transactions are broadcasted**. Transactions not broadcasted are still executed in the context of a test, so missing broadcasts or extra broadcasts are easy sources of error in the previous step.
+1. **仔细审核广播了哪些交易**。 未广播的事务仍在测试上下文中执行，因此缺少广播或额外广播很容易成为上一步中的错误来源。
 
-1. **Watch out for frontrunning**. Forge simulates your script, generates transaction data from the simulation results, then broadcasts the transactions. Make sure your script is robust against chain-state changing between the simulation and broadcast. A sample script vulnerable to this is below:
+1. **注意抢跑**。 Forge 模拟您的脚本，根据模拟结果生成交易数据，然后广播交易。 确保您的脚本对模拟和广播之间的链状态变化具有鲁棒性。 下面是一个容易受到此影响的示例脚本：
 
 ```solidity
 // Pseudo-code, may not compile.
@@ -219,7 +222,7 @@ contract VulnerableScript is Script {
 }
 ```
 
-1. For scripts that read from JSON input files, put the input files in `script/input/<chainID>/<description>.json`. Then have `run(string memory input)` (or take multiple string inputs if you need to read from multiple files) as the script's signature, and use the below method to read the JSON file.
+1. 对于从 JSON 输入文件读取的脚本，将输入文件放在 `script/input/<chainID>/<description>.json` 中。 然后将 `run(string memory input)`（如果需要读取多个文件，则采用多个字符串输入）作为脚本的签名，并使用以下方法读取 JSON 文件。
 
 ```solidity
 function readInput(string memory input) internal returns (string memory) {
@@ -230,31 +233,31 @@ function readInput(string memory input) internal returns (string memory) {
 }
 ```
 
-## Comments
+## 注释
 
-1. For public or external methods and variables, use [NatSpec](https://docs.soliditylang.org/en/latest/natspec-format.html) comments.
+1. 对于公共或外部方法和变量，使用[NatSpec](https://docs.soliditylang.org/en/latest/natspec-format.html)注释。
 
-   - `forge doc` will parse these to autogenerate documentation.
-   - Etherscan will display them in the contract UI.
+    - `forge doc` 将解析这些以自动生成文档。
+    - Etherscan 将在合约 UI 中显示它们。
 
-1. For simple NatSpec comments, consider just documenting params in the docstring, such as `` /// @notice Returns the sum of `x` and `y`. ``, instead of using `@param` tags.
+1. 对于简单的 NatSpec 注释，考虑只在文档字符串中记录参数，例如 `` /// @notice 返回 `x` 和 `y` 的总和。 ``，而不是使用 `@param` 标签。
 
-1. For complex NatSpec comments, consider using a tool like [PlantUML](https://plantuml.com/ascii-art) to generate ASCII art diagrams to help explain complex aspects of the codebase.
+1. 对于复杂的 NatSpec 注释，考虑使用像 [PlantUML](https://plantuml.com/ascii-art) 这样的工具来生成 ASCII 艺术图，以帮助解释代码库的复杂方面。
 
-1. Any markdown in your comments will carry over properly when generating docs with `forge doc`, so structure comments with markdown when useful.
+1. 当使用 `forge doc` 生成文档时，您评论中的任何 markdown 都将正确保留，因此在有用时使用 markdown 结构评论。
 
-   - Good: `` /// @notice Returns the sum of `x` and `y`. ``
-   - Bad: `/// @notice Returns the sum of x and y.`
+    - 好：`` /// @notice 返回 `x` 和 `y` 的总和。 ``
+    - 错误：`/// @notice 返回 x 和 y 的总和。`
 
-## Resources
+## 资源
 
-Write more secure code and better tests:
+编写更安全的代码和更好的测试：
 
 - [transmissions11/solcurity](https://github.com/transmissions11/solcurity)
 - [nascentxyz/simple-security-toolkit](https://github.com/nascentxyz/simple-security-toolkit)
 
-Foundry in Action:
+铸造厂在行动：
 
-- [Nomad Monorepo](https://github.com/nomad-xyz/monorepo): All the `contracts-*` packages. Good example of using many Foundry features including fuzzing, `ffi` and various cheatcodes.
-- [Uniswap Periphery](https://github.com/gakonst/v3-periphery-foundry): Good example of using inheritance to isolate test fixtures.
-- [awesome-foundry](https://github.com/crisgarner/awesome-foundry): A curated list of awesome of the Foundry development framework.
+- [Nomad Monorepo](https://github.com/nomad-xyz/monorepo)：所有 `contracts-*` 包。 使用许多 Foundry 功能的好例子，包括模糊测试、`ffi` 和各种作弊代码。
+- [Uniswap Periphery](https://github.com/gakonst/v3-periphery-foundry)：使用继承来隔离测试装置的好例子。
+- [awesome-foundry](https://github.com/crisgarner/awesome-foundry)：精选的 Foundry 开发框架列表。

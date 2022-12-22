@@ -1,8 +1,8 @@
-## Continuous Integration
+## 持续集成
 
-### GitHub Actions
+### GitHub 操作
 
-To test your project using GitHub Actions, here is a sample workflow:
+要使用 GitHub Actions 测试您的项目，这里有一个示例工作流程：
 
 ```yml
 on: [push]
@@ -29,7 +29,7 @@ jobs:
 
 ### Travis CI
 
-To test your project using Travis CI, here is a sample workflow:
+要使用 Travis CI 测试您的项目，这里有一个示例工作流程：
 
 ```yml
 language: rust
@@ -49,8 +49,8 @@ script:
 
 ## GitLab CI
 
-To test your project using GitLab CI, here is a sample workflow:
-Note: check out [Policy](https://docs.gitlab.com/runner/executors/docker.html#how-pull-policies-work) to fetch the remote image
+要使用 GitLab CI 测试您的项目，这里有一个示例工作流程：
+注意：查看 [Policy](https://docs.gitlab.com/runner/executors/docker.html#how-pull-policies-work) 来获取远程图像
 
 ```yml
 variables:

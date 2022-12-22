@@ -1,8 +1,8 @@
-## Static Analyzers
+## 静态分析器
 
-### Slither
+### slither
 
-To test your project using [slither](https://github.com/crytic/slither), here is a sample `slither.config.json`:
+要使用 [slither](https://github.com/crytic/slither) 测试您的项目，这里有一个示例 `slither.config.json`：
 
 ```json
 {
@@ -14,7 +14,8 @@ To test your project using [slither](https://github.com/crytic/slither), here is
 }
 ```
 
-Note, you need to update `solc` used by Slither to the same version used by Forge with `solc-select`:
+请注意，您需要使用 `solc-select` 将 Slither 使用的 `solc` 更新为 Forge 使用的相同版本：
+
 ```ignore
 pip3 install slither-analyzer
 pip3 install solc-select
@@ -23,14 +24,15 @@ solc-select use 0.8.13
 slither src/Contract.sol
 ```
 
-See the [slither wiki](https://github.com/crytic/slither/wiki/Usage) for more information.
+有关详细信息，请参阅 [slither wiki](https://github.com/crytic/slither/wiki/Usage)。
 
-In order to use a custom configuration, such as the sample `slither.config.json` mentioned above, the following command is used as mentioned in the [slither-wiki](https://github.com/crytic/slither/wiki/Usage#configuration-file). By default slither looks for the `slither.config.json` but you can define the path and any other `json` file of your choice:
+为了使用自定义配置，例如上面提到的示例 `slither.config.json`，使用 [slither-wiki](https://github.com/crytic/slither/wiki) 中提到的以下命令 /用法#配置文件）。 默认情况下，slither 会查找 `slither.config.json`，但您可以定义路径和您选择的任何其他 `json` 文件：
 
 ```sh 
 slither --config-file <path>/file.config.json Counter.sol
 ```
-Example output (Raw):
+
+示例输出（Raw）：
 
 ```bash 
 Pragma version^0.8.13 (Counter.sol#2) necessitates a version too recent to be trusted. Consider deploying with 0.6.12/0.7.6/0.8.7
@@ -45,11 +47,11 @@ Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-
 Counter.sol analyzed (1 contracts with 78 detectors), 4 result(s) found
 ```
 
-Slither also has a [github action](https://github.com/marketplace/actions/slither-action) for CI/CD.
+Slither 还有一个用于 CI/CD 的 [github action](https://github.com/marketplace/actions/slither-action)。
 
 ### Mythril
 
-To test your project using [mythril](https://github.com/ConsenSys/mythril), here is a sample `mythril.config.json`:
+要使用 [mythril](https://github.com/ConsenSys/mythril) 测试您的项目，这里有一个示例 `mythril.config.json`：
 
 ```json
 {
@@ -64,7 +66,7 @@ To test your project using [mythril](https://github.com/ConsenSys/mythril), here
 }
 ```
 
-Note, you need switch `rustc` to nightly to install `mythril`:
+请注意，您需要将 `rust` 切换为 nightly 以安装 `mythril`：
 
 ```ignore
 rustup default nightly
@@ -72,9 +74,9 @@ pip3 install mythril
 myth analyze src/Contract.sol --solc-json mythril.config.json
 ```
 
-See the [mythril docs](https://mythril-classic.readthedocs.io/en/develop/) for more information.
+有关详细信息，请参阅 [mythril 文档](https://mythril-classic.readthedocs.io/en/develop/)。
 
-You can pass custom Solc compiler output to Mythril using the `--solc-json` flag. For example:
+您可以使用 `--solc-json` 标志将自定义 Solc 编译器输出传递给 Mythril。 例如：
 
 ```bash
 $ myth analyze src/Counter.sol --solc-json mythril.config.json
@@ -100,4 +102,5 @@ Solver time: 3.6820807456970215
 The analysis was completed successfully. No issues were detected.
 ```
 
-The findings will be listed at the end of this output if any. Since the default `Counter.sol` does't have any logic, `mythx` reports that no issues were found.
+
+结果将列在输出的末尾（如果有的话）。 由于默认的 `Counter.sol` 没有任何逻辑，`mythx`报告未发现任何问题。

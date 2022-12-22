@@ -1,20 +1,20 @@
-## Solidity Scripting
+## 可靠性脚本
 
-### Introduction
+＃＃＃ 介绍
 
-Solidity scripting is a way to declaratively deploy contracts using Solidity, instead of using the more limiting and less user friendly [`forge create`](../reference/forge/forge-create.md).
+Solidity 脚本是一种使用 Solidity 以声明方式部署合约的方法，而不是使用限制更多且用户友好度较低的 [`forge create`](../reference/forge/forge-create.md)。
 
-Solidity scripts are like the scripts you write when working with tools like Hardhat; what makes Solidity scripting different is that they are written in Solidity instead of JavaScript, and they are run on the fast Foundry EVM backend, which provides dry-run capabilities.
+Solidity 脚本就像您在使用 Hardhat 等工具时编写的脚本； Solidity 脚本的不同之处在于它们是用 Solidity 而不是 JavaScript 编写的，并且它们在快速的 Foundry EVM 后端上运行，该后端提供试运行功能。
 
-### Set Up
+### 设置
 
-Let’s try to deploy the NFT contract made in the solmate tutorial with solidity scripting. First of all, we would need to create a new Foundry project via:
+让我们尝试使用 solidity 脚本部署在 solmate 教程中制作的 NFT 合约。 首先，我们需要通过以下方式创建一个新的 Foundry 项目：
 
 ```sh
 forge init solidity-scripting
 ```
 
-Since the NFT contract from the solmate tutorial inherits both `solmate` and `OpenZeppelin` contracts, we’ll have to install them as dependencies by running:
+由于 solmate 教程中的 NFT 合约继承了 solmate 和 OpenZeppelin 合约，我们必须通过运行以下命令将它们安装为依赖项：
 
 ```sh
 # Enter the project
@@ -24,7 +24,7 @@ cd solidity-scripting
 forge install transmissions11/solmate Openzeppelin/openzeppelin-contracts
 ```
 
-Next, we have to delete the `Counter.sol` file in the `src` folder and create another file called `NFT.sol`. You can do this by running:
+接下来，我们必须删除 `src` 文件夹中的 `Counter.sol` 文件并创建另一个名为 `NFT.sol` 的文件。 你可以通过运行来做到这一点：
 
 ```sh
 rm src/Counter.sol test/Counter.t.sol && touch src/NFT.sol && ls src
@@ -32,7 +32,8 @@ rm src/Counter.sol test/Counter.t.sol && touch src/NFT.sol && ls src
 
 ![set up commands](../images/solidity-scripting%20/set-up-commands.png)
 
-Once that’s done, you should open up your preferred code editor and copy the code below into the `NFT.sol` file.
+
+完成后，你应该打开你喜欢的代码编辑器并将下面的代码复制到`NFT.sol` 文件中。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -101,26 +102,26 @@ contract NFT is ERC721, Ownable {
 }
 ```
 
-Now, let’s try compiling our contract to make sure everything is in order.
+现在，让我们尝试编译我们的合约以确保一切正常。
 
 ```sh
 forge build
 ```
 
-If your output looks like this, the contracts successfully compiled.
+如果您的输出看起来像这样，则合同已成功编译。
 ![compile successful](../images/solidity-scripting%20/compile-successful.png)
 
-### Deploying our contract
+### 部署我们的合约
 
-We’re going to deploy the `NFT` contract to the Goerli testnet, but to do this we’ll need to configure Foundry a bit, by setting things like a Goerli RPC URL, the private key of an account that’s funded with Goerli Eth, and an Etherscan key for the verification of the NFT contract.
+我们将把“NFT”合约部署到 Goerli 测试网，但为此我们需要稍微配置 Foundry，通过设置 Goerli RPC URL 之类的东西，这是一个由 Goerli Eth 资助的账户的私钥 ，以及用于验证 NFT 合约的 Etherscan 密钥。
 
-> 💡 Note: You can get some Goerli testnet ETH [here](https://faucet.paradigm.xyz/) .
+> 💡 注意：您可以在 [此处](https://faucet.paradigm.xyz/) 获得一些 Goerli 测试网 ETH。
 
-#### Environment Configuration
+####环境配置
 
-Once you have all that create a `.env` file and add the variables. Foundry automatically loads in a `.env` file present in your project directory.
+完成所有这些后，创建一个  `.env` 文件并添加变量。 Foundry 会自动加载项目目录中的  `.env` 文件。
 
-The .env file should follow this format:
+ `.env` 文件应遵循以下格式：
 
 ```sh
 GOERLI_RPC_URL=
@@ -128,9 +129,9 @@ PRIVATE_KEY=
 ETHERSCAN_API_KEY=
 ```
 
-We now need to edit the `foundry.toml` file. There should already be one in the root of the project.
+我们现在需要编辑 `foundry.toml` 文件。 项目的根目录中应该已经有一个。
 
-Add the following lines to the end of the file:
+将以下行添加到文件末尾：
 
 ```toml
 [rpc_endpoints]
@@ -142,11 +143,11 @@ goerli = { key = "${ETHERSCAN_API_KEY}" }
 
 This creates a [RPC alias](../cheatcodes/rpc.md) for Goerli and loads the Etherscan API key.
 
-#### Writing the Script
+#### 编写脚本
 
-Next, we have to create a folder and name it `script` and create a file in it called `NFT.s.sol`. This is where we will create the deployment script itself.
+接下来，我们必须创建一个文件夹并将其命名为`script`，并在其中创建一个名为`NFT.s.sol`的文件。 这是我们将创建部署脚本本身的地方。
 
-The contents of `NFT.s.sol` should look like this:
+`NFT.s.sol` 的内容应该是这样的：
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -167,60 +168,59 @@ contract MyScript is Script {
 }
 ```
 
-Now let’s read through the code and figure out what it actually means and does.
+现在让我们通读代码并弄清楚它的实际含义和作用。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 ```
 
-Remember even if it’s a script it still works like a smart contract, but is never deployed, so just like any other smart contract written in Solidity the `pragma version` has to be specified.
+请记住，即使它是一个脚本，它仍然像智能合约一样工作，但从未部署过，所以就像任何其他用 Solidity 编写的智能合约一样，必须指定`pragma version`。
 
 ```solidity
 import "forge-std/Script.sol";
 import "../src/NFT.sol";
 ```
 
-Just like we may import Forge Std to get testing utilities when writing tests, Forge Std also provides some scripting utilities that we import here.
+就像我们在编写测试时可能会导入 Forge Std 来获取测试实用程序一样，Forge Std 也提供了一些我们在这里导入的脚本实用程序。
 
-The next line just imports the `NFT` contract.
+下一行只是导入`NFT`合约。
 
 ```solidity
 contract MyScript is Script {
 ```
 
-We create a contract called `MyScript` and it inherits `Script` from Forge Std.
+我们创建一个名为 `MyScript` 的合约，它从 Forge Std 继承了 `Script`。
 
 ```solidity
  function run() external {
 ```
 
-By default, scripts are executed by calling the function named `run`, our entrypoint.
+默认情况下，脚本是通过调用名为`run`的函数（我们的入口点）来执行的。
 
 ```solidity
 uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 ```
 
-This loads in the private key from our `.env` file. **Note:** you must be careful when exposing private keys in a `.env` file and loading them into programs. This is only recommended for use with non-priviliged deployers or for local / test setups. For production setups please review the various [wallet options](../reference/forge/forge-script.md#wallet-options---raw) that Foundry supports.
+这会从我们的 .env 文件中加载私钥。 **注意：** 在 `.env` 文件中公开私钥并将它们加载到程序中时必须小心。 这仅建议与非特权部署者一起使用或用于本地/测试设置。 对于生产设置，请查看 Foundry 支持的各种[钱包选项](../reference/forge/forge-script.md#wallet-options---raw)。
 
 
 ```solidity
 vm.startBroadcast(deployerPrivateKey);
 ```
 
-This is a special cheatcode that records calls and contract creations made by our main script contract. We pass the `deployerPrivateKey` in order to instruct it to use that key for signing the transactions. Later, we will broadcast these transactions to deploy our NFT contract.
-
+这是一个特殊的作弊代码，用于记录我们的主脚本合约进行的调用和合约创建。 我们传递 `deployerPrivateKey` 以指示它使用该密钥来签署交易。 稍后，我们将广播这些交易以部署我们的 NFT 合约。
 ```solidity
  NFT nft = new NFT("NFT_tutorial", "TUT", "baseUri");
 ```
 
-Here we just create our NFT contract. Because we called `vm.startBroadcast()` before this line, the contract creation will be recorded by Forge, and as mentioned previously, we can broadcast the transaction to deploy the contract on-chain. The broadcast transaction logs will be stored in the `broadcast` directory by default. You can change the logs location by setting [`broadcast`](../reference/config/project.md#broadcast) in your `foundry.toml` file.
+在这里，我们只是创建我们的 NFT 合约。 因为我们在这行之前调用了 `vm.startBroadcast()`，合约创建将被 Forge 记录下来，并且如前所述，我们可以广播交易以在链上部署合约。 默认情况下，广播事务日志将存储在“广播”目录中。 您可以通过在 `foundry.toml` 文件中设置 [`broadcast`](../reference/config/project.md#broadcast) 来更改日志位置。
 
-Now that you’re up to speed about what the script smart contract does, let’s run it.
+现在您已经了解了脚本智能合约的功能，让我们运行它。
 
-You should have added the variables we mentioned earlier to the `.env` for this next part to work.
+您应该已经将我们之前提到的变量添加到 .env 中，以便下一部分工作。
 
-At the root of the project run:
+在项目运行的根目录：
 
 ```sh
 # To load the variables in the .env file
@@ -230,45 +230,45 @@ source .env
 forge script script/NFT.s.sol:MyScript --rpc-url $GOERLI_RPC_URL --broadcast --verify -vvvv
 ```
 
-Forge is going to run our script and broadcast the transactions for us - this can take a little while, since Forge will also wait for the transaction receipts. You should see something like this after a minute or so:
+Forge 将运行我们的脚本并为我们广播交易——这可能需要一些时间，因为 Forge 还将等待交易收据。 大约一分钟后，您应该会看到类似这样的内容：
 
 ![contract verified](../images/solidity-scripting%20/contract-verified.png)
 
-This confirms that you have successfully deployed the `NFT` contract to the Goerli testnet and have also verified it on Etherscan, all with one command.
+这确认您已成功将 `NFT` 合约部署到 Goerli 测试网，并已在 Etherscan 上对其进行了验证，所有这些都通过一个命令完成。
 
-### Deploying locally
+### 本地部署
 
-You can deploy to Anvil, the local testnet, by configuring the port as the `fork-url`.
+您可以通过将端口配置为 `fork-url` 来部署到本地测试网 Anvil。
 
-Here, we have two options in terms of accounts. We can either start anvil without any flags and use one of the private keys provided. Or, we can pass a mnemonic to anvil to use.
+在这里，我们在帐户方面有两种选择。 我们可以在没有任何标志的情况下启动 anvil，并使用提供的私钥之一。 或者，我们可以传递一个助记符给 anvil 来使用。
 
-#### Using Anvil's Default Accounts
+#### 使用 Anvil 的默认帐户
 
-First, start Anvil:
+首先，启动 Anvil：
 
 ```sh
 anvil
 ```
 
-Update your `.env` file with a private key given to you by Anvil.
+使用 Anvil 提供给您的私钥更新您的 `.env `文件。
 
-Then run the following script:
+然后运行以下脚本：
 
 ```sh
 forge script script/NFT.s.sol:MyScript --fork-url http://localhost:8545 --broadcast
 ```
 
-#### Using a Custom Mnemonic
+#### 使用自定义助记符
 
-Add the following line to your `.env` file and complete it with your mnemonic:
+将以下行添加到您的 .env 文件并使用您的助记符完成它：
 
 ```sh
 MNEMONIC=
 ```
 
-It is expected that the `PRIVATE_KEY` environment variable we set earlier is one of the first 10 accounts in this mnemonic.
+预计我们之前设置的`PRIVATE_KEY`环境变量是这个助记词中的前10个账户之一。
 
-Start Anvil with the custom mnemonic:
+使用自定义助记符启动 Anvil：
 
 ```sh
 source .env
@@ -276,10 +276,10 @@ source .env
 anvil --m $MNEMONIC
 ```
 
-Then run the following script:
+然后运行以下脚本：
 
 ```sh
 forge script script/NFT.s.sol:MyScript --fork-url http://localhost:8545 --broadcast
 ```
 
-> 💡 Note: A full implementation of this tutorial can be found [here](https://github.com/Perelyn-sama/solidity-scripting) and for further reading about solidity scripting, you can check out the `forge script` [reference](../reference/forge/forge-script.md).
+> 💡 注意：可以在 [此处](https://github.com/Perelyn-sama/solidity-scripting) 找到本教程的完整实现，要进一步阅读有关 solidity 脚本的信息，您可以查看“伪造脚本” [参考](../reference/forge/forge-script.md)。

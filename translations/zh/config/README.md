@@ -1,12 +1,13 @@
-## Configuring with `foundry.toml`
 
-Forge can be configured using a configuration file called `foundry.toml`, which is placed in the root of your project.
+## 使用 `foundry.toml` 配置
 
-Configuration can be namespaced by profiles. The default profile is named `default`, from which all other profiles inherit. You are free to customize the `default` profile, and add as many new profiles as you need.
+Forge 可以使用名为“foundry.toml”的配置文件进行配置，该文件位于项目的根目录中。
 
-Additionally, you can create a global `foundry.toml` in your home directory.
+配置可以由配置文件命名空间。 默认配置文件名为`default`，所有其他配置文件都继承自该配置文件。 您可以自由自定义`default` 配置文件，并根据需要添加任意数量的新配置文件。
 
-Let's take a look at a configuration file that contains two profiles: the default profile, which always enables the optimizer, as well as a CI profile, that always displays traces:
+此外，您可以在您的主目录中创建一个全局的 `foundry.toml`。
+
+让我们看一下包含两个配置文件的配置文件：始终启用优化器的默认配置文件，以及始终显示跟踪的 CI 配置文件：
 
 ```toml
 [profile.default]
@@ -17,18 +18,18 @@ optimizer_runs = 20_000
 verbosity = 4
 ```
 
-When running `forge`, you can specify the profile to use using the `FOUNDRY_PROFILE` environment variable.
+运行 `forge` 时，您可以使用 `FOUNDRY_PROFILE` 环境变量指定要使用的配置文件。
 
-### Standalone sections
+### 独立部分
 
-Besides the profile sections, the configuration file can also contain standalone sections (`[fmt]`, `[fuzz]`, `[invariant]` etc). By default, each standalone section belongs to the `default` profile.
-i.e. `[fmt]` is equivalent to `[profile.default.fmt]`.
+除了配置文件部分，配置文件还可以包含独立部分（`[fmt]`、`[fuzz]`、`[invariant]` 等）。 默认情况下，每个独立部分都属于“默认”配置文件。
+即 `[fmt]` 等同于 `[profile.default.fmt]`。
 
-To configure the standalone section for different profiles other than `default`, use syntax `[profile.<profile name>.<standalone>]`.
-i.e. `[profile.ci.fuzz]`.
+要为 `default` 以外的不同配置文件配置独立部分，请使用语法`[profile.<profile name>.<standalone>]`。
+即`[profile.ci.fuzz]`。
 
 <br>
 
-> 📚 **Reference**
-> 
-> See the [`foundry.toml` Reference](../reference/config/) for a complete overview of what you can configure.
+> 📚 **参考**
+>
+> 请参阅 [`foundry.toml` 参考](../reference/config/) 以获得关于您可以配置的内容的完整概述。
