@@ -1,6 +1,6 @@
-## 可靠性脚本
+## Solidity脚本
 
-＃＃＃ 介绍
+### 介绍
 
 Solidity 脚本是一种使用 Solidity 以声明方式部署合约的方法，而不是使用限制更多且用户友好度较低的 [`forge create`](../reference/forge/forge-create.md)。
 
@@ -117,7 +117,7 @@ forge build
 
 > 💡 注意：您可以在 [此处](https://faucet.paradigm.xyz/) 获得一些 Goerli 测试网 ETH。
 
-####环境配置
+#### 环境配置
 
 完成所有这些后，创建一个  `.env` 文件并添加变量。 Foundry 会自动加载项目目录中的  `.env` 文件。
 
@@ -209,7 +209,7 @@ uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 vm.startBroadcast(deployerPrivateKey);
 ```
 
-这是一个特殊的作弊代码，用于记录我们的主脚本合约进行的调用和合约创建。 我们传递 `deployerPrivateKey` 以指示它使用该密钥来签署交易。 稍后，我们将广播这些交易以部署我们的 NFT 合约。
+这是一个特殊的Cheatcode，用于记录我们的主脚本合约进行的调用和合约创建。 我们传递 `deployerPrivateKey` 以指示它使用该密钥来签署交易。 稍后，我们将广播这些交易以部署我们的 NFT 合约。
 ```solidity
  NFT nft = new NFT("NFT_tutorial", "TUT", "baseUri");
 ```
@@ -282,4 +282,4 @@ anvil --m $MNEMONIC
 forge script script/NFT.s.sol:MyScript --fork-url http://localhost:8545 --broadcast
 ```
 
-> 💡 注意：可以在 [此处](https://github.com/Perelyn-sama/solidity-scripting) 找到本教程的完整实现，要进一步阅读有关 solidity 脚本的信息，您可以查看“伪造脚本” [参考](../reference/forge/forge-script.md)。
+> 💡 注意：可以在 [此处](https://github.com/Perelyn-sama/solidity-scripting) 找到本教程的完整实现，要进一步阅读有关 solidity 脚本的信息，您可以查看“forge script” [参考](../reference/forge/forge-script.md)。

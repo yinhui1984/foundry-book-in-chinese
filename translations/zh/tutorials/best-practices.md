@@ -3,42 +3,42 @@
 本指南记录了使用 Foundry 进行开发时建议的最佳实践。
 一般而言，建议尽可能使用 [`forge fmt`](../reference/config/formatter.md) 处理，不处理的内容如下。
 
-- [一般合同指南](#general-contract-guidance)
+- [一般合约指南](#general-contract-guidance)
 - [测试](#tests)
    - [一般测试指南](#general-test-guidance)
    - [分叉测试](#fork-tests)
    - [测试工具](#test-harnesses)
      - [内部函数](#internal-functions)
      - [私有函数](#private-functions)
-     - [解决方法函数](#workaround-functions)
+     - [Workaround函数](#workaround-functions)
    - [最佳实践](#best-practices)
    - [污点分析](#taint-analysis)
 - [脚本](#scripts)
 - [评论](#comments)
 - [资源](#resources)
 
-## 一般合同指南
+## 一般合约指南
 
-1. 始终使用命名导入语法，不要导入完整文件。 这将导入的内容限制为仅指定的项目，而不是文件中的所有内容。 导入完整文件可能会导致 solc 抱怨重复定义和滑动错误，尤其是当 repos 增长并且具有更多具有重叠名称的依赖项时。
+1. 始终使用命名导入语法，不要导入完整文件。 这将导入的内容限制为仅指定的项目，而不是文件中的所有内容。 导入完整文件可能会导致 solc 重复定义和滑动错误，尤其是当 repos 增长并且具有更多具有重叠名称的依赖项时。
 
     - Good：`import {MyContract} from "src/MyContract.sol"` 只导入 `MyContract`。
     - Bad：`import "src/MyContract.sol"` 导入 `MyContract.sol` 中的所有内容。 （导入 `forge-std/Test` 或 `Script` 在这里可能是个例外，因此您可以获得控制台库等）。
 
-1. 首先按 `forge-std/` 对导入进行排序，然后是依赖项、`test/`、`script/`，最后是 `src/`。 在每个中，按路径字母顺序排序（而不是按导入的显式命名项）。 _（注意：一旦 [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) 合并，这可能会被删除）。_
+2. 首先按 `forge-std/` 对导入进行排序，然后是依赖项、`test/`、`script/`，最后是 `src/`。 在每个中，按路径字母顺序排序（而不是按导入的显式命名项）。 _（注意：一旦 [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) 合并，这可能会被删除）。_
 
-1. 同样，对命名导入进行排序。 _（注意：一旦 [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) 得到解决，这可能会被删除）。_
+3. 同样，对命名导入进行排序。 _（注意：一旦 [foundry-rs/foundry#3396](https://github.com/foundry-rs/foundry/issues/3396) 得到解决，这可能会被删除）。_
 
     - Good：`从“src/MyContract.sol”导入{bar，foo}`
     - Bad：`从“src/MyContract.sol”导入 {foo, bar}`
 
-1. 注意导入的绝对路径和相对路径之间的权衡（绝对路径是相对于 repo 根的，例如`"src/interfaces/IERC20.sol"`），并为您的项目选择最佳方法：
+4. 注意导入的绝对路径和相对路径之间的权衡（绝对路径是相对于 repo 根的，例如`"src/interfaces/IERC20.sol"`），并为您的项目选择最佳方法：
 
     - 绝对路径可以更轻松地查看文件的来源并减少移动文件时的流失。
     - 相对路径使您的编辑器更有可能提供 linting 和自动完成等功能，因为编辑器/扩展可能无法理解您的重新映射。
 
-1. 如果从依赖项中复制库（而不是导入它），请在配置文件中使用 `ignore = []` 选项以避免格式化该文件。 这使得审阅者和审计员可以更轻松地将其与原始版本进行比较。
+5. 如果从依赖项中复制库（而不是导入它），请在配置文件中使用 `ignore = []` 选项以避免格式化该文件。 这使得审阅者和审计员可以更轻松地将其与原始版本进行比较。
 
-1. 同样，随意使用 `// forgefmt: disable-*` 注释指令来忽略手动格式化后看起来更好的代码行/部分。 `*` 支持的值是：
+6. 同样，随意使用 `// forgefmt: disable-*` 注释指令来忽略手动格式化后看起来更好的代码行/部分。 `*` 支持的值是：
 
     - `禁用线`
     - `禁用下一行`
@@ -71,7 +71,7 @@
        - `contract Supply` 包含 `supply` 方法的所有测试。
        - `contract Constructor` 保存构造函数的所有测试。
        - 这种方法的一个好处是较小的合约应该比较大的合约编译得更快，因此随着测试套件变大，许多小型合约的这种方法应该可以节省时间。
-    2. 每个被测合同都有一个测试合同，其中包含您想要的任意数量的实用程序和固定装置：
+    2. 每个被测合约都有一个测试合约，其中包含您想要的任意数量的实用程序和固定装置：
        - `contract VaultTest` 测试 `contract Vault`，但它也继承自 `contract BaseTestFixture` 和 `contract TestUtilities`。
        - 测试函数的编写顺序应与被测合约中存在的原始函数相同。
        - 测试同一功能的所有测试功能都应连续存在于测试文件中。
@@ -107,7 +107,7 @@
 
      - 用单个 [multicall](https://github.com/mds1/multicall) 替换多个 RPC 调用。
      - 指定模糊/不变 [seed](/src/reference/config/testing.md#seed)：这确保每个“伪造测试”调用都使用相同的模糊输入。 RPC 结果缓存在本地，因此您只会在第一次查询节点。
-     - 构建您的测试，以便您模糊测试的数据由您的合同在本地计算，而不是 RPC 调用中使用的数据（根据您正在做的事情可能可行也可能不可行）。
+     - 构建您的测试，以便您模糊测试的数据由您的合约在本地计算，而不是 RPC 调用中使用的数据（根据您正在做的事情可能可行也可能不可行）。
      - 最后，您当然可以始终运行本地节点或修改您的 RPC 计划。
 1. 编写 fork 测试时，不要使用 `--fork-url` 标志。 相反，更喜欢以下方法，因为它提高了灵活性：
 
@@ -122,7 +122,7 @@
 
 #### 内部函数
 
-要测试 `internal` 功能，请编写一个继承自被测合同 (CuT) 的线束合同。 从 CuT 继承的线束合约将 `internal` 功能公开为 `external` 功能。
+要测试 `internal` 功能，请编写一个继承自被测合约 (CuT) 的线束合约。 从 CuT 继承的线束合约将 `internal` 功能公开为 `external` 功能。
 
 每个被测试的 `internal` 函数都应该通过一个名称遵循 `exposed_<function_name>` 模式的外部函数公开。 例如：
 
@@ -152,7 +152,7 @@ contract MyContractHarness is MyContract {
 - 将 `private` 函数转换为 `internal` 。
 - 将逻辑复制/粘贴到您的测试合约中，并编写一个在 CI 检查中运行的脚本，以确保两个功能相同。
 
-#### 变通函数
+#### Workaround函数
 
 Harnesses 还可用于公开原始智能合约中不可用的功能或信息。 最直接的例子是当我们想要测试公共数组的长度时。 这些函数应遵循以下模式：`workaround_<function_name>`，例如 `workaround_queueLength()`。
 
@@ -256,7 +256,7 @@ function readInput(string memory input) internal returns (string memory) {
 - [transmissions11/solcurity](https://github.com/transmissions11/solcurity)
 - [nascentxyz/simple-security-toolkit](https://github.com/nascentxyz/simple-security-toolkit)
 
-铸造厂在行动：
+Foundry在行动：
 
 - [Nomad Monorepo](https://github.com/nomad-xyz/monorepo)：所有 `contracts-*` 包。 使用许多 Foundry 功能的好例子，包括模糊测试、`ffi` 和各种作弊代码。
 - [Uniswap Periphery](https://github.com/gakonst/v3-periphery-foundry)：使用继承来隔离测试装置的好例子。

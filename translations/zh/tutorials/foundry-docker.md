@@ -1,6 +1,6 @@
 ## 对 Foundry 项目进行 Docker 化
 
-本教程向您展示如何使用 Foundry 的 Docker 映像构建、测试和部署智能合约。 它改编自 [solmate nft](./solmate-nft.md) 教程中的代码。 如果您还没有完成该教程，并且是 solidity 的新手，您可能想先从它开始。 或者，如果您对 Docker 和 Solidity 有一定的了解，您可以使用自己现有的项目并进行相应的调整。 [此处](https://github.com/dmfxyz/foundry-docker-tutorial) 提供了 NFT 和 Docker 内容的完整源代码。
+本教程向您展示如何使用 Foundry 的 Docker 镜像构建、测试和部署智能合约。 它改编自 [solmate nft](./solmate-nft.md) 教程中的代码。 如果您还没有完成该教程，并且是 solidity 的新手，您可能想先从它开始。 或者，如果您对 Docker 和 Solidity 有一定的了解，您可以使用自己现有的项目并进行相应的调整。 [此处](https://github.com/dmfxyz/foundry-docker-tutorial) 提供了 NFT 和 Docker 内容的完整源代码。
 
 > 本教程仅用于说明目的，并按原样提供。 本教程未经审核或全面测试。 不应在生产环境中使用本教程中的任何代码。
 
@@ -102,7 +102,7 @@ $ docker build --no-cache --progress=plain .
 error: failed to solve: executor failed running [/bin/sh -c forge test]: exit code: 1
 ```
 
-我们的形象未能建立，因为我们的测试失败了！ 这实际上是一个很好的属性，因为这意味着如果我们有一个成功构建的 Docker 映像（因此可以使用），我们就知道映像中的代码通过了测试。*
+我们的镜像未能建立，因为我们的测试失败了！ 这实际上是一个很好的属性，因为这意味着如果我们有一个成功构建的 Docker 镜像（因此可以使用），我们就知道镜像中的代码通过了测试。*
 > *当然，docker 镜像的监管链非常重要。 Docker 层哈希对于验证非常有用。 在生产环境中，考虑[签署你的 docker 镜像](https://docs.docker.com/engine/security/trust/#:~:text=To%20sign%20a%20Docker%20Image,the%20local%20Docker %20trust%20repository）。
 
 ### 创建部署镜像
@@ -125,7 +125,7 @@ RUN forge test
 ENTRYPOINT ["forge", "create"]
 ```
 
-让我们构建图像，这次给它命名：
+让我们构建镜像，这次给它命名：
 
 ```sh
 $ docker build --no-cache --progress=plain -t nft-deployer 。
@@ -141,11 +141,11 @@ Deployed to: 0x23d465eaa80ad2e5cdb1a2345e4b54edd12560d3
 Transaction hash: 0xf88c68c4a03a86b0e7ecb05cae8dea36f2896cd342a6af978cab11101c6224a9
 ```
 
-我们刚刚在 docker 容器中完全构建、测试和部署了我们的合约！ 本教程旨在用于测试网，但您可以针对主网运行完全相同的 Docker 映像，并确信相同的代码正在由相同的工具部署。
+我们刚刚在 docker 容器中完全构建、测试和部署了我们的合约！ 本教程旨在用于测试网，但您可以针对主网运行完全相同的 Docker 镜像，并确信相同的代码正在由相同的工具部署。
 
 ### 为什么这有用？
 
-Docker 是关于可移植性、可再现性和环境不变性的。 这意味着当您在环境、网络、开发人员等之间切换时，您可以减少对意外变化的关注。以下是一些基本示例，说明为什么**我**喜欢使用 Docker 映像进行智能合约部署：
+Docker 是关于可移植性、可再现性和环境不变性的。 这意味着当您在环境、网络、开发人员等之间切换时，您可以减少对意外变化的关注。以下是一些基本示例，说明为什么**我**喜欢使用 Docker 镜像进行智能合约部署：
 
 * 减少确保系统级依赖项在部署环境之间匹配的开销（例如，您的生产运行器是否始终具有与您的开发运行器相同版本的`forge`？）
 * 增加代码在部署之前已经过测试并且没有被更改的信心（例如，如果在上图中，您的代码在部署时重新编译，这是一个主要的危险信号）。
@@ -167,5 +167,5 @@ Error:
 Location:
    cli/src/cmd/forge/install.rs:107
 ```
-在这种情况下，失败仍然是由于缺少 `git` 安装造成的。 建议的修复方法是构建现有的 Foundry 映像并安装您需要的任何其他开发依赖项。
+在这种情况下，失败仍然是由于缺少 `git` 安装造成的。 建议的修复方法是构建现有的 Foundry 镜像并安装您需要的任何其他开发依赖项。
 
