@@ -1,5 +1,5 @@
 
-## 外壳自动补全
+## Shell自动补全
 
 您可以为 `bash`, `elvish`, `fish`, `powershell`, 和`zsh`生成自动完成 shell 脚本。
 
