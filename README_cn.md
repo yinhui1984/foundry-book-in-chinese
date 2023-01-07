@@ -36,7 +36,7 @@ mdbook serve
 
 ### 贡献者 ✨
 
-感谢一下卓越的翻译者，一起为中文区块链贡献力量：
+感谢以下卓越的翻译者，一起为中文区块链贡献力量：
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
