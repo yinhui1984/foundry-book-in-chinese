@@ -7,6 +7,8 @@ A book on all things Foundry. [Read now](https://book.getfoundry.sh).
 
 ### Contributing
 
+中文翻译贡献参考[中文文档说明](./README_cn.md)。
+
 Check our [contributing guidelines](./CONTRIBUTING.md). Feel free to contribute wording, sentences, chapters, and guides!
 
 The book is build with [mdbook](https://github.com/rust-lang/mdBook), which you can get by running `cargo install mdbook`.
