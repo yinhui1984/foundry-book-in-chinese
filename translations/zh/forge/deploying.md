@@ -1,6 +1,6 @@
 ## 部署
 
-Forge 可以使用 [`forge create`](../reference/forge/forge-create.md) 命令将智能合约部署到给定网络。
+Forge 可以使用 [`forge create`](../reference/forge/forge-create.md) 命令将智能合约部署到指定网络。
 
 Forge 一次只能部署一个合约。
 
