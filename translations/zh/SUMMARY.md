@@ -61,12 +61,12 @@
 - [最佳实践](./tutorials/best-practices.md)
 - [使用 Solmate 创建 NFT](./tutorials/solmate-nft.md)
 - [Docker 和 Foundry](./tutorials/foundry-docker.md)
-- [测试EIP-712签名](./tutorials/testing-eip712.md)
-- [Solidity脚本](./tutorials/solidity-scripting.md)
+- [测试 EIP-712 签名](./tutorials/testing-eip712.md)
+- [Solidity 脚本](./tutorials/solidity-scripting.md)
 - [使用Cast和Anvil分叉主网](./tutorials/forking-mainnet-with-cast-anvil.md)
 <!-- - [增量采用]() !-->
 
-# Appendix
+# 附录
 
 - [FAQ](./faq.md)
 - [References](./reference/README.md)

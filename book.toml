@@ -8,5 +8,5 @@ description = "A book on all things Foundry"
 
 [[output.i18n.translations]]
 language = "zh"
-translators = ["https://www.github.com/coldstar1993"]
-title = "Foundry 中文"
+translators = ["https://www.github.com/coldstar1993", "https://github.com/xilibi2003"]
+title = "Foundry 中文文档"

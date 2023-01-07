@@ -4,68 +4,68 @@ Foundry是一个智能合约开发工具链。
 
 Foundry管理您的依赖关系、编译项目、运行测试、部署，并允许您通过命令行和Solidity脚本与链交互。
 
-> 📖 **Contributing**
+> 📖 **参与贡献翻译**
 >
-> You can contribute to this book on [GitHub](https://github.com/foundry-rs/book).
+> 任何的 PR 都是欢迎的，中文翻译在[GitHub](https://github.com/lbc-team/foundry-book-in-chinese).
 
-### Sections
+### 导航
 
-**[Getting Started](getting-started/installation.md)**
+**[开始使用Foundry](getting-started/installation.md)**
 
 要开始使用Foundry，请安装Foundry并设置第一个项目。
 
-**[Projects](projects/creating-a-new-project.md)**
+**[启动Foundry项目](projects/creating-a-new-project.md)**
 
 本节将向您概述如何创建和使用现有项目。
 
-**[Forge Overview](forge)**
+**[Forge 概述](forge)**
 
 本节概述将为您提供有关如何使用“伪造”来开发、测试和部署智能合约所需的所有知识。 
 
-**[Cast Overview](cast)**
+**[Cast 概述](cast)**
 
-了解如何使用“cast”与智能合约交互、发送事务以及从命令行获取链数据。
+了解如何使用“cast”与智能合约交互、发送交易以及从命令行获取链上数据。
 
-**[Anvil Overview](anvil)**
+**[Anvil 概述](anvil)**
 
-Learn about `anvil`, Foundry's local node.
+了解 `anvil`, Foundry的本地节点。
 
-**Configuration**
+**Foundry 配置**
 
-配置Foundry的指引:
+Foundry配置指引:
 
 - [配置 `foundry.toml`](./config/)
 - [持续集成CI](./config/continous-integration.md)
 - [与VSCode集成](./config/vscode.md)
-- [Shell Autocompletion](./config/shell-autocompletion.md)
-- [Static Analyzers](./config/static-analyzers.md)
+- [Shell命令补全](./config/shell-autocompletion.md)
+- [静态代码分析器](./config/static-analyzers.md)
 - [与Hardhat集成](./config/hardhat.md)
 
-**Tutorials**
+**教程**
 
  与Foundry建立智能合约的教程。
 
-- [使用Solmate创建NFT](./tutorials/solmate-nft.md)
-- [Docker and Foundry](./tutorials/foundry-docker.md)
-- [测试EIP-712签名](./tutorials/testing-eip712.md)
-- [Solidity Scripting](./tutorials/solidity-scripting.md)
-- [使用Cast和Anvil分叉主网](./tutorials/forking-mainnet-with-cast-anvil.md)
+- [使用 Solmate 创建NFT](./tutorials/solmate-nft.md)
+- [Docker 和 Foundry](./tutorials/foundry-docker.md)
+- [测试 EIP-712 签名](./tutorials/testing-eip712.md)
+- [Solidity 脚本](./tutorials/solidity-scripting.md)
+- [使用 Cast 和 Anvil 分叉（Fork）主网](./tutorials/forking-mainnet-with-cast-anvil.md)
 <!-- - [Incremental Adoption]() -->
 
-**Appendix**
+**附录**
 
-References, troubleshooting, and more.
+参考手册, 疑难解答等等
 
 - [FAQ](./faq.md)
-- [forge 命令](./reference/forge/)
-- [cast 命令](./reference/cast/)
-- [anvil 命令](./reference/anvil/)
+- [forge 命令手册](./reference/forge/)
+- [cast 命令手册](./reference/cast/)
+- [anvil 命令手册](./reference/anvil/)
 - [Config 参考](./reference/config/)
 - [Cheatcodes 参考](./cheatcodes/)
-- [Forge Standard Library 参考](./reference/forge-std/)
+- [Forge 标准库 参考](./reference/forge-std/)
 - [DSTest 参考](./reference/ds-test.md)
 - [Miscellaneous](misc)
 
 <br>
 
-> You can also check out [Awesome Foundry](https://github.com/crisgarner/awesome-foundry), a curated list of awesome Foundry resources, tutorials, tools, and libraries!
+> 你还可以查看 [Awesome Foundry](https://github.com/crisgarner/awesome-foundry), 这是一份精心挑选的关于Foundry资源、教程、工具及库的列表。
