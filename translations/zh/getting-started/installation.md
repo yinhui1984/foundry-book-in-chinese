@@ -1,4 +1,4 @@
-＃＃ 安装
+## 安装
 
 ### 在 Linux 和 macOS 上
 
@@ -30,13 +30,13 @@ dyld[32719]：Library not loaded：/usr/local/opt/libusb/lib/libusb-1.0.0.dylib
 
 > 💡 **提示**
 >
->要在安装后更新 `foundryup`，只需再次运行 `foundryup`，它将更新到最新的 Foundry 版本。 您还可以使用“foundryup -v $VERSION”恢复到特定版本的 Foundry。
+>要在安装后更新 `foundryup`，只需再次运行 `foundryup`，它将更新到最新的 Foundry 版本。 您还可以使用 `foundryup -v $VERSION` 恢复到特定版本的 Foundry。
 
 #### 从源代码构建
 
 要从源代码构建，您需要获取 [Rust](https://rust-lang.org) 和 Cargo。 获得两者的最简单方法是使用 `rustup`。
 
-在 Linux 和 macOS 上，这是按如下方式完成的：
+在 Linux 和 macOS 上，可以使用如下方式完成构建：
 
 ```sh
 curl https://sh.rustup.rs -sSf | sh
@@ -58,7 +58,7 @@ curl https://sh.rustup.rs -sSf | sh
 cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
 ```
 
-要从源更新，请再次运行相同的命令。
+要从源代码更新，请再次运行相同的命令。
 
 ### 与 Docker 一起使用
 
@@ -78,4 +78,4 @@ docker build -t foundry。
 
 > ℹ️ **注意**
 >
-> 某些机器（包括带有 M1 芯片的机器）可能无法在本地构建 docker 镜像。 这是一个众所周知的问题。
+> 某些机器（包括带有 M1 芯片的机器）可能无法在本地构建 docker 镜像。 这是一个已知的问题（issue）。
