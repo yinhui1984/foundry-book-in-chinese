@@ -1,6 +1,6 @@
 ## 依赖
 
-默认情况下，Forge 使用 [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) 管理依赖项，这意味着它可以与任何包含智能合约的 GitHub 存储库一起使用。
+默认情况下，Forge 使用 [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) 管理依赖项，这意味着它可以与任何包含智能合约的 GitHub 代码库一起使用。
 
 ### 添加依赖
 
@@ -28,7 +28,7 @@ $ forge install transmission11/solmate@v7
 
 ### 重新映射依赖项
 
-Forge 可以重新映射依赖关系，使它们更容易导入。 Forge 将自动尝试为您推断出一些重新映射：
+Forge 可以重新映射(remap)依赖关系，使它们更容易导入。 Forge 将自动尝试为您推断出一些重新映射：
 
 ```sh
 {{#include ../output/deps/forge-remappings:all}}
@@ -36,12 +36,12 @@ Forge 可以重新映射依赖关系，使它们更容易导入。 Forge 将自�
 
 这些重新映射意味着：
 
-- 要从 `forge-std` 导入，我们会写：`import "forge-std/Contract.sol";`
+- 要从 `forge-std` 导入，我们会这样写：`import "forge-std/Contract.sol";`
 - 要从 `ds-test` 导入，我们会这样写：`import "ds-test/Contract.sol";`
 - 要从 `solmate` 导入，我们会这样写：`import "solmate/Contract.sol";`
-- 要从 `weird-erc20` 导入，我们会写：`import "weird-erc20/Contract.sol";`
+- 要从 `weird-erc20` 导入，我们会这样写：`import "weird-erc20/Contract.sol";`
 
-您可以通过在项目的根目录中创建一个“remappings.txt”文件来自定义这些重新映射。
+您可以通过在项目的根目录中创建一个 `remappings.txt` 文件来自定义这些重新映射。
 
 让我们创建一个名为 `solmate-utils` 的重映射，它指向 solmate repo中的 `utils` 文件夹！
 
@@ -63,7 +63,7 @@ import "solmate-utils/Contract.sol"；
 $ forge update lib/solmate
 ```
 
-或者，您可以通过运行“forge update”一次对所有依赖项执行此操作。
+或者，您可以通过运行 `forge update` 一次对所有依赖项执行更新。
 
 ### 删除依赖
 
@@ -75,8 +75,8 @@ $ forge remove solmate
 $ forge remove lib/solmate
 ```
 
-### Hardhat兼容
+### 与 Hardhat 兼容
 
-Forge 还支持基于 Hardhat 的项目，其中依赖项是 npm 包（存储在 `node_modules` 中）并且合同存储在 `contracts` 中而不是 `src` 中。
+Forge 还支持基于 Hardhat 的项目，其中依赖项是 npm 包（存储在 `node_modules` 中）并且其合约存储在 `contracts` 中而不是 `src` 中。
 
-要启用 Hardhat 兼容模式，请传递 `--hh` 标志。
+要启用 Hardhat 兼容模式，请传递 `--hh`  标志。

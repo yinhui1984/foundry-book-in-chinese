@@ -6,7 +6,7 @@
 {{#include ../output/hello_foundry/forge-init:command}}
 ```
 
-这将从默认模板创建一个新目录“hello_foundry”。 这也会初始化一个新的 `git` 存储库。
+这将从默认模板创建一个新目录 `hello_foundry` 。 这也会初始化一个新的 `git` 存储库。
 
 如果你想使用不同的模板创建一个新项目，你可以传递 `--template` 指令，如下所示：
 
@@ -35,6 +35,6 @@ $ cd hello_foundry
 {{#include ../output/hello_foundry/forge-test:all}}
 ```
 
-您会注意到弹出了两个新目录：`out` 和 `cache`。
+您会注意到产生了两个新目录：`out` 和 `cache`。
 
-`out` 目录包含您的合约结构文件，例如 ABI，而 `cache` 被 `forge` 使用来仅仅重新编译必要的内容。
+`out` 目录包含您的合约工件(artifact，例如 ABI，而 `cache` 目录被 `forge` 使用来（记录），以便仅仅去重新编译那些必要编译的内容。

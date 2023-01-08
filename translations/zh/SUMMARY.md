@@ -10,7 +10,7 @@
 # 项目
 
 - [创建新项目](./projects/creating-a-new-project.md)
-- [处理现有项目](./projects/working-on-an-existing-project.md)
+- [在现有项目上工作](./projects/working-on-an-existing-project.md)
 - [依赖项](./projects/dependencies.md)
 - [项目布局](./projects/project-layout.md)
 
