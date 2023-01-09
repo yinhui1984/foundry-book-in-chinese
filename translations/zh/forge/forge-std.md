@@ -6,12 +6,12 @@ Forge Standard Library（简称 Forge Std）是一个有用的合约集合，可
 
 它提供了开始编写测试所需的所有基本功能：
 
-- `Vm.sol`：最新的cheatcodes界面
+- `Vm.sol`：最新的作弊码接口
 - `console.sol` 和 `console2.sol`：Hardhat 风格的日志记录功能
--`Script.sol`：[Solidity 脚本] 的基本实用程序(../tutorials/solidity-scripting.md)
-- `Test.sol`：DSTest 的超集，包含标准库、作弊代码实例 (`vm`) 和 Hardhat 控制台
+- `Script.sol`：[Solidity 脚本](../tutorials/solidity-scripting.md) 的基本实用程序
+- `Test.sol`：DSTest 的超集，包含标准库、作弊码实例 (`vm`) 和 Hardhat 控制台
 
-只需导入 `Test.sol` 并从测试合约中的 `Test` 继承：
+简单的导入 `Test.sol` 并在测试合约中继承 `Test` ：
 
 ```solidity
 import "forge-std/Test.sol";
@@ -36,7 +36,7 @@ deal(address(dai), alice, 10000e18);
 ```
 
 
-要单独导入 `Vm` 界面或 `console` 库：
+要单独导入 `Vm`  接口或 `console` 库：
 
 ```solidity
 import "forge-std/Vm.sol";
@@ -66,9 +66,9 @@ Std Assertions扩展了 [`DSTest`](../reference/ds-test.md#asserting) 库中的�
 
 #### Std Cheats
 
-Std Cheats 是 Forge 作弊代码的包装器，使它们更安全地使用和改进 DX。
+Std Cheats 是 Forge 作弊码的包装器，使它们更安全地使用和改进 DX。
 
-你可以通过简单地在你的测试合约中调用它们来访问 Std Cheats，就像你调用任何其他内部函数一样：
+你可以通过简单地在测试合约中调用它们来访问 Std Cheats，就像你调用任何其他内部函数一样：
 
 ```solidity
 // set up a prank as Alice with 100 ETH balance
@@ -77,9 +77,9 @@ hoax(alice, 100 ether);
 
 #### Std Errors
 
-Std Errors 提供围绕常见内部 Solidity 错误errors和恢复reverts的包装器。
+Std Errors 提供围绕常见内部 Solidity 错误errors和回退reverts的包装器。
 
-Std Errors与 [`expectRevert`](../cheatcodes/expect-revert.md) cheatcodes结合使用最有用，因为您不需要自己记住内部 Solidity panic codes。 请注意，您必须通过 stdError 访问它们，因为这是一个库。
+Std Errors与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用最有用，因为您不需要自己记住内部 Solidity panic codes。 请注意，您必须通过 `stdError` 访问它们，因为这是一个库。
 
 ```solidity
 // expect an arithmetic error on the next call (e.g. underflow)
@@ -90,7 +90,7 @@ vm.expectRevert(stdError.arithmeticError);
 
 Std Storage 使操作合约存储变得容易。 它可以找到并写入与特定变量关联的存储槽。
 
-`Test` 合约已经提供了一个 `StdStorage` 实例 `stdstore`，您可以通过它访问任何标准存储功能。 请注意，您必须先在测试合约中添加“使用 stdStorage 来存储 StdStorage”。
+`Test` 合约已经提供了一个 `StdStorage` 实例 `stdstore`，您可以通过它访问任何标准存储功能。 请注意，您必须先在测试合约中添加语句：`using stdStorage for StdStorage`。
 
 ```solidity
 // find the variable `score` in the contract `game`

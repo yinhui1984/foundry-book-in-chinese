@@ -108,7 +108,7 @@ contract NFT is ERC721, Ownable {
 forge build
 ```
 
-如果您的输出看起来像这样，则合同已成功编译。
+如果您的输出看起来像这样，则合约已成功编译。
 ![compile successful](../images/solidity-scripting%20/compile-successful.png)
 
 ### 部署我们的合约

@@ -1,11 +1,11 @@
-## 分叉测试
+## 分叉（Fork）测试
 
 Forge 支持使用两种不同的方法在分叉环境中进行测试：
 
-- [**Forking Mode**](#forking-mode) — 通过`forge test --fork-url` 标志对所有测试使用一个分支
-- [**Forking Cheatcodes**](#forking-cheatcodes) — 通过 [forking cheatcodes](../cheatcodes/forking.md) 在 Solidity 测试代码中直接创建、选择和管理多个分叉
+- [**分叉模式（Forking Mode）**](#forking-mode) — 通过`forge test --fork-url` 标志使用一个单独分叉进行所有测试
+- [**分叉作弊码（Forking Cheatcodes）**](#forking-cheatcodes) — 通过 [forking 作弊码](../cheatcodes/forking.md) 在 Solidity 测试代码中直接创建、选择和管理多个分叉
 
-使用哪种方法？ 分叉模式提供针对特定分叉环境运行整个测试套件，而分叉cheatcodes提供更大的灵活性和表现力，可以在测试中使用多个分叉。 您的特定用例和测试策略将有助于告知使用哪种方法。
+使用哪种方法？ 分叉模式提供针对特定分叉环境运行整个测试套件，而分叉作弊码提供更大的灵活性和表现力，可以在测试中使用多个分叉。 您的特定用例和测试策略将有助于知晓使用哪种方法。
 
 ### 分叉模式
 
@@ -15,7 +15,7 @@ Forge 支持使用两种不同的方法在分叉环境中进行测试：
 forge test --fork-url <your_rpc_url>
 ```
 
-以下值已更改以反映分叉时链的值：
+以下值会更改以反映分叉时链的值：
 
 - [`block_number`](../reference/config/testing.md#block_number)
 - [`chain_id`](../reference/config/testing.md#chain_id)
@@ -26,7 +26,7 @@ forge test --fork-url <your_rpc_url>
 - [`block_timestamp`](../reference/config/testing.md#block_timestamp)
 - [`block_difficulty`](../reference/config/testing.md#block_difficulty)
 
-可以使用 `--fork-block-number` 指定要从中分叉的块：
+可以使用 `--fork-block-number` 指定要从中分叉的区块高度：
 
 ```bash
 forge test --fork-url <your_rpc_url> --fork-block-number 1
@@ -34,7 +34,7 @@ forge test --fork-url <your_rpc_url> --fork-block-number 1
 
 当您需要与现有合约进行交互时，分叉特别有用。 您可以选择以这种方式进行集成测试，就好像您在实际网络上一样。
 
-#### 缓存
+#### 缓存（Caching）
 
 如果同时指定了 `--fork-url` 和 `--fork-block-number`，那么该块的数据将被缓存以供将来的测试运行。
 
@@ -42,7 +42,7 @@ forge test --fork-url <your_rpc_url> --fork-block-number 1
 
 也可以通过传递 `--no-storage-caching` 或通过配置 [`no_storage_caching`](../reference/config/testing.md#no_storage_caching) 和 `foundry.toml` 完全忽略缓存 [`rpc_storage_caching`](../reference/config/testing.md#rpc_storage_caching)。
 
-#### 已改进的traces
+#### 已改进的跟踪 traces
 
 Forge 支持使用 Etherscan 在分叉环境中识别合约。
 
@@ -54,15 +54,15 @@ forge test --fork-url <your_rpc_url> --etherscan-api-key <your_etherscan_api_key
 
 或者，您可以设置 `ETHERSCAN_API_KEY` 环境变量。
 
-### 分叉cheatcodes
+### 分叉作弊码
 
-分叉cheatcodes允许您在 Solidity 测试代码中以编程方式进入分叉模式。 这些作弊码允许您在逐个测试的基础上使用分叉模式，并在测试中使用多个分叉，而不是通过 `forge` CLI 参数配置分叉模式。 每个叉子都通过其自己唯一的 `uint256` 标识符进行识别。
+分叉作弊码允许您在 Solidity 测试代码中以编程方式进入分叉模式，而不是通过 `forge` CLI 参数配置分叉模式。 这些作弊码允许您在逐个测试的基础上使用分叉模式，并在测试中使用多个分叉，每个分叉都通过其自己唯一的 `uint256` 标识符进行识别。
 
 #### 用法
 
-重要的是要记住，_所有_测试函数都是隔离的，这意味着每个测试函数都使用状态_after_ `setUp` 的_副本_执行，并在其自己的独立 EVM 中执行。
+重要的是要记住，_所有_测试函数都是隔离的，这意味着每个测试函数都使用  `setUp` 之后的_拷贝_状态执行，并在其自己的独立 EVM 中执行。
 
-因此，在 setUp 期间创建的分支可用于测试。 下面的代码示例使用 [`createFork`](../cheatcodes/create-fork.md) 创建两个分叉，但_不_一开始就选择一个。 每个 fork 都有一个唯一标识符 (`uint256 forkId`)，该标识符在首次创建时分配。
+因此，在 setUp 期间创建的分支可用于测试。 下面的代码示例使用 [`createFork`](../cheatcodes/create-fork.md) 创建两个分叉，但没有在初始就选择一个。 每个 fork 都有一个唯一标识符 (`uint256 forkId`)，该标识符在首次创建时分配。
 
 通过将该 forkId 传递给 [`selectFork`](../cheatcodes/select-fork.md) 来启用特定的分叉。
 
@@ -74,12 +74,10 @@ forge test --fork-url <your_rpc_url> --etherscan-api-key <your_etherscan_api_key
 
 要了解选择分叉时会发生什么，了解分叉模式的一般工作方式很重要：
 
-每个分叉都是一个独立的 EVM，即所有分叉都使用完全独立的存储。 唯一的例外是 `msg.sender` 的状态和测试合约本身，它们在分叉交换中是持久的。
-换句话说，在 fork `A` 处于活动状态（`selectFork(A)`）时所做的所有更改仅记录在 fork `A` 的存储中，如果选择了另一个 fork，则不可用。 但是，测试合约本身（变量）中记录的更改仍然可用，因为测试合约是一个 `_persistent_` 帐户。
+每个分叉都是一个独立的 EVM，即所有分叉都使用完全独立的存储。 唯一的例外是 `msg.sender` 的状态和测试合约本身，它们在分叉更换中是持久的。
+换句话说，在 fork `A` 处于活动状态（`selectFork(A)`）时所做的所有更改仅记录在 fork `A` 的存储中，如果选择了另一个 fork，则不可用。 但是，测试合约本身（变量）中记录的更改仍然可用，因为测试合约是一个 _持久（persistent）_ 帐户。
 
-
-`selectFork` cheatcodes将 _remote_ 部分设置为分叉的数据源，但是 _local_ 内存在分叉交换期间保持不变。 这也意味着可以使用任何分叉随时调用 selectFork，以设置_remote_ 数据源。 但是，重要的是要记住上述“读/写”访问规则始终适用，这意味着_writes_在分叉交换中是持久的。
-
+`selectFork` 作弊码将 _remote_ 部分设置为分叉的数据源，但是 _本地（local）_ 内存在分叉更换期间保持不变。 这也意味着可以使用任何分叉随时调用 selectFork，以设置_remote_ 数据源。 但是，重要的是要记住上述 `读/写`访问规则始终适用，这意味着_写_在分叉更换中是持久的。
 
 #### 例子
 
@@ -145,13 +143,13 @@ contract ForkTest is Test {
 }
 ```
 
-#### 分离和持久存储(storage)
+#### 分离的和持久存储(storage)
 
 如前所述，每个分叉本质上都是一个独立的 EVM，具有独立的存储(storage)空间。
 
 选择分叉时，只有 `msg.sender` 和测试合约（`ForkTest`）的账户是持久的。 但是任何帐户都可以变成持久帐户：[`makePersistent`](../cheatcodes/make-persistent.md)。
 
-_persistent_ 帐户是唯一的， i.e.即它存在于所有分叉上
+_persistent_ 帐户是唯一的， 即它存在于所有分叉上
 
 ```solidity
 contract ForkTest is Test {
@@ -224,4 +222,4 @@ contract SimpleStorageContract {
 }
 ```
 
-有关更多详细信息和示例，请参阅 [forking cheatcodes](../cheatcodes/forking.md) 参考。
+有关更多详细信息和示例，请参阅 [forking 作弊码](../cheatcodes/forking.md) 参考。

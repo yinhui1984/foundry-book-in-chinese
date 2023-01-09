@@ -19,9 +19,9 @@
 - [Forge概述](forge/README.md)
 - [测试](./forge/tests.md)
    - [编写测试](./forge/writing-tests.md)
-   - [cheatcodes](./forge/cheatcodes.md)
+   - [作弊码(cheatcodes)](./forge/cheatcodes.md)
    - [Forge标准库概览](./forge/forge-std.md)
-   - [了解Traces](./forge/traces.md)
+   - [了解 Traces](./forge/traces.md)
    - [分叉测试](./forge/fork-testing.md)
    <!-- - [覆盖率报告]() !-->
 - [高级测试](./forge/advanced-testing.md)

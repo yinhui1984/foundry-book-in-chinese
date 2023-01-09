@@ -21,7 +21,7 @@ forge install transmissions11/solmate Openzeppelin/openzeppelin-contracts
 
 ### 实现一个基本的 NFT
 
-然后我们将 `src/Contract.sol` 中的样板合同重命名为  `src/NFT.sol` 并替换代码：
+然后我们将 `src/Contract.sol` 中的样板合约重命名为  `src/NFT.sol` 并替换代码：
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -182,7 +182,7 @@ contract NFT is ERC721, Ownable {
 
 除此之外，我们还添加了元数据，可以通过调用 NFT 合约上的“tokenURI”方法从任何前端应用程序（如 OpenSea）查询这些元数据。
 
-> **注意**：如果您想在部署时向构造函数提供真实 URL，并托管此 NFT 合约的元数据，请按照[此处](https://docs.opensea.io/docs/ 第 3 部分-添加元数据和付款到您的合同#intro-to-nft-metadata）。
+> **注意**：如果您想在部署时向构造函数提供真实 URL，并托管此 NFT 合约的元数据，请按照[此处](https://docs.opensea.io/docs/ 第 3 部分-添加元数据和付款到您的合约#intro-to-nft-metadata）。
 
 让我们测试一些添加的功能，以确保它按预期工作。 Foundry 通过 Forge 提供了一个极快的 EVM 原生测试框架。
 
@@ -323,7 +323,7 @@ contract Receiver is ERC721TokenReceiver {
 
 ```
 
-测试套件设置为带有`setUp`方法的合同，该方法在每个单独的测试之前运行。
+测试套件设置为带有`setUp`方法的合约，该方法在每个单独的测试之前运行。
 
 如您所见，Forge 提供了许多 [cheatcodes](../cheatcodes/) 来操纵状态以适应您的测试场景。
 
@@ -338,7 +338,7 @@ forge test
 
 ### 函数调用的gas报告
 
-Foundry 提供有关您的合同的综合gas报告。 对于测试中调用的每个函数，它都会返回最小、平均、中值和最大 gas 成本。 要打印gas报告，只需运行：
+Foundry 提供有关您的合约的综合gas报告。 对于测试中调用的每个函数，它都会返回最小、平均、中值和最大 gas 成本。 要打印gas报告，只需运行：
 
 ```bash
 forge test --gas-report

@@ -5,7 +5,7 @@ Forge 可以帮助您估算您的合约将消耗多少 gas。
 目前，Forge 为这项工作提供了两种不同的工具，但它们可能会在未来合并：
 
 - [**Gas reports**](./gas-reports.md)：Gas 报告让您大致了解 Forge 认为
-   合同中的个别功能会消耗 gas。
+   合约中的个别功能会消耗 gas。
 - [**Gas snapshots**](./gas-snapshots.md)：Gas 快照让您大致了解有多少
    每次测试都会消耗Gas。
 

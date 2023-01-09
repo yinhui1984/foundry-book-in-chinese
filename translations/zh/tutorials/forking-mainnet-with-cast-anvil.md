@@ -16,7 +16,7 @@ anvil --fork-url https://mainnet.infura.io/v3/$INFURA_KEY
 
 ### 转账 Dai
 
-转到 Etherscan 并搜索 Dai 代币的持有者（[此处](https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f#balances)）。 让我们选择一个随机帐户。 在此示例中，我们将使用`0xad0135af20fa82e106607257143d0060a7eb5cbf`。 让我们将合同和帐户导出为环境变量：
+转到 Etherscan 并搜索 Dai 代币的持有者（[此处](https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f#balances)）。 让我们选择一个随机帐户。 在此示例中，我们将使用`0xad0135af20fa82e106607257143d0060a7eb5cbf`。 让我们将合约和帐户导出为环境变量：
 
 ```sh
 export ALICE=0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
