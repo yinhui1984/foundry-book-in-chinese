@@ -1,13 +1,11 @@
 ## Gas快照
 
-Forge 可以为您的所有测试功能生成Gas快照。 这个可以
-有助于大致了解您的合约将消耗多少Gas，
+Forge 可以为您的所有测试功能生成Gas快照。 这个可以有助于大致了解您的合约将消耗多少Gas，
 或者比较各种优化前后的Gas使用情况。
 
 要生成 gas 快照，请运行 [`forge snapshot`](../reference/forge/forge-snapshot.md)。
 
-默认情况下，这将生成一个名为“.gas-snapshot”的文件，其中包含你所有的
-测试及其各自的Gas使用情况。
+默认情况下，这将生成一个名为“.gas-snapshot”的文件，其中包含你所有的测试及其各自的Gas使用情况。
 
 ```ignore
 $ forge snapshot
@@ -44,13 +42,11 @@ ERC20Test:testTransferFrom() (gas: 84152)
 
 ### 比较gas用量
 
-如果您想将当前快照文件与您的
-最新更改，您可以使用 `--diff` 或 `--check` 选项。
+如果您想将当前快照文件与您的最新更改，您可以使用 `--diff` 或 `--check` 选项。
 
 `--diff` 将与快照进行比较并显示快照的更改。
 
-它还可以选择使用文件名（`--diff <FILE_NAME>`），默认
-是`.gas-snapshot`。
+它还可以选择使用文件名（`--diff <FILE_NAME>`），默认是`.gas-snapshot`。
 
 例如：
 
@@ -82,8 +78,7 @@ testApprove() (gas: -8 (-0.000%))
 Overall gas change: -8 (-0.000%)
 ```
 
-`--check` 将快照与现有快照文件进行比较并显示所有
-差异，如果有的话。 您可以通过提供不同的文件名来更改要比较的文件：`--check <FILE_NAME>`。
+`--check` 将快照与现有快照文件进行比较并显示所有差异，如果有的话。 您可以通过提供不同的文件名来更改要比较的文件：`--check <FILE_NAME>`。
 
 ```ignore
 $ forge snapshot --check .gas-snapshot2

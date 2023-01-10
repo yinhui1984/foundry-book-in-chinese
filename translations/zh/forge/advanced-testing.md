@@ -2,8 +2,8 @@
 
 Forge 带有许多高级测试方法：
 
-- [Fuzz Testing](./fuzz-testing.md)
-- [Differential Testing](./differential-ffi-testing.md)
+- [模糊测试（Fuzz Testing）](./fuzz-testing.md)
+- [差异测试（Differential Testing）](./differential-ffi-testing.md)
 
 未来，Forge 还将支持这些：
 
