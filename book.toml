@@ -6,7 +6,19 @@ src = "src"
 title = "Foundry Book"
 description = "A book on all things Foundry"
 
+[output.html]
+default-theme = "ayu"
+no-section-label = true
+git-repository-url = "https://github.com/lbc-team/foundry-book-in-chinese"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/lbc-team/foundry-book-in-chinese/tree/feature-zh/{path}"
+site-url = "/docs/foundry/"
+
+[output.html.print]
+enable = false
+
 [[output.i18n.translations]]
+
 language = "zh"
 translators = ["https://www.github.com/coldstar1993", "https://github.com/xilibi2003"]
 title = "Foundry 中文文档"
