@@ -16,7 +16,7 @@ Forge 支持基于属性的测试。
 {{#include ../output/fuzz_testing/forge-test-no-fuzz:all}}
 ```
 
-这个单元测试_确实测试_我们可以从我们的保险箱（Safe合约）中取出以太币。 但是，谁能说它适用于所有金额，而不仅仅是 1 个以太币？
+这个单元测试_确实测试_我们可以从我们的保险箱（Safe 合约）中取出以太币。 但是，谁能说它适用于所有金额，而不仅仅是 1 个以太币？
 
 这里的一般性质是：给定一个安全的余额，当我们提取时，我们应该得到保险箱里的所有的资金。
 
@@ -49,7 +49,7 @@ $ forge test
 {{#include ../output/fuzz_testing/forge-test-success-fuzz:all}}
 ```
 
-您可能希望使用 [`assume`](../cheatcodes/assume.md) 作弊码排除某些情况。 在这些情况下，模糊器fuzzer将丢弃输入并开始运行新的模糊测试：
+您可能希望使用 [`assume`](../cheatcodes/assume.md) 作弊码排除某些情况。 在这些情况下，模糊器 fuzzer 将丢弃输入并开始运行新的模糊测试：
 
 ```solidity
 function testWithdraw(uint96 amount) public {
@@ -64,6 +64,6 @@ function testWithdraw(uint96 amount) public {
 
 您可能已经注意到，与单元测试相比，模糊测试的总结略有不同：
 
-- "runs" 是指模糊器fuzzer测试的场景数量。 默认情况下，模糊器fuzzer将生成 256 个场景，但是，其可以使用 [`FOUNDRY_FUZZ_RUNS`](../reference/config/testing.md#runs) 环境变量进行配置。
-- “μ”（希腊字母 mu）是所有模糊运行中使用的平均gas
-- “~”（波浪号）是所有模糊运行中使用的中值gas
+- "runs" 是指模糊器 fuzzer 测试的场景数量。 默认情况下，模糊器 fuzzer 将生成 256 个场景，但是，其可以使用 [`FOUNDRY_FUZZ_RUNS`](../reference/config/testing.md#runs) 环境变量进行配置。
+- “μ”（希腊字母 mu）是所有模糊运行中使用的平均 Gas
+- “~”（波浪号）是所有模糊运行中使用的中值 Gas

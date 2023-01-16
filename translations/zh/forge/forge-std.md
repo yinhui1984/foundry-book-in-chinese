@@ -58,11 +58,11 @@ Forge Std 目前由六个标准库组成。
 
 #### Std Logs
 
-Std Logs扩展了 [`DSTest`](../reference/ds-test.md#logging) 库中的日志记录事件。
+Std Logs 扩展了 [`DSTest`](../reference/ds-test.md#logging) 库中的日志记录事件。
 
 #### Std Assertions
 
-Std Assertions扩展了 [`DSTest`](../reference/ds-test.md#asserting) 库中的断言函数。
+Std Assertions 扩展了 [`DSTest`](../reference/ds-test.md#asserting) 库中的断言函数。
 
 #### Std Cheats
 
@@ -77,9 +77,9 @@ hoax(alice, 100 ether);
 
 #### Std Errors
 
-Std Errors 提供围绕常见内部 Solidity 错误errors和回退reverts的包装器。
+Std Errors 提供围绕常见内部 Solidity 错误 errors 和回退 reverts 的包装器。
 
-Std Errors与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用最有用，因为您不需要自己记住内部 Solidity panic codes。 请注意，您必须通过 `stdError` 访问它们，因为这是一个库。
+Std Errors 与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码结合使用最有用，因为您不需要自己记住内部 Solidity panic codes。 请注意，您必须通过 `stdError` 访问它们，因为这是一个库。
 
 ```solidity
 // expect an arithmetic error on the next call (e.g. underflow)

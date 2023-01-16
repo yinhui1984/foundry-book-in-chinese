@@ -1,6 +1,6 @@
 ## 差异测试
 
-Forge 可用于差异测试（ differential testing）和差异模糊测试（differential fuzzing）。 您甚至可以使用[ `ffi` 作弊码 ](../cheatcodes/ffi.md) 针对非 EVM 可执行文件进行测试。
+Forge 可用于差异测试（differential testing）和差异模糊测试（differential fuzzing）。 您甚至可以使用[ `ffi` 作弊码 ](../cheatcodes/ffi.md) 针对非 EVM 可执行文件进行测试。
 
 ### 背景
 
@@ -110,7 +110,7 @@ function testCompatabilityOpenZeppelinProver(bytes32[] memory _data, uint256 nod
 
 #### 针对参考数据的标准化测试
 
-FFI 还可用于将可重现的标准化数据注入测试环境。 在 Murky 库中，这被用作gas快照的基准（参见 [forge 快照](./gas-snapshots.md)）。
+FFI 还可用于将可重现的标准化数据注入测试环境。 在 Murky 库中，这被用作 Gas 快照的基准（参见 [forge 快照](./gas-snapshots.md)）。
 
 ```solidity
 bytes32[100] data;
@@ -139,7 +139,7 @@ function testMerkleGenerateProofStandard() public view {
 0xf910ccaa307836354233316666386231414464306335333243453944383735313..423532
 ```
 
-标准化测试合约使用 ffi 读取文件。 它将数据解码为一个数组，然后在本例中为 8 个不同的叶子生成证明。 由于数据是恒定且标准的，我们可以使用此测试有意义地测量gas和性能改进。
+标准化测试合约使用 ffi 读取文件。 它将数据解码为一个数组，然后在本例中为 8 个不同的叶子生成证明。 由于数据是恒定且标准的，我们可以使用此测试有意义地测量 Gas 和性能改进。
 
 > 当然，可以将数组硬编码到测试中！ 但这使得跨合约、实现等进行一致的测试变得更加困难。
 

@@ -1,8 +1,8 @@
 ## 编写测试
 
-测试是用 Solidity 编写的。 如果测试功能revert，则测试失败，否则通过。
+测试是用 Solidity 编写的。 如果测试功能 revert，则测试失败，否则通过。
 
-让我们回顾一下最常见的编写测试的方式，使用 [Forge 标准库(forge-std)](https://github.com/foundry-rs/forge-std) 的 `Test` 合约，这是使用Forge编写测试的首选方式。
+让我们回顾一下最常见的编写测试的方式，使用 [Forge 标准库(forge-std)](https://github.com/foundry-rs/forge-std) 的 `Test` 合约，这是使用 Forge 编写测试的首选方式。
 
 在本节中，我们将使用 Forge Std 的 `Test` 合约中的函数复习基础知识，该合约本身是 [DSTest](https://github.com/dapphub/ds-test) 的超集。 [很快](./forge-std.md)您将学习如何使用 Forge 标准库中的更多高级内容 。
 
@@ -29,12 +29,12 @@ Forge 在测试中使用以下关键字：
 {{#include ../../projects/writing_tests/test/Basic.t.sol:testNumberIs42}}
 ```
 
-- `testFail`: `test` 前缀的测试的反面 - 如果函数没有revert，则测试失败
+- `testFail`: `test` 前缀的测试的反面 - 如果函数没有 revert，则测试失败
 ```solidity
 {{#include ../../projects/writing_tests/test/Basic.t.sol:testFailSubtract43}}
 ```
 一个好的做法是将类似 `testCannot` 的东西与 [`expectRevert`](../cheatcodes/expect-revert.md) 作弊码（cheatcodes）结合使用（作弊码在后面 [介绍](./cheatcodes.md)）。
-这样不使用 `testFail`，可确切地知道revert了什么：
+这样不使用 `testFail`，可确切地知道 revert 了什么：
 
 ```solidity
 {{#include ../../projects/writing_tests/test/Basic2.t.sol:testCannotSubtract43}}
