@@ -8,13 +8,13 @@
 
 因此，推荐的设置是使用 [hardhat-preprocessor](https://www.npmjs.com/package/hardhat-preprocessor)。 顾名思义，Hardhat-preprocessor 是一个 Hardhat 插件，它允许我们在合约通过 Solidity 编译器运行之前对其进行预处理。
 
-我们使用它来修改 Solidity 文件中的导入指令，以在 Hardhat 尝试编译它们之前根据 Foundry `remappings.txt` 文件解析库的绝对路径。 这当然只是发生在内存中，所以你实际的 Solidity 文件永远不会改变。 现在，Hardhat 很乐意使用您随 Foundry 安装的库来遵循和编译。
+我们使用它来修改 Solidity 文件中的导入指令，以在 Hardhat 尝试编译它们之前根据 Foundry `remappings.txt` 文件解析库的绝对路径。 这当然只是发生在内存中，所以你实际的 Solidity 文件永远不会改变。 现在，Hardhat 很乐意遵循并使用您用 Foundry 安装的库进行编译。
 
-### 给我看看示例repo！
+### 给我看看示例 repo！
 
 [Enjoy！](https://github.com/foundry-rs/hardhat-foundry-template)
 
-如果您想将其改编为您已有的 Foundry 项目或了解其工作原理，请阅读以下内容：
+如果您想将其改编到已有的 Foundry 项目或了解其工作原理，请阅读以下内容：
 
 ### 指示
 
@@ -43,7 +43,7 @@ function getRemappings() {
 
 *感谢 [@DrakeEvansV1](https://twitter.com/drakeevansv1) 和 [@colinnielsen](https://github.com/colinnielsen) 提供此片段*
 
-4. 将以下内容添加到导出的`HardhatUserConfig`对象中：
+4. 将以下内容添加到导出的 `HardhatUserConfig` 对象中：
 
 ```typescript
 ...
@@ -73,20 +73,20 @@ paths: {
 
 ### 在现有的 Hardhat 项目中使用 Foundry
 
-假设您已经有一个 Hardhat 项目，其中包含一些依赖项，例如目录 `node_modules/` 中的`@OpenZeppelin/contracts`。
+假设您已经有一个 Hardhat 项目，其中包含一些依赖项，例如目录 `node_modules/` 中的 `@OpenZeppelin/contracts`。
 
 您可以通过 4 个步骤在此项目中使用 Foundry 测试。
 
 在我们开始之前，让我们看一下目录：
 
-- 合约在“合约”中
+- 合约在 `contracts` 中
 - Hardhat 单元测试在 `test` 中，我们会将 Foundry 测试文件放在 `test/foundry` 中
 - Hardhat 将其缓存放在 `cache` 中，我们将把 Foundry 缓存放在 `forge-cache` 中
 
-### 添加Foundry测试的4个步骤
+### 添加 Foundry 测试的 4 个步骤
 
-1. 将新创建的空 Foundry 项目中的 lib/forge-std 复制到 Hardhat 项目目录中。 注意：您还可以运行 `forge init --force` 在这个非空目录中初始化一个 Foundry 项目，并删除由 Foundry init 创建的不需要的目录。
-2. 将`foundry.toml` 配置复制到这个Hardhat 项目目录，并更改其中的`src`、`out`、`test`、`cache_path`：
+1. 将新创建的空 Foundry 项目中的 `lib/forge-std` 复制到 Hardhat 项目目录中。 注意：您还可以运行 `forge init --force` 在这个非空目录中初始化一个 Foundry 项目，并删除由 Foundry init 创建的不需要的目录。
+2. 将 `foundry.toml` 配置复制到这个 Hardhat 项目目录，并更改其中的 `src`、`out`、`test`、`cache_path`：
 
 ```toml
 [profile.default]
@@ -116,4 +116,4 @@ forge-std/=lib/forge-std/src/
 forge test
 ```
 
-现在，Foundry测试可以在这个现有的 Hardhat 项目中进行。 由于 Hardhat 项目没有被触及，它可以像以前一样工作。
+现在，Foundry 测试可以在这个现有的 Hardhat 项目中进行。 由于 Hardhat 项目没有被触及，它可以像以前一样工作。

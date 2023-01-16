@@ -1,6 +1,6 @@
 ## 静态分析器
 
-### slither
+### Slither
 
 要使用 [slither](https://github.com/crytic/slither) 测试您的项目，这里有一个示例 `slither.config.json`：
 
@@ -26,7 +26,7 @@ slither src/Contract.sol
 
 有关详细信息，请参阅 [slither wiki](https://github.com/crytic/slither/wiki/Usage)。
 
-为了使用自定义配置，例如上面提到的示例 `slither.config.json`，使用 [slither-wiki](https://github.com/crytic/slither/wiki) 中提到的以下命令 /用法#配置文件）。 默认情况下，slither 会查找 `slither.config.json`，但您可以定义路径和您选择的任何其他 `json` 文件：
+为了使用自定义配置，例如上面提到的示例 `slither.config.json`，使用 [slither-wiki](https://github.com/crytic/slither/wiki) 中提到的以下命令 /用法#配置文件）。 默认情况下，slither 会查找 `slither.config.json`，但您可以定义路径和选择其他的 `json` 文件：
 
 ```sh 
 slither --config-file <path>/file.config.json Counter.sol
@@ -66,7 +66,7 @@ Slither 还有一个用于 CI/CD 的 [github action](https://github.com/marketpl
 }
 ```
 
-请注意，您需要将 `rust` 切换为 nightly 以安装 `mythril`：
+请注意，您需要将 `rust` 切换为 nightly 版本以安装 `mythril`：
 
 ```ignore
 rustup default nightly
@@ -103,4 +103,4 @@ The analysis was completed successfully. No issues were detected.
 ```
 
 
-结果将列在输出的末尾（如果有的话）。 由于默认的 `Counter.sol` 没有任何逻辑，`mythx`报告未发现任何问题。
+结果将列在输出的末尾（如果有的话）。 由于默认的 `Counter.sol` 没有任何逻辑，`mythx` 报告未发现任何问题。

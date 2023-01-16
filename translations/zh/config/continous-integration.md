@@ -1,6 +1,6 @@
 ## 持续集成
 
-### GitHub 操作
+### GitHub Actions
 
 要使用 GitHub Actions 测试您的项目，这里有一个示例工作流程：
 
