@@ -12,7 +12,7 @@
 anvil --fork-url https://mainnet.infura.io/v3/$INFURA_KEY
 ```
 
-您将看到使用公钥和私钥创建了 10 个帐户。 我们将使用`0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266`（我们称此用户为 Alice）。
+您将看到使用公钥和私钥创建了 10 个帐户。 我们将使用 `0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266`（我们称此用户为 Alice）。
 
 ### 转账 Dai
 
@@ -57,7 +57,7 @@ blockNumber             15052891
 ...
 ```
 
-让我们检查传输是否有效：
+让我们检查交易是否有效：
 
 ```sh
 cast call $DAI \

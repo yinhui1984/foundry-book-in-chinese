@@ -5,7 +5,7 @@
 # 入门
 
 - [安装](./getting-started/installation.md)
-- [Foundry之旅的第一步](./getting-started/first-steps.md)
+- [Foundry 之旅的第一步](./getting-started/first-steps.md)
 
 # 项目
 
@@ -16,11 +16,11 @@
 
 # Forge 概述
 
-- [Forge概述](forge/README.md)
+- [Forge 概述](forge/README.md)
 - [测试](./forge/tests.md)
    - [编写测试](./forge/writing-tests.md)
    - [作弊码(cheatcodes)](./forge/cheatcodes.md)
-   - [Forge标准库概览](./forge/forge-std.md)
+   - [Forge 标准库概览](./forge/forge-std.md)
    - [了解 Traces](./forge/traces.md)
    - [分叉测试](./forge/fork-testing.md)
    <!-- - [覆盖率报告]() !-->
@@ -34,27 +34,27 @@
      <!-- - [检查和格式化]() !-->
      <!-- - [生成文档]() !-->
 - [部署和验证](./forge/deploying.md)
-- [Gas追踪](./forge/gas-tracking.md)
-   - [Gas报告](./forge/gas-reports.md)
-   - [Gas快照](./forge/gas-snapshots.md)
+- [Gas 追踪](./forge/gas-tracking.md)
+   - [Gas 报告](./forge/gas-reports.md)
+   - [Gas 快照](./forge/gas-snapshots.md)
 - [调试器](./forge/debugger.md)
 
-# Cast概览
+# Cast 概览
 
-- [Cast概述](./cast/README.md)
+- [Cast 概述](./cast/README.md)
 
-# Anvil概述
+# Anvil 概述
 
 - [Anvil 概述](./anvil/README.md)
 
 # 配置
 
-- [使用foundry.toml进行配置](./config/README.md)
+- [使用 foundry.toml 进行配置](./config/README.md)
 - [持续集成](./config/continous-integration.md)
 - [与 VSCode 集成](./config/vscode.md)
-- [Shell Autocompletion](./config/shell-autocompletion.md)
+- [Shell 自动补全](./config/shell-autocompletion.md)
 - [静态分析器](./config/static-analyzers.md)
-- [与Hardhat集成](./config/hardhat.md)
+- [与 Hardhat 集成](./config/hardhat.md)
 
 # 教程
 
@@ -63,7 +63,7 @@
 - [Docker 和 Foundry](./tutorials/foundry-docker.md)
 - [测试 EIP-712 签名](./tutorials/testing-eip712.md)
 - [Solidity 脚本](./tutorials/solidity-scripting.md)
-- [使用Cast和Anvil分叉主网](./tutorials/forking-mainnet-with-cast-anvil.md)
+- [使用 Cast 和 Anvil 分叉主网](./tutorials/forking-mainnet-with-cast-anvil.md)
 <!-- - [增量采用]() !-->
 
 # 附录
@@ -188,15 +188,15 @@
       - [cast wallet sign](./reference/cast/cast-wallet-sign.md)
       - [cast wallet vanity](./reference/cast/cast-wallet-vanity.md)
       - [cast wallet verify](./reference/cast/cast-wallet-verify.md)
-  - [`anvil`参考](./reference/anvil/README.md)
-  - [Config参考](./reference/config/README.md)
+  - [`anvil` 参考](./reference/anvil/README.md)
+  - [Config 参考](./reference/config/README.md)
     - [Overview](./reference/config/overview.md)
     - [Project](./reference/config/project.md)
     - [Solidity Compiler](./reference/config/solidity-compiler.md)
     - [Testing](./reference/config/testing.md)
     - [Formatter](./reference/config/formatter.md)
     - [Etherscan](./reference/config/etherscan.md)
-  - [Cheatcodes参考](./cheatcodes/README.md)
+  - [Cheatcodes 参考](./cheatcodes/README.md)
     - [Environment](./cheatcodes/environment.md)
       - [`warp`](./cheatcodes/warp.md)
       - [`roll`](./cheatcodes/roll.md)
@@ -266,7 +266,7 @@
     - [Snapshots](./cheatcodes/snapshots.md)
     - [RPC](./cheatcodes/rpc.md)
     - [Files](./cheatcodes/fs.md)
-  - [Forge Standard Library参考](./reference/forge-std/README.md)
+  - [Forge Standard Library 参考](./reference/forge-std/README.md)
     - [Std Logs](./reference/forge-std/std-logs.md)
     - [Std Assertions](./reference/forge-std/std-assertions.md)
       - [`fail`](./reference/forge-std/fail.md)
@@ -312,6 +312,6 @@
       - [`computeCreateAddress`](./reference/forge-std/compute-create-address.md)
       - [`deriveRememberKey`](./reference/forge-std/derive-remember-key.md)
     - [Console Logging](./reference/forge-std/console-log.md)
-  - [DSTest参考](./reference/ds-test.md)
+  - [DSTest 参考](./reference/ds-test.md)
 - [Miscellaneous](./misc/README.md)
   - [Struct encoding](./misc/struct-encoding.md)

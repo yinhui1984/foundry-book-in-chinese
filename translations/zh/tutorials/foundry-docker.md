@@ -1,4 +1,4 @@
-## 对 Foundry 项目进行 Docker 化
+## 对 Foundry 项目进行容器化
 
 本教程向您展示如何使用 Foundry 的 Docker 镜像构建、测试和部署智能合约。 它改编自 [solmate nft](./solmate-nft.md) 教程中的代码。 如果您还没有完成该教程，并且是 solidity 的新手，您可能想先从它开始。 或者，如果您对 Docker 和 Solidity 有一定的了解，您可以使用自己现有的项目并进行相应的调整。 [此处](https://github.com/dmfxyz/foundry-docker-tutorial) 提供了 NFT 和 Docker 内容的完整源代码。
 
@@ -9,19 +9,19 @@
 运行本教程所需的唯一安装是 Docker，以及您选择的 IDE（可选）。
 按照 [Docker 安装说明](/getting-started/installation.html#using-with-docker)。
 
-  为了使以后的命令简洁明了，让我们重新标记图像：
+  为了使以后的命令简洁明了，让我们重新标记镜像（image）：
   `docker tag ghcr.io/foundry-rs/foundry:latest foundry:latest`
 
 在本地安装 Foundry 并不是严格要求的，但它可能有助于调试。 您可以使用 [foundryup](/getting-started/installation.html#using-foundryup) 安装它。
 
-最后，要使用本教程的任何`cast`或`forge create`部分，您需要访问以太坊节点。 如果您没有自己的节点在运行（可能），您可以使用第 3 方节点服务。 我们不会在本教程中推荐特定的提供商。 开始学习节点即服务的好地方是 [Ethereum 的文章](https://ethereum.org/en/developers/docs/nodes-and-clients/nodes-as-a-service/) 主题。
+最后，要使用本教程的任何 `cast` 或 `forge create` 部分，您需要访问以太坊节点。 如果您没有自己的节点在运行（可能），您可以使用第三方节点服务。 我们不会在本教程中推荐特定的提供商。 开始学习节点即服务的好地方是 [Ethereum 的文章](https://ethereum.org/en/developers/docs/nodes-and-clients/nodes-as-a-service/) 主题。
 
 **对于本教程的其余部分，假设您的以太坊节点的 RPC 端点设置如下**：`export RPC_URL=<YOUR_RPC_URL>`
 
 ### Foundry docker 镜像导览
 
 docker 镜像可以通过两种主要方式使用：
-1.作为接口直接锻造和铸造
+1. 作为接口直接使用 forge 和 cast
 2. 作为构建您自己的容器化测试、构建和部署工具的基础镜像
 
 我们将涵盖两者，但让我们先看看使用 docker 与 foundry 的接口。 这也是一个很好的测试，表明您的本地安装工作正常！
@@ -61,10 +61,10 @@ $ docker run -v $PWD:/app foundry "forge test --root /app --watch"
 ```
 您可以看到我们的代码完全在容器内编译和测试。 此外，由于我们传递了 `--watch` 选项，容器将在检测到更改时重新编译代码。
 
-> 注意：Foundry docker 镜像基于 alpine 构建，并设计为尽可能纤薄。 因此，它目前不包括像 `git` 这样的开发资源。 如果您计划在容器内管理整个开发生命周期，您应该在 Foundry 的镜像之上构建自定义开发镜像。
+> 注意：Foundry docker 镜像基于 alpine 构建，并设计为尽可能轻量化。 因此，它目前不包括像 `git` 这样的开发资源。 如果您计划在容器内管理整个开发生命周期，您应该在 Foundry 的镜像之上构建自定义开发镜像。
 
-### 创建一个“构建和测试”图像
-让我们使用 Foundry docker 镜像作为使用我们自己的 Docker 镜像的基础。 我们将使用图像来：
+### 创建一个 “构建和测试” 镜像
+让我们使用 Foundry 的 docker 镜像作为使用我们自己的 Docker 镜像的基础。 我们将使用镜像来：
 1. 构建我们的 solidity 代码
 2. 运行我们的可靠性测试
 
@@ -89,7 +89,7 @@ RUN forge test
 $ docker build --no-cache --progress=plain 。
 ```
 
-现在，如果我们的一个测试失败了怎么办？ 随意修改 `src/test/NFT.t.sol` 使其中一个测试失败。 再次尝试构建图像。
+现在，如果我们的一个测试失败了怎么办？ 随意修改 `src/test/NFT.t.sol` 使其中一个测试失败。 再次尝试构建镜像。
 
 ```sh
 $ docker build --no-cache --progress=plain .
@@ -103,11 +103,11 @@ error: failed to solve: executor failed running [/bin/sh -c forge test]: exit co
 ```
 
 我们的镜像未能建立，因为我们的测试失败了！ 这实际上是一个很好的属性，因为这意味着如果我们有一个成功构建的 Docker 镜像（因此可以使用），我们就知道镜像中的代码通过了测试。*
-> *当然，docker 镜像的监管链非常重要。 Docker 层哈希对于验证非常有用。 在生产环境中，考虑[签署你的 docker 镜像](https://docs.docker.com/engine/security/trust/#:~:text=To%20sign%20a%20Docker%20Image,the%20local%20Docker %20trust%20repository）。
+> *当然，docker 镜像的监管链非常重要。 Docker 层哈希对于验证非常有用。 在生产环境中，考虑[签署你的 docker 镜像](https://docs.docker.com/engine/security/trust/#:%7E:text=To%20sign%20a%20Docker%20Image,the%20local%20Docker%20trust%20repository）。
 
 ### 创建部署镜像
 
-现在，我们将继续讨论更高级的 Dockerfile。 让我们添加一个入口点，允许我们使用构建（和测试！）的图像来部署我们的代码。 我们可以首先针对 Rinkeby 测试网。
+现在，我们将继续讨论更高级的 Dockerfile。 让我们添加一个入口点，允许我们使用构建（和测试！）的镜像来部署我们的代码。 我们可以首先针对 Rinkeby 测试网。
 
 ```docker
 # Use the latest foundry image
@@ -128,7 +128,7 @@ ENTRYPOINT ["forge", "create"]
 让我们构建镜像，这次给它命名：
 
 ```sh
-$ docker build --no-cache --progress=plain -t nft-deployer 。
+$ docker build --no-cache --progress=plain -t nft-deployer .
 ```
 
 以下是我们如何使用我们的 docker 镜像进行部署：
@@ -145,12 +145,12 @@ Transaction hash: 0xf88c68c4a03a86b0e7ecb05cae8dea36f2896cd342a6af978cab11101c62
 
 ### 为什么这有用？
 
-Docker 是关于可移植性、可再现性和环境不变性的。 这意味着当您在环境、网络、开发人员等之间切换时，您可以减少对意外变化的关注。以下是一些基本示例，说明为什么**我**喜欢使用 Docker 镜像进行智能合约部署：
+Docker 是关于可移植性、可复制性和环境不变性的。 这意味着当您在环境、网络、开发人员等之间切换时，您可以减少对意外变化的关注。以下是一些基本示例，说明为什么**我**喜欢使用 Docker 镜像进行智能合约部署：
 
-* 减少确保系统级依赖项在部署环境之间匹配的开销（例如，您的生产运行器是否始终具有与您的开发运行器相同版本的`forge`？）
-* 增加代码在部署之前已经过测试并且没有被更改的信心（例如，如果在上图中，您的代码在部署时重新编译，这是一个主要的危险信号）。
+* 减少确保系统级依赖项在部署环境之间匹配的开销（例如，您的生产运行器是否始终具有与您的开发运行器相同版本的 `forge`？）
+* 增加代码在部署之前已经过测试并且没有被更改的信心（例如，如果在上面的镜像中，您的代码在部署时重新编译，这是一个主要的危险信号）。
 * 缓解职责分离的痛点：拥有主网凭证的人无需确保他们拥有最新的编译器、代码库等。很容易确保某人在测试网中运行的 docker 部署映像与针对主网的相同。
-* 冒着 web2 的风险，Docker 是几乎所有公共云提供商的公认标准。 它可以轻松安排需要与区块链交互的作业、任务等。
+* 冒着听起来像 web2 的风险，Docker 是几乎所有公共云提供商的公认标准。 它可以轻松安排需要与区块链交互的作业、任务等。
 
 
 ### 故障排除

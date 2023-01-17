@@ -2,20 +2,20 @@
 
 ### 介绍
 
-[EIP-712](https://eips.ethereum.org/EIPS/eip-712) 引入了在链下签署交易的功能，其他用户稍后可以在链上执行交易。 一个常见的例子是 [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) gasless 代币批准。
+[EIP-712](https://eips.ethereum.org/EIPS/eip-712) 引入了在链下签署交易的功能，其他用户稍后可以在链上执行交易。 一个常见的例子是 [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) 无需 Gas 代币批准。
 
-传统上，设置用户或合约allowance以从所有者的余额中转移 ERC-20 代币需要所有者提交链上批准。 由于这被证明是糟糕的用户体验，DAI 引入了 ERC-20 `permit`（后来标准化为 EIP-2612），允许所有者签署_off-chain_批准，支出者（或其他任何人！）可以在之前在链上提交 `transferFrom`。
+传统上，设置用户或合约 allowance 以从所有者的余额中转移 ERC-20 代币需要所有者提交链上批准。 由于这被证明是糟糕的用户体验，DAI 引入了 ERC-20 `permit`（后来标准化为 EIP-2612），允许所有者签署 _链下_ 批准，支出者（或其他任何人！）可以在 `transferFrom` 之前提交到链上。
 
 本指南将涵盖使用 Foundry 在 Solidity 中测试此模式。
 
-### 潜入
+### 开始
 
 首先，我们将介绍基本的代币转移：
 
-- 所有者在链下签署批准
-- Spender 在链上调用 `permit` 和 `transferFrom`
+- 所有者（Owner）在链下签署批准
+- 消费者（Spender）在链上调用 `permit` 和 `transferFrom`
 
-我们将使用 [Solmate 的 ERC-20](https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC20.sol)，因为随附了 EIP-712 和 EIP-2612 batteries。 如果您还没有浏览完整合约，请看一眼 - 这里是 `permit` 实现的：
+我们将使用 [Solmate 的 ERC-20](https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC20.sol)，因为随附了 EIP-712 和 EIP-2612 组合。 如果您还没有浏览完整合约，请看一眼 - 这里是 `permit` 实现的：
 
 ```solidity
     /*//////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@
     }
 ```
 
-我们还将使用自定义的`SigUtils` 合约来帮助创建、散列和签署链下批准。
+我们还将使用自定义的 `SigUtils` 合约来帮助创建、散列和签署链下批准。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -133,7 +133,7 @@ contract SigUtils {
 
 **设置**
 
-- 使用令牌的 EIP-712 域分隔符部署模拟 ERC-20 令牌和“SigUtils”助手
+- 使用代币的 EIP-712 域分隔符部署模拟 ERC-20 代币和 `SigUtils` 助手
 - 创建私钥来模拟所有者和消费者
 - 使用 `vm.addr` [cheatcode](https://book.getfoundry.sh/cheatcodes/addr.html) 推导他们的地址
 - 为所有者铸造一个测试代币
@@ -163,15 +163,12 @@ contract ERC20Test is Test {
     }
 ```
 
-389 / 5,000
-翻译结果
-翻译结果
 **测试：`permit`**
 
 - 为消费者创建批准
 - 使用 `sigUtils.getTypedDataHash` 计算其摘要
 - 使用带有所有者私钥的 `vm.sign` [cheatcode](https://book.getfoundry.sh/cheatcodes/sign.html) 对摘要进行签名
-- 存储签名的`uint8 v, bytes32 r, bytes32 s`
+- 存储签名的 `uint8 v, bytes32 r, bytes32 s`
 - 调用 `permit` 并带有已签署的许可证和签名以执行链上批准
 
 ```solidity
@@ -321,8 +318,8 @@ contract ERC20Test is Test {
 
 **测试：`transferFrom`**
 
-- 为支出者创建、签署和执行批准
-- 使用 `vm.prank` [cheatcode](https://book.getfoundry.sh/cheatcodes/prank.html) 调用 `tokenTransfer` 作为花费者来执行转移
+- 为消费者创建、签署和执行批准
+- 使用 `vm.prank` [cheatcode](https://book.getfoundry.sh/cheatcodes/prank.html) 调用 `tokenTransfer` 作为消费者来执行 transfer
 
 ```solidity
     function test_TransferFromLimitedPermit() public {
@@ -388,7 +385,7 @@ contract ERC20Test is Test {
     }
 ```
 
-- 如果allowance无效和余额无效，call会失败
+- 确保 allowance 无效和 balance 无效，call 会失败
 
 ```solidity
     function testFail_InvalidAllowance() public {
@@ -446,9 +443,9 @@ contract ERC20Test is Test {
     }
 ```
 
-### Bundled示例
+### Bundled 示例
 
-这是 [模拟合约](https://github.com/kulkarohan/deposit/blob/main/src/Deposit.sol) 的一部分，它只存入 ERC-20 代币。 请注意，`deposit` 如何需要初步的 `approve` 或 `permit` tx 才能转移代币，而 `depositWithPermit` 设置限额_并_在单个 tx 中转移代币。
+这是 [模拟合约](https://github.com/kulkarohan/deposit/blob/main/src/Deposit.sol) 的一部分，它只存入 ERC-20 代币。 请注意，`deposit` 需要初步的 `approve` 或 `permit` tx 才能转移代币，而 `depositWithPermit` 设置限额 _并_ 在单个 tx 中转移代币。
 
 ```solidity
     ///                                                          ///
@@ -511,8 +508,8 @@ contract ERC20Test is Test {
 
 **设置**
 
-- 使用令牌的 EIP-712 域分隔符部署“存款”合约、模拟 ERC-20 令牌和“SigUtils”助手
-- 创建一个私钥来模拟所有者（支出者现在是“存款”地址）
+- 使用代币的 EIP-712 域分隔符部署 `Deposit` 合约、模拟 ERC-20 代币和 `SigUtils` 助手
+- 创建一个私钥来模拟所有者（支出者现在是 `Deposit` 地址）
 - 使用 `vm.addr` [cheatcode](https://book.getfoundry.sh/cheatcodes/addr.html) 推导出所有者地址
 - 为所有者铸造一个测试代币
 
@@ -619,6 +616,6 @@ contract DepositTest is Test {
 
 ### 长篇大论
 
-使用 Foundry cheatcode `addr`、`sign` 和 `prank` 来测试 Foundry 中的 EIP-712 签名。
+使用 Foundry 作弊码 `addr`、`sign` 和 `prank` 来测试 Foundry 中的 EIP-712 签名。
 
 所有源代码都可以在 [此处](https://github.com/kulkarohan/deposit) 找到。

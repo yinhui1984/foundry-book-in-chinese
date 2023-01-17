@@ -1,8 +1,8 @@
 <img src="images/foundry-banner.png" style="border-radius: 20px">
 
-Foundry是一个智能合约开发工具链。
+Foundry 是一个智能合约开发工具链。
 
-Foundry管理您的依赖关系、编译项目、运行测试、部署，并允许您通过命令行和Solidity脚本与链交互。
+Foundry 管理您的依赖关系、编译项目、运行测试、部署，并允许您通过命令行和 Solidity 脚本与链交互。
 
 > 📖 **参与贡献翻译**
 >
@@ -10,11 +10,11 @@ Foundry管理您的依赖关系、编译项目、运行测试、部署，并允�
 
 ### 导航
 
-**[开始使用Foundry](getting-started/installation.md)**
+**[开始使用 Foundry](getting-started/installation.md)**
 
-要开始使用Foundry，请安装Foundry并设置第一个项目。
+要开始使用 Foundry，请安装 Foundry 并设置第一个项目。
 
-**[启动Foundry项目](projects/creating-a-new-project.md)**
+**[启动 Foundry 项目](projects/creating-a-new-project.md)**
 
 本节将向您概述如何创建和使用现有项目。
 
@@ -28,24 +28,24 @@ Foundry管理您的依赖关系、编译项目、运行测试、部署，并允�
 
 **[Anvil 概述](anvil)**
 
-了解 `anvil`, Foundry的本地节点。
+了解 `anvil`, Foundry 的本地节点。
 
 **Foundry 配置**
 
-Foundry配置指引:
+Foundry 配置指引:
 
 - [配置 `foundry.toml`](./config/)
-- [持续集成CI](./config/continous-integration.md)
-- [与VSCode集成](./config/vscode.md)
-- [Shell命令补全](./config/shell-autocompletion.md)
+- [持续集成 CI](./config/continous-integration.md)
+- [与 VSCode 集成](./config/vscode.md)
+- [Shell 命令补全](./config/shell-autocompletion.md)
 - [静态代码分析器](./config/static-analyzers.md)
-- [与Hardhat集成](./config/hardhat.md)
+- [与 Hardhat 集成](./config/hardhat.md)
 
 **教程**
 
- 与Foundry建立智能合约的教程。
+ 与 Foundry 建立智能合约的教程。
 
-- [使用 Solmate 创建NFT](./tutorials/solmate-nft.md)
+- [使用 Solmate 创建 NFT](./tutorials/solmate-nft.md)
 - [Docker 和 Foundry](./tutorials/foundry-docker.md)
 - [测试 EIP-712 签名](./tutorials/testing-eip712.md)
 - [Solidity 脚本](./tutorials/solidity-scripting.md)
@@ -68,4 +68,4 @@ Foundry配置指引:
 
 <br>
 
-> 你还可以查看 [Awesome Foundry](https://github.com/crisgarner/awesome-foundry), 这是一份精心挑选的关于Foundry资源、教程、工具及库的列表。
+> 你还可以查看 [Awesome Foundry](https://github.com/crisgarner/awesome-foundry), 这是一份精心挑选的关于 Foundry 资源、教程、工具及库的列表。
