@@ -19,8 +19,11 @@ additional-css = ["src/static/custom.css"]
 [output.html.print]
 enable = false
 
-[[output.i18n.translations]]
+[output.html.fold]
+enable = true
+level = 1
 
+[[output.i18n.translations]]
 language = "zh"
 translators = ["https://www.github.com/coldstar1993", "https://github.com/xilibi2003"]
 title = "Foundry 中文文档"
