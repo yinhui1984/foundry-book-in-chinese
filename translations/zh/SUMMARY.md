@@ -68,8 +68,8 @@
 
 # 附录
 
-- [FAQ](./faq.md)
-- [References](./reference/README.md)
+- [常见问题](./faq.md)
+- [参考文献](./reference/README.md)
   - [`forge` 命令](./reference/forge/README.md)
     - [常用命令](./reference/forge/general-commands.md)
       - [forge](./reference/forge/forge.md)

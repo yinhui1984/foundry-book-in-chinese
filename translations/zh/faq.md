@@ -1,64 +1,62 @@
-## FAQ
+## 常见问题
 
-This is a collection of common questions and answers. If you do not find your question listed here, hop in the [Telegram support channel][tg-support]
-and let us help you!
+这是一个常见问题和答案的集合。 如果你在这里没有找到你的问题, 请跳转到 [Telegram 支持频道][tg-support]
+并让我们帮助你!
 
-### Help! I can't see my logs
+### 帮助! 我无法看到我的日志
 
-Forge does not display logs by default. If you want to see logs from Hardhat's `console.log` or from DSTest-style `log_*` events,
-you need to run [`forge test`][forge-test] with verbosity 2 (`-vv`).
+Forge 默认不显示日志。 如果你想查看来自 Hardhat 的 `console.log` 或来自 DSTest `log_*` 样式的事件日志,
+你需要使用详细级别 2（`-vv`）运行 [`forge test`][forge-test]。
 
-If you want to see other events your contracts emit, you need to run with traces enabled.
-To do that, set the verbosity to 3 (`-vvv`) to see traces for failing tests, or 4 (`-vvvv`) to see traces for all tests.
+如果你想查看你的合约所发出的其他事件，你需要运行并启用跟踪功能。
+要做到这一点，将详细级别设置为 3（`-vvv`）以查看失败测试的跟踪，或者将详细级别设置为 4（`-vvvv`）以查看所有测试的跟踪。
 
-### My tests are failing and I don't know why
+### 我的测试失败了但我不知道为什么
 
-To gain better insight into why your tests are failing, try using traces. To enable traces, you need to increase the verbosity
-on [forge test][forge-test] to at least 3 (`-vvv`) but you can go as high as 5 (`-vvvvv`) for even more traces.
+为了更好地了解你的测试为什么会失败，可以尝试使用跟踪。 要启用跟踪，你需要将 [forge test][forge-test] 的详细级别至少提高到 3（`-vvv`），但你可以提高到 5（`-vvvvv`） 以获得更多的跟踪。
 
-You can learn more about traces in our [Understanding Traces][traces] chapter.
+你可以在我们的 [了解 Traces][traces] 章节中学到更多关于跟踪的信息.
 
-### How do I use `console.log`?
+### 我该如何使用 `console.log`?
 
-To use Hardhat's `console.log` you must add it to your project by copying the file over from [here][console-log].
+为了使用 Hardhat 的 `console.log`，你必须从 [此处][console-log] 复制该文件，将其添加到你的项目中。
 
-Alternatively, you can use [Forge Std][forge-std] which comes bundled with `console.log`. To use `console.log` from Forge Std,
-you have to import it:
+或者，你可以使用 [Forge Std][forge-std] 附带的 `console.log`。 要使用 Forge Std 的`console.log`，
+你需要导入它:
 
 ```solidity
 import "forge-std/console.sol";
 ```
 
-### How do I run specific tests?
+### 我该如何运行特定的测试?
 
-If you want to run only a few tests, you can use `--match-test` to filter test functions,
-`--match-contract` to filter test contracts, and `--match-path` to filter test files on [`forge test`][forge-test].
+如果你想只运行几个测试，你可以使用 `--match-test` 来过滤测试函数，
+`--match-contract` 来过滤测试合约，以及 `--match-path` 来过滤 [`forge test`][forge-test] 中的测试文件。
 
-### How do I use a specific Solidity compiler?
+### 我该如何使用特定的 Solidity 编译器?
 
-Forge will try to auto-detect what Solidity compiler works for your project.
+Forge 将尝试自动检测哪个 Solidity 编译器适用于您的项目。
 
-To use a specific Solidity compiler, you can set [`solc`][config-solc] in your [config file][config],
-or pass `--use solc:<version>` to a Forge command that supports it (e.g. [`forge build`][forge-build]
-or [`forge test`][forge-test]).
-Paths to a solc binary are also accepted. To use a specific local solc binary, you can set `solc = "<path to solc>"` in your config file, or pass `--use "<path to solc>"`.
-The solc version/path can also be set via the env variable `FOUNDRY_SOLC=<version/path>`, but the cli arg `--use` has priority.
+要使用一个特定的 Solidity 编译器，你可以在你的 [配置文件][config] 中设置 [`solc`][config-solc]，
+或者将 `--use solc:<version>` 传递给支持它的 Forge 命令 (例如 [`forge build`][forge-build]
+或者 [`forge test`][forge-test])。
+也可以指定 solc 二进制文件路径。 要使用一个特定的本地 solc 二进制文件，你可以在配置文件中设置 `solc = "<path to solc>"`，或者通过 `--use "<path to solc>"` 指定。
+solc 的版本/路径也可以通过环境变量 `FOUNDRY_SOLC=<版本/路径>` 来设置，但 cli 参数 `--use` 具有优先权。
 
-For example, if you have a project that supports all 0.7.x Solidity versions, but you want to compile with solc 0.7.0, you could use `forge build --use solc:0.7.0`.
+例如，如果你有一个支持所有 0.7.x Solidity 版本的项目，但你想用 solc 0.7.0 进行编译，你可以使用`forge build --use solc:0.7.0`。
 
-### How do I fork from a live network?
+### 我该如何从实时网络分叉?
 
-To fork from a live network, pass `--fork-url <URL>` to [`forge test`][forge-test].
-You can also fork from a specific block using `--fork-block-number <BLOCK>`, which adds determinism to your test, and allows Forge to cache
-the chain data for that block.
+要从实时网络分叉，请将 `--fork-url <URL>` 传递给 [`forge test`][forge-test]。
+你也可以使用 `--fork-block-number <BLOCK>` 从一个特定的区块分叉，这将为你的测试增加确定性，并允许 Forge 缓存该区块的链数据。
 
-For example, to fork from Ethereum mainnet at block 10,000,000 you could use: `forge test --fork-url $MAINNET_RPC_URL --fork-block-number 10000000`.
+例如，要从以太坊主网的 10,000,000 区块分叉，你可以使用：`forge test --fork-url $MAINNET_RPC_URL --fork-block-number 10000000`。
 
-### How do I add my own assertions?
+### 我该如何添加自己的断言?
 
-You can add your own assertions by creating your own base test contract and having that inherit from the test framework of your choice.
+你可以通过创建你自己的基础测试合约，并继承你选择的测试框架来添加你自己的断言。
 
-For example, if you use DSTest, you could create a base test contract like this:
+例如，如果你使用 DSTest，你可以创建一个这样的基础测试合约：
 
 ```solidity
 contract TestBase is DSTest {
@@ -71,7 +69,7 @@ contract TestBase is DSTest {
 }
 ```
 
-You would then inherit from `TestBase` in your test contracts.
+然后你将在你的测试合约中继承 `TestBase`。
 
 ```solidity
 contract MyContractTest is TestBase {
@@ -81,31 +79,30 @@ contract MyContractTest is TestBase {
 }
 ```
 
-Similarly, if you use [Forge Std][forge-std], you can create a base test contract that inherits from `Test`.
+同样地，如果你使用 [Forge Std][forge-std]，你可以创建一个继承自 `Test` 的基础测试合约。
 
-For a good example of a base test contract that has helper methods and custom assertions, see [Solmate's `DSTestPlus`][dstestplus].
+有关辅助方法和自定义断言的基础测试合约的好例子，请参见 [Solmate's `DSTestPlus`][dstestplus]。
 
-### How do I use Forge offline?
+### 我该如何离线使用 Forge?
 
-Forge will sometimes check for newer Solidity versions that fit your project. To use Forge offline, use the `--offline` flag.
+Forge 有时会检查适合您项目的较新 Solidity 版本。要离线使用 Forge，请使用 `--offline` 标志。
 
-### I'm getting Solc errors
+### 我遇到了 Solc 错误
 
-[solc-bin](https://binaries.soliditylang.org/) doesn't offer static builds for apple silicon. Foundry relies on [svm](https://github.com/roynalnaruto/svm-rs) to install native builds for apple silicon.
+[solc-bin](https://binaries.soliditylang.org/) 不提供 Apple 芯片的静态构建。Foundry 依靠 [svm](https://github.com/roynalnaruto/svm-rs) 来安装 Apple 芯片的本地构建。
 
-All solc versions are installed under `~/.svm/`. If you encounter solc related errors, such as `SolcError: ...` please to nuke `~/.svm/` and try again, this will trigger a fresh install and usually resolves the issue.
+所有 solc 版本都安装在 `~/.svm/` 下。如果你遇到与 solc 有关的错误，例如 `SolcError: ...`，请将 `~/.svm/` 删除并重新尝试，这将触发一个新的安装，通常会解决这个问题。
 
-If you're on apple silion, please ensure the [`z3` thereom prover](https://github.com/Z3Prover/z3
-) is installed: `brew install z3`
+如果你使用的是 Apple 芯片，请确保 [`z3` thereom prover](https://github.com/Z3Prover/z3)已经安装。`brew install z3`.
 
-> **Note**: native apple silicon builds are only available from `0.8.5` upwards. If you need older versions, you must enable apple silicon rosetta to run them.
+> **注意**：原生的 Apple 芯片构建只在 `0.8.5` 以上的版本可用。如果你需要更早的版本，你必须启用 Apple 芯片的 Rosetta 来运行它们。
 
 
-### Forge fails in JavaScript monorepos (`pnpm`)
+### Forge 在 JavaScript monorepos（`pnpm`）中失败。
 
-Managers like `pnpm` use symlinks to manage `node_modules` folders.
+像 `pnpm` 这样的管理器使用符号链接来管理 `node_modules` 文件夹。
 
-A common layout may look like:
+一个常见的目录可能看起来像：
 
 ```text
 ├── contracts
@@ -121,9 +118,9 @@ A common layout may look like:
 ├── pnpm-workspace.yaml
 ```
 
-Where the Foundry workspace is in `./contracts`, but packages in `./contracts/node_modules` are symlinked to `./node_modules`.
+当 Foundry 工作空间在 `./contracts` 中，但 `./contracts/node_modules` 中的包被符号链接到 `./node_modules`。
 
-When running `forge build` in `./contracts/node_modules`, this can lead to an error like:
+当在 `./contracts/node_modules` 中运行 `forge build` 时，这可能会导致类似的错误：
 
 ```console
 error[6275]: ParserError: Source "node_modules/@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol" not found: File outside of allowed directories. The following are allowed: "<repo>/contracts", "<repo>/contracts/contracts", "<repo>/contracts/lib".
@@ -132,21 +129,21 @@ error[6275]: ParserError: Source "node_modules/@openzeppelin/contracts/utils/cry
 8 | import "../../../utils/cryptography/draft-EIP712.sol";
 ```
 
-This error happens when `solc` was able to resolve symlinked files, but they're outside the Foundry workspace (`./contracts`).
+这个错误发生在 `solc` 能够解决符号链接的文件，但它们在 Foundry 工作区（`./contracts`）之外。
 
-Adding `node_modules` to `allow_paths` in `foundry.toml` grants solc access to that directory, and it will be able to read it:
+在 `foundry.toml` 中的 `allow_paths `中添加 `node_modules`，授予 solc 对该目录的访问权，它将能够读取该目录：
 
 ```toml
 # This translates to `solc --allow-paths ../node_modules`
 allow_paths = ["../node_modules"]
 ```
 
-Note that the path is relative to the Foundry workspace. See also [solc allowed-paths](https://docs.soliditylang.org/en/latest/path-resolution.html#allowed-paths)
+注意，该路径是相对于 Foundry 工作区的。另请参见 [solc allowed-paths](https://docs.soliditylang.org/en/latest/path-resolution.html#allowed-paths)
 
 
-### How to install from source?
+### 如何从源代码构建？
 
-> **NOTE:** please ensure your rust version is up-to-date: `rustup update`. Current msrv = "1.62"
+> **注意：**请确保你的 rust 版本是最新的：`rustup update`。当前 msrv = "1.62"
 
 ```sh
 git clone https://github.com/foundry-rs/foundry
@@ -157,19 +154,19 @@ cargo install --path ./cli --profile local --bins --locked --force
 cargo install --path ./anvil --profile local --locked --force
 ```
 
-Or via `cargo install --git https://github.com/foundry-rs/foundry --profile local --locked foundry-cli anvil`.
+或通过 `cargo install --git https://github.com/foundry-rs/foundry --profile local --locked foundry-cli anvil`.
 
-### I'm getting `Permission denied (os error 13)`
+### 我得到 `Permission denied (os error 13)` 错误
 
-If you see an error like 
+如果你看到一个错误，例如：
 
 ```console
 Failed to create artifact parent folder "/.../MyProject/out/IsolationModeMagic.sol": Permission denied (os error 13)
 ```
 
-Then there's likely a folder permission issue. Ensure `user` has write access in the project root's folder.
+那么很可能是文件夹权限的问题。确保 `user` 在项目根目录下有写权限。
 
-It has been [reported](https://github.com/foundry-rs/foundry/issues/3268) that on linux, canonicalizing paths can result in weird paths (`/_1/...`). This can be resolved by nuking the entire project folder and initializing again.
+据 [报告](https://github.com/foundry-rs/foundry/issues/3268)，在 Linux 上，规范化路径可能会导致奇怪的路径（`/_1/...`）。这可以通过清除整个项目文件夹并重新初始化来解决。
 
 [tg-support]: https://t.me/foundry_support
 [forge-test]: ./reference/forge/forge-test.md
