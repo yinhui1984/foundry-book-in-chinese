@@ -1,31 +1,31 @@
 ## cast client
 
-### NAME
+### 名称
 
-cast-client - Get the current client version.
+cast-client - 获取当前客户端的版本。
 
-### SYNOPSIS
+### 简介
 
 ``cast client`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Get the current client version.
+获取当前客户端的版本。
 
-### OPTIONS
+### 可选
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the current client version:
+1. 获取当前客户端的版本：
     ```sh
     cast client
     ```
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

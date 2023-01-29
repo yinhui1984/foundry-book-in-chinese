@@ -1,24 +1,24 @@
 ## cast --calldata-decode
 
-### NAME
+### 名称
 
-cast---calldata-decode - Decode ABI-encoded input data.
+cast---calldata-decode - 解码 ABI 编码的输入数据。
 
-### SYNOPSIS
+### 简介
 
-``cast --calldata-decode`` [*options*] *sig* *calldata*
+``cast --calldata-decode`` [*可选*] *sig* *calldata*
 
-### DESCRIPTION
+### 描述
 
-Decode ABI-encoded input data.
+解码 ABI 编码的输入数据.
 
-The signature (*sig*) is a fragment in the form `<function name>(<types...>)`.
+签名 (*sig*) 是一个片段，其形式为 `<函数名>(<类型...>)`.
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
 1. Decode input data for a `transfer` call:
     ```sh
@@ -26,6 +26,6 @@ The signature (*sig*) is a fragment in the form `<function name>(<types...>)`.
       0xa9059cbb000000000000000000000000e78388b4ce79068e89bf8aa7f218ef6b9ab0e9d0000000000000000000000000000000000000000000000000008a8e4b1a3d8000
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast --abi-decode](./cast--abi-decode.md)

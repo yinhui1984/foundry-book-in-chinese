@@ -1,23 +1,23 @@
 ## cast --from-bin
 
-### NAME
+### 名称
 
-cast---from-bin - Convert binary data into hex data.
+cast---from-bin - 将二进制数据转换为十六进制数据。
 
-### SYNOPSIS
+### 简介
 
 ``cast --from-bin`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Convert binary data into hex data.
+将二进制数据转换为十六进制数据。
 
-The input is taken from stdin.
+输入从 stdin 获取
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

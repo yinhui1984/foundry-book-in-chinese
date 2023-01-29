@@ -1,60 +1,60 @@
 ## cast interface
 
-### NAME
+### 名称
 
-cast-interface - Generate a Solidity interface from a given ABI.
+cast-interface - 从一个给定的 ABI 生成一个 Solidity 接口。
 
-### SYNOPSIS
+### 简介
 
 ``cast interface`` [*options*] *address_or_path*
 
-### DESCRIPTION
+### 描述
 
-Generates a Solidity interface from a given ABI.
+从一个给定的 ABI 生成一个 Solidity 接口。
 
-The argument (*address_or_path*) can either be the path to a file containing an ABI, or an address.
+参数（*address_or_path*）可以是包含 ABI 的文件的路径，也可以是一个地址。
 
-If an address is provided, then the interface is generated from the ABI of the account, which is fetched from Etherscan.
+如果提供了一个地址，那么接口是由账户的 ABI 生成的，该 ABI 是从 Etherscan 中获取的。
 
-> ℹ️ **Note**
+> ℹ️ **注意**
 >
-> This command does not currently support ABI encoder v2.
+> 该命令目前不支持 v2 ABI 编码器。
 
-### OPTIONS
+### 可选
 
-#### Interface Options
+#### Interface 选项
 
 `-n` *name*  
 `--name` *name*  
-&nbsp;&nbsp;&nbsp;&nbsp;The name to use for the generated interface. The default name is `Interface`.
+&nbsp;&nbsp;&nbsp;&nbsp;用于生成接口的名称。默认名称是 `Interface`。
 
 `-o` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;The path to the output file. If not specified, the interface will be output to stdout.
+&nbsp;&nbsp;&nbsp;&nbsp;输出文件的路径。如果不指定，接口将被输出到 stdout。
 
 `-p` *version*  
 `--pragma` *version*  
-&nbsp;&nbsp;&nbsp;&nbsp;The Solidity pragma version to use in the interface. Default: `^0.8.10`.
+&nbsp;&nbsp;&nbsp;&nbsp; 要在接口中使用的 Solidity 编译器版本。默认：`^0.8.10`。
 
 {{#include ../common/etherscan-options.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Generate an interface from a file:
+1. 从一个文件中生成一个接口：
     ```sh
     cast interface ./path/to/abi.json
     ```
 
-2. Generate an interface using Etherscan:
+2. 使用 Etherscan 生成一个接口：
     ```sh
     cast interface -o IWETH.sol 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
     ```
 
-3. Generate and name an interface from a file:
+3. 从一个文件中生成并命名一个接口。
     ```sh
     cast interface -n LilENS ./path/to/abi.json
     ```
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast proof](./cast-proof.md)

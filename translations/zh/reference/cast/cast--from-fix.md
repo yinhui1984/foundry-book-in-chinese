@@ -1,28 +1,28 @@
 ## cast --from-fix
 
-### NAME
+### 名称
 
-cast---from-fix - Convert a fixed point number into an integer.
+cast---from-fix - 将一个定点数转换成一个整数。
 
-### SYNOPSIS
+### 简介
 
 ``cast --from-fix`` [*options*] *decimals* *value*
 
-### DESCRIPTION
+### 描述
 
-Convert a fixed point number into an integer.
+将一个定点数转换成一个整数。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Convert 10.55 to an integer:
+1. 将 10.55 转换为整数:
     ```sh
     cast --from-fix 2 10.55
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

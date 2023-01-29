@@ -1,63 +1,63 @@
 ## cast run
 
-### NAME
+### 名称
 
-cast-run - Runs a published transaction in a local environment and prints the trace.
+cast-run - 在本地环境中运行一个已发布的交易，并打印出跟踪。
 
-### SYNOPSIS
+### 简介
 
 ``cast run`` [*options*] `--rpc-url` *url* *tx_hash*
 
-### DESCRIPTION
+### 描述
 
-Runs a published transaction in a local environment and prints the trace.
+在本地环境中运行一个已发布的交易，并打印出跟踪。
 
-By default, all transactions in the block prior to the transaction you want to replay are also replayed.
-If you want a quicker result, you can use `--quick`, however, results may differ from the live execution.
+默认情况下，在你想重放的交易所在区块中的交易也会被重放。
+如果你想得到更快的结果，你可以使用 `--quick`，但是，结果可能与链上执行的结果不同。
 
-You can also open the transaction in a debugger by passing `--debug`.
+你也可以通过传递 `--debug` 在调试器中打开该交易。
 
-### OPTIONS
+### 可选
 
-#### Run Options
+#### Run 选项
 
 `--label` *label*  
-&nbsp;&nbsp;&nbsp;&nbsp;Labels an address in the trace.  
-&nbsp;&nbsp;&nbsp;&nbsp;The format is `<address>:<label>`. Can be passed multiple times.
+&nbsp;&nbsp;&nbsp;&nbsp;在跟踪中标记一个地址。 
+&nbsp;&nbsp;&nbsp;&nbsp;格式是 `<address>:<label>`。可以多次传递。
 
 `-q`  
 `--quick`  
-&nbsp;&nbsp;&nbsp;&nbsp;Executes the transaction only with the state from the previous block.  
-&nbsp;&nbsp;&nbsp;&nbsp;May result in different results than the live execution!
+&nbsp;&nbsp;&nbsp;&nbsp;只用前一个区块的状态来执行交易。 
+&nbsp;&nbsp;&nbsp;&nbsp;可能会导致与链上执行不同的结果!
 
 `-v`  
 `--verbose`  
-&nbsp;&nbsp;&nbsp;&nbsp;Addresses are fully displayed instead of being truncated.
+&nbsp;&nbsp;&nbsp;&nbsp;地址被完全显示，而不是被截断。
 
 `-d`  
 `--debug`  
-&nbsp;&nbsp;&nbsp;&nbsp;Open the script in the [debugger][debugger].
+&nbsp;&nbsp;&nbsp;&nbsp;在 [debugger][debugger] 中打开该脚本。
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Replay a transaction (a simple transfer):
+1. 重放一个交易（一个简单的转账）：
     ```sh
     cast run 0xd15e0237413d7b824b784e1bbc3926e52f4726e5e5af30418803b8b327b4f8ca
     ```
 
-2. Replay a transaction, applied on top of the state of the previous block:
+2. 重放一个交易，应用在上一个区块的状态之上：
     ```sh
     cast run --quick \
       0xd15e0237413d7b824b784e1bbc3926e52f4726e5e5af30418803b8b327b4f8ca
     ```
 
-3. Replay a transaction with address labels:
+3. 用地址标签重放一次交易：
     ```sh
     cast run \
       --label 0xc564ee9f21ed8a2d8e7e76c085740d5e4c5fafbe:sender \
@@ -66,13 +66,13 @@ You can also open the transaction in a debugger by passing `--debug`.
       0xd15e0237413d7b824b784e1bbc3926e52f4726e5e5af30418803b8b327b4f8ca
     ```
 
-4. Replay a transaction in the debugger:
+4. 在调试器中重放一个事务：
     ```sh
     cast run --debug \
       0xd15e0237413d7b824b784e1bbc3926e52f4726e5e5af30418803b8b327b4f8ca
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)
 

@@ -1,4 +1,4 @@
-## Wallet Commands
+## Wallet 命令
 
 - [cast wallet](./cast-wallet.md)
 - [cast wallet address](./cast-wallet-address.md)

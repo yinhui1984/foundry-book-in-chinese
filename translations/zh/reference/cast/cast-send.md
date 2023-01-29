@@ -1,41 +1,41 @@
 ## cast send
 
-### NAME
+### 名称
 
-cast-send - Sign and publish a transaction.
+cast-send - 签署并发布一项交易。
 
-### SYNOPSIS
+### 简介
 
 ``cast send`` [*options*] *to* [*sig*] [*args...*]
 
-### DESCRIPTION
+### 描述
 
-Sign and publish a transaction.
+签署并发布一项交易。
 
-The destination (*to*) can be an ENS name or an address.
+目的地（*to*）可以是 ENS 名称或地址。
 
 {{#include sig-description.md}}
 
-### OPTIONS
+### 可选
 
 {{#include ../common/transaction-options.md}}
 
 `--resend`  
-&nbsp;&nbsp;&nbsp;&nbsp;Reuse the latest nonce of the sending account.
+&nbsp;&nbsp;&nbsp;&nbsp;重复使用发送账户的最新 nonce。
 
 `--create` *code* [*sig* *args...*]  
-&nbsp;&nbsp;&nbsp;&nbsp;Deploy a contract by specifying raw bytecode, in place of specifying a *to* address.
+&nbsp;&nbsp;&nbsp;&nbsp;通过指定原始字节码来部署合约，以代替指定 *to* 地址。
 
-#### Receipt Options
+#### Receipt 选项
 
 `--async`  
 `--cast-async`  
-&nbsp;&nbsp;&nbsp;&nbsp;Do not wait for the transaction receipt if it does not exist yet.  
-&nbsp;&nbsp;&nbsp;&nbsp;Environment: `CAST_ASYNC`
+&nbsp;&nbsp;&nbsp;&nbsp;如果交易收据还不存在，就不要等它了。 
+&nbsp;&nbsp;&nbsp;&nbsp;环境: `CAST_ASYNC`
 
 `-c` *confirmations*  
 `--confirmations` *confirmations*  
-&nbsp;&nbsp;&nbsp;&nbsp;Wait a number of confirmations before exiting. Default: `1`.
+&nbsp;&nbsp;&nbsp;&nbsp;在退出前等待一定数量的交易确认。默认值：`1`。
 
 {{#include ../common/wallet-options.md}}
 
@@ -47,19 +47,19 @@ The destination (*to*) can be an ENS name or an address.
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Send some ether to Vitalik using your Ledger:
+1. 用你的 Ledger 给 Vitalik 发送一些 ether。
     ```sh
     cast send --ledger vitalik.eth --value 0.1ether
     ```
 
-2. Call `deposit(address token, uint256 amount)` on a contract:
+2. 在一个合约上调用 `deposit(address token, uint256 amount)`：
     ```sh
     cast send --ledger 0x... "deposit(address,uint256)" 0x... 1
     ```
 
-3. Call a function that expects a `struct`:
+3. 调用一个预期输入 `struct` 的函数:
 
     ```solidity
     contract Test {
@@ -71,11 +71,11 @@ The destination (*to*) can be an ENS name or an address.
     }
     ```
 
-    Structs are encoded as tuples (see [struct encoding](./misc/struct-encoding.md))
+    结构体被编码为元组 (请参阅 [struct encoding](./misc/struct-encoding.md))
 
     ```sh
     cast send 0x... "myfunction((address,uint256))" "(0x...,1)"
     ```
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast call](./cast-call.md), [cast publish](./cast-publish.md), [cast receipt](./cast-receipt.md), [struct encoding](./misc/struct-encoding.md)

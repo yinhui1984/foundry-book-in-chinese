@@ -1,30 +1,30 @@
 ## cast calldata
 
-### NAME
+### 名称
 
-cast-calldata - ABI-encode a function with arguments.
+cast-calldata - ABI 编码一个带参数的函数。
 
-### SYNOPSIS
+### 简介
 
 ``cast calldata`` [*options*] *sig* [*args...*]
 
-### DESCRIPTION
+### 描述
 
-ABI-encode a function with arguments.
+ABI 编码一个带参数的函数。
 
-The signature (*sig*) is a fragment in the form `<function name>(<types...>)`.
+签名 (*sig*) 是一个片段，其形式为 `<function name>(<types...>)`.
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. ABI-encode the arguments for a call to `someFunc(address,uint256)`:
+1. 对调用 `someFunc(address,uint256)` 的参数进行ABI编码：
     ```sh
     cast calldata "someFunc(address,uint256)" 0x... 1
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast abi-encode](./cast-abi-encode.md)

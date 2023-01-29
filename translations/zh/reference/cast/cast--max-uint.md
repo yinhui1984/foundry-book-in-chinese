@@ -1,21 +1,21 @@
 ## cast --max-uint
 
-### NAME
+### 名称
 
-cast---max-uint - Get the maximum uint256 value.
+cast---max-uint - 获取 uint256 最大值。
 
-### SYNOPSIS
+### 简介
 
 ``cast --max-uint``
 
-### DESCRIPTION
+### 描述
 
-Get the maximum uint256 value.
+获取 uint256 最大值。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast --max-int](./cast--max-int.md)

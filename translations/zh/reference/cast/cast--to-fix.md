@@ -1,28 +1,28 @@
 ## cast --to-fix
 
-### NAME
+### 名称
 
-cast---to-fix - Convert an integer into a fixed point number.
+cast---to-fix - 将一个整数转换成一个定点数。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-fix`` [*options*] *decimals* *value*
 
-### DESCRIPTION
+### 描述
 
-Convert an integer into a fixed point number.
+将一个整数转换成一个定点数。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Convert 250 to a fixed point number with 2 decimals:
+1. 将 250 转换为带 2 位小数的定点数。
     ```sh
     cast --to-fix 2 250
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

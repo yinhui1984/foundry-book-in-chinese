@@ -1,28 +1,28 @@
 ## cast --to-ascii
 
-### NAME
+### 名称
 
-cast---to-ascii - Convert hex data to an ASCII string.
+cast---to-ascii - 将十六进制数据转换为ASCII字符串。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-ascii`` [*options*] *text*
 
-### DESCRIPTION
+### 描述
 
-Convert hex data to an ASCII string.
+将十六进制数据转换为ASCII字符串。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Convert hex data to an ASCII string:
+1. 将十六进制数据转换为ASCII字符串:
     ```sh
     cast --to-ascii "0x68656c6c6f"
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

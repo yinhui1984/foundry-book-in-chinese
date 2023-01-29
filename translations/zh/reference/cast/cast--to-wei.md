@@ -1,23 +1,23 @@
 ## cast --to-wei
 
-### NAME
+### 名称
 
-cast---to-wei - Convert an eth amount to wei.
+cast---to-wei - 将 eth 金额转换为 wei 单位。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-wei`` [*options*] *value* [*unit*]
 
-### DESCRIPTION
+### 描述
 
-Convert an eth amount to wei.
+将 eth 金额转换为 wei 单位。
 
-Consider using [`cast --to-unit`](./cast--to-unit.md).
+考虑使用 [`cast --to-unit`](./cast--to-unit.md)。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast calldata](./cast--to-unit.md)

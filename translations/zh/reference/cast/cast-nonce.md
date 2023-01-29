@@ -1,42 +1,42 @@
 ## cast nonce
 
-### NAME
+### 名称
 
-cast-nonce - Get the nonce for an account.
+cast-nonce - 获取一个账户的 nonce。
 
-### SYNOPSIS
+### 简介
 
 ``cast nonce`` [*options*] *who*
 
-### DESCRIPTION
+### 描述
 
-Get the nonce of an account.
+获取一个账户的 nonce。
 
-The argument *who* can be an ENS name or an address.
+参数 *who* 可以是一个 ENS 名称或地址。
 
-### OPTIONS
+### 可选
 
-#### Query Options
+#### 查询选项
 
 `-B` *block*  
 `--block` *block*  
-&nbsp;&nbsp;&nbsp;&nbsp;The block height you want to query at.
+&nbsp;&nbsp;&nbsp;&nbsp;你想查询的区块高度。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Can be a block number, or any of the tags: `earliest`, `latest` or `pending`.
+&nbsp;&nbsp;&nbsp;&nbsp;可以是一个区块编号，或任何一个标签：`earliest`, `latest` 或者 `pending`。
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the nonce of beer.eth
+1. 获取 beer.eth 的 nonce：
     ```sh
     cast nonce beer.eth
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast balance](./cast-balance.md)

@@ -1,4 +1,4 @@
-## General Commands
+## General 命令
 
 - [cast](./cast.md)
 - [cast help](./cast-help.md)

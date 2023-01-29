@@ -1,4 +1,4 @@
-## Block Commands
+## Block 命令
 
 - [cast find-block](./cast-find-block.md)
 - [cast gas-price](./cast-gas-price.md)

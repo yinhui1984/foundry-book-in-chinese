@@ -1,28 +1,28 @@
 ## cast --concat-hex
 
-### NAME
+### 名称
 
-cast---concat-hex - Concatenate hex strings.
+cast---concat-hex - 串接十六进制字符串。
 
-### SYNOPSIS
+### 简介
 
 ``cast --concat-hex`` *data...*
 
-### DESCRIPTION
+### 描述
 
-Concatenate hex strings.
+串接十六进制字符串。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Concatenate hex strings:
+1. 串接十六进制字符串：
     ```sh
     cast --concat-hex 0xa 0xb 0xc
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

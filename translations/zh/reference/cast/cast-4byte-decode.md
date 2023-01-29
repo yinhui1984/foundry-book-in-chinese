@@ -1,36 +1,36 @@
 ## cast 4byte-decode
 
-### NAME
+### 名称
 
-cast-4byte-decode - Decode ABI-encoded calldata using <https://sig.eth.samczsun.com>.
+cast-4byte-decode - 使用 <https://sig.eth.samczsun.com> 对 ABI 编码的 calldata 进行解码。
 
-### SYNOPSIS
+### 简介
 
 ``cast 4byte-decode`` [*options*] *calldata*
 
-### DESCRIPTION
+### 描述
 
-Decode ABI-encoded calldata using <https://sig.eth.samczsun.com>.
+使用 <https://sig.eth.samczsun.com> 对 ABI 编码的 calldata 进行解码。
 
-### OPTIONS
+### 可选
 
 #### 4byte Options
 
 `--id` *id*  
-&nbsp;&nbsp;&nbsp;&nbsp;The index of the resolved signature to use.
+&nbsp;&nbsp;&nbsp;&nbsp;要使用的解析签名的索引。
 &nbsp;&nbsp;&nbsp;&nbsp;  
-&nbsp;&nbsp;&nbsp;&nbsp;<https://sig.eth.samczsun.com> can have multiple possible signatures for a given selector.  
-&nbsp;&nbsp;&nbsp;&nbsp;The index can be an integer, or the tags "earliest" and "latest".
+&nbsp;&nbsp;&nbsp;&nbsp;<https://sig.eth.samczsun.com> 对于一个给定的选择器，可以有多个可能的签名。 
+&nbsp;&nbsp;&nbsp;&nbsp;索引可以是一个整数，或者是 "earliest" 和 "latest" 的标签。
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Decode calldata for a `transfer` call:
+1. 对 `transfer` 调用的 calldata 进行解码：
     ```sh
     cast 4byte-decode 0xa9059cbb000000000000000000000000e78388b4ce79068e89bf8aa7f218ef6b9ab0e9d00000000000000000000000000000000000000000000000000174b37380cea000
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast 4byte](./cast-4byte.md), [cast 4byte-event](./cast-4byte-event.md)

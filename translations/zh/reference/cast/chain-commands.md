@@ -1,4 +1,4 @@
-## Chain Commands
+## Chain 命令
 
 - [cast chain-id](./cast-chain-id.md)
 - [cast chain](./cast-chain.md)

@@ -1,36 +1,36 @@
 ## cast pretty-calldata
 
-### NAME
+### 名称
 
-cast-pretty-calldata - Pretty print calldata.
+cast-pretty-calldata - 漂亮地打印 Calldata。
 
-### SYNOPSIS
+### 简介
 
 ``cast pretty-calldata`` [*options*] *calldata*
 
-### DESCRIPTION
+### 描述
 
-Pretty print calldata.
+漂亮地打印 Calldata。
 
-Tries to decode the calldata using <https://sig.eth.samczsun.com> unless `--offline` is passed.
+尝试使用 <https://sig.eth.samczsun.com> 解码 calldata，除非通过 `--offline`。
 
-### OPTIONS
+### 可选
 
-#### 4byte Options
+#### 4byte 选项
 
 `-o`  
 `--offline`  
-&nbsp;&nbsp;&nbsp;&nbsp;Skip the <https://sig.eth.samczsun.com> lookup.
+&nbsp;&nbsp;&nbsp;&nbsp;跳过 <https://sig.eth.samczsun.com> 查找。
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Decode calldata for a `transfer` call:
+1. 对 `transfer` 调用的 calldata 进行解码：
     ```sh
     cast pretty-calldata 0xa9059cbb000000000000000000000000e78388b4ce79068e89bf8aa7f218ef6b9ab0e9d00000000000000000000000000000000000000000000000000174b37380cea000
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast 4byte-decode](./cast-4byte-decode.md)

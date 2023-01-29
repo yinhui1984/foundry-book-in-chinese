@@ -1,30 +1,30 @@
 ## cast --format-bytes32-string
 
-### NAME
+### 名称
 
-cast---format-bytes32-string - Formats a string into bytes32 encoding.
+cast---format-bytes32-string - 将一个字符串转换成 bytes32 编码。
 
-### SYNOPSIS
+### 简介
 
 ``cast --format-bytes32-string`` [*options*] *string*
 
-### DESCRIPTION
+### 描述
 
-Formats a string into bytes32 encoding.
+将一个字符串转换成bytes32编码。
 
-Note that this command is for formatting a [Solidity string literal](https://docs.soliditylang.org/en/v0.8.16/types.html#string-literals-and-types) into `bytes32` only. If you're looking to pad a byte string, use [--to-bytes32](./cast--to-bytes32.md) instead.
+请注意，此命令仅用于将 [Solidity string literal](https://docs.soliditylang.org/en/v0.8.16/types.html#string-literals-and-types) 格式化为 `bytes32`。如果你想填充一个字节字符串，请使用 [-to-bytes32](./cast--to-bytes32.md) 代替。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Turn string "hello" into bytes32 hex:
+1. 将 "hello" 字符串转换成 bytes32 编码：
     ```sh
     cast --format-bytes32-string "hello"
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

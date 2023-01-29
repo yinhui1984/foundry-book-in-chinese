@@ -1,21 +1,21 @@
 ## cast --min-int
 
-### NAME
+### 名称
 
-cast---min-int - Get the minimum i256 value.
+cast---min-int - 获取 int256 最小值。
 
-### SYNOPSIS
+### 简介
 
 ``cast --min-int``
 
-### DESCRIPTION
+### 描述
 
-Get the minimum i256 value.
+获取 int256 最小值。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast --max-int](./cast--max-int.md)

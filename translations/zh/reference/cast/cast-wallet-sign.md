@@ -1,18 +1,18 @@
 ## cast wallet sign
 
-### NAME
+### 名称
 
-cast-wallet-sign - Sign a message.
+cast-wallet-sign - 签署消息。
 
-### SYNOPSIS
+### 简介
 
 ``cast wallet sign`` [*options*] *message*
 
-### DESCRIPTION
+### 描述
 
-Sign a message.
+签署消息。
 
-### OPTIONS
+### 可选
 
 {{#include ../common/wallet-options-raw.md}}
 
@@ -22,18 +22,18 @@ Sign a message.
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Sign a message using a keystore:
+1. 使用助记词签署信息：
     ```sh
     cast wallet sign --keystore keystore.json --interactive "hello"
     ```
 
-2. Sign a message using a raw private key:
+2. 使用私钥签署信息：
     ```sh
     cast wallet sign --private-key $PRIV_KEY "hello"
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast wallet](./cast-wallet.md)

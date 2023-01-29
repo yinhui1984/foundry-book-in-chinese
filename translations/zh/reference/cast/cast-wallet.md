@@ -1,42 +1,42 @@
 ## cast wallet
 
-### NAME
+### 名称
 
-cast-wallet - Wallet management utilities.
+cast-wallet - 钱包管理实用工具。
 
-### SYNOPSIS
+### 简介
 
 `cast wallet` [*options*] *command* [*args*]  
 `cast wallet` [*options*] `--version`  
 `cast wallet` [*options*] `--help`
 
-### DESCRIPTION
+### 描述
 
-This program is a set of tools to use, create and manage wallets.
+这个程序是一套使用、创建和管理钱包的工具。
 
 ### COMMANDS
 
 [cast wallet new](./cast-wallet-new.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;Create a new random keypair.
+&nbsp;&nbsp;&nbsp;&nbsp;创建一个新的随机密钥对。
 
 [cast wallet address](./cast-wallet-address.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;Convert a private key to an address.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个私钥转换为一个地址。
 
 [cast wallet sign](./cast-wallet-sign.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;Sign a message.
+&nbsp;&nbsp;&nbsp;&nbsp;签署一个信息。
 
 [cast wallet vanity](./cast-wallet-vanity.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;Generate a vanity address.
+&nbsp;&nbsp;&nbsp;&nbsp;生成一个虚假的地址。
 
 [cast wallet verify](./cast-wallet-verify.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;Verify the signature of a message.
+&nbsp;&nbsp;&nbsp;&nbsp;验证一个信息的签名。
 
-### OPTIONS
+### 可选
 
-#### Special Options
+#### Special 选项
 
 `-V`  
 `--version`  
-&nbsp;&nbsp;&nbsp;&nbsp;Print version info and exit.
+&nbsp;&nbsp;&nbsp;&nbsp;打印版本信息并退出。
 
 {{#include common-options.md}}

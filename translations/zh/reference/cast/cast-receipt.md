@@ -1,31 +1,31 @@
 ## cast receipt
 
-### NAME
+### 名称
 
-cast-receipt - Get the transaction receipt for a transaction.
+cast-receipt - 获取一个交易的交易收据。
 
-### SYNOPSIS
+### 简介
 
 ``cast receipt`` [*options*] *tx_hash* [*field*]
 
-### DESCRIPTION
+### 描述
 
-Get the transaction receipt for a transaction.
+获取一个交易的交易收据。
 
-If *field* is specified, then only the given field of the receipt is displayed.
+如果指定了 *field*，那么就只显示收据的指定字段。
 
-### OPTIONS
+### 可选
 
-#### Receipt Options
+#### Receipt 选项
 
 `--async`  
 `--cast-async`  
-&nbsp;&nbsp;&nbsp;&nbsp;Do not wait for the transaction receipt if it does not exist yet.  
-&nbsp;&nbsp;&nbsp;&nbsp;Environment: `CAST_ASYNC`
+&nbsp;&nbsp;&nbsp;&nbsp;如果交易收据还不存在，就不要等它了。  
+&nbsp;&nbsp;&nbsp;&nbsp;环境: `CAST_ASYNC`
 
 `-c` *confirmations*  
 `--confirmations` *confirmations*  
-&nbsp;&nbsp;&nbsp;&nbsp;Wait a number of confirmations before exiting. Default: `1`.
+&nbsp;&nbsp;&nbsp;&nbsp;在退出前等待一定数量的交易确认。默认值：`1`。
 
 #### RPC Options
 
@@ -35,18 +35,18 @@ If *field* is specified, then only the given field of the receipt is displayed.
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get a transaction receipt:
+1. 获取交易收据：
     ```sh
     cast receipt $TX_HASH
     ```
 
-2. Get the block number the transaction was included in:
+2. 获取该交易所包含的区块编号：
     ```sh
     cast receipt $TX_HASH blockNumber
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast call](./cast-call.md), [cast send](./cast-send.md), [cast publish](./cast-publish.md)

@@ -1,21 +1,21 @@
 ## cast keccak
 
-### NAME
+### 名称
 
-cast-keccak - Hash arbitrary data using keccak-256.
+cast-keccak - 使用 keccak-256 对任意数据进行哈希。
 
-### SYNOPSIS
+### 简介
 
 ``cast keccak`` [*options*] *data*
 
-### DESCRIPTION
+### 描述
 
-Hash arbitrary data using keccak-256.
+使用 keccak-256 对任意数据进行哈希。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

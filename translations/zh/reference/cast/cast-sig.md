@@ -1,31 +1,31 @@
 ## cast sig
 
-### NAME
+### 名称
 
-cast-sig - Get the selector for a function.
+cast-sig - 获取一个函数的选择器。
 
-### SYNOPSIS
+### 简介
 
 ``cast sig`` [*options*] *sig*
 
-### DESCRIPTION
+### 描述
 
-Get the selector for a function.
+获取一个函数的选择器。
 
-The signature (*sig*) is a fragment in the form `<function name>(<types...>)`.
+签名（*sig*）是一个片段，其形式为 `<function name>(<types...>)`。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the selector for the function `transfer(address,uint256)`:
+1. 获取函数 `transfer(address,uint256)` 的选择器。
     ```sh
     cast sig "transfer(address,uint256)"
     ```
 
-2. Get the selector for a function that expects a `struct`:
+2. 调用一个预期输入 `struct` 的函数:
 
     ```solidity
     contract Test {
@@ -37,11 +37,11 @@ The signature (*sig*) is a fragment in the form `<function name>(<types...>)`.
     }
     ```
 
-    Structs are encoded as tuples (see [struct encoding](../../misc/struct-encoding.md)).
+    结构体被编码为元组 (请参阅 [struct encoding](../../misc/struct-encoding.md)).
 
     ```sh
     cast sig "myfunction((address,uint256))"
     ```
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [struct encoding](../../misc/struct-encoding.md)

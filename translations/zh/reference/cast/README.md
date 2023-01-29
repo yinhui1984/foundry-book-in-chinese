@@ -1,4 +1,4 @@
-## cast Commands
+## cast 命令
 
 - [General Commands](./general-commands.md)
 - [Chain Commands](./chain-commands.md)

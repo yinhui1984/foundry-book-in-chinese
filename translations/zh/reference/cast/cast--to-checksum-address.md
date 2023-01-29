@@ -1,22 +1,22 @@
 ## cast --to-checksum-address
 
-### NAME
+### 名称
 
-cast---to-checksum-address - Convert an addresss to a checksummed format ([EIP-55][eip55]).
+cast---to-checksum-address - 将一个地址转换为校验过的格式 ([EIP-55][eip55])。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-checksum-address`` *address*
 
-### DESCRIPTION
+### 描述
 
-Convert an addresss to a checksummed format ([EIP-55][eip55]).
+将一个地址转换为校验过的格式 ([EIP-55][eip55])。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)
 

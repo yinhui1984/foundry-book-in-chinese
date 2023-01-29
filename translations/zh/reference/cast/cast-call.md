@@ -1,30 +1,30 @@
 ## cast call
 
-### NAME
+### 名称
 
-cast-call - Perform a call on an account without publishing a transaction.
+cast-call - 在不发布交易的情况下对一个账户进行调用。
 
-### SYNOPSIS
+### 简介
 
 ``cast call`` [*options*] *to* *sig* [*args...*]
 
-### DESCRIPTION
+### 描述
 
-Perform a call on an account without publishing a transaction.
+在不发布交易的情况下对一个账户进行调用。
 
-The destination (*to*) can be an ENS name or an address.
+目的地（*to*）可以是 ENS 名称或地址。
 
 {{#include sig-description.md}}
 
-### OPTIONS
+### 可选
 
-#### Query Options
+#### 查询选项
 
 `-B` *block*  
 `--block` *block*  
-&nbsp;&nbsp;&nbsp;&nbsp;The block height you want to query at.
+&nbsp;&nbsp;&nbsp;&nbsp;你想查询的区块高度。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Can be a block number, or any of the tags: `earliest`, `latest` or `pending`.
+&nbsp;&nbsp;&nbsp;&nbsp;可以是一个区块编号，或任何一个标签:  `earliest`, `latest` 或者 `pending`.
 
 {{#include ../common/wallet-options.md}}
 
@@ -34,16 +34,16 @@ The destination (*to*) can be an ENS name or an address.
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Call `balanceOf(address)` on the WETH contract:
+1. 在 WETH 合约上调用 `balanceOf(address)`：
 
     ```sh
     cast call 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 \
       "balanceOf(address)(uint256)" 0x...
     ```
 
-2. Call `tokenURI(uint256)(string)` on the Tubby Cats NFT contract:
+2. 在 Tubby Cats NFT 合约上调用 `tokenURI(uint256)(string)`：
 
     ```sh
     export CONTRACT=0xca7ca7bcc765f77339be2d648ba53ce9c8a262bd
@@ -51,13 +51,13 @@ The destination (*to*) can be an ENS name or an address.
     cast call $CONTRACT "tokenURI(uint256)(string)" $TOKEN_ID
    ```
 
-3. Call ``getAmountsOut(uint,address[])`` on the Uniswap v2 router contract:
+3. 在 Uniswap v2 router 合约上调用 ``getAmountsOut(uint,address[])``：
 
     ```sh
    cast call 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D \
      "getAmountsOut(uint,address[])" 1 "[0x6b...0f,0xc0...c2]"
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast send](./cast-send.md), [cast publish](./cast-publish.md), [cast receipt](./cast-receipt.md)

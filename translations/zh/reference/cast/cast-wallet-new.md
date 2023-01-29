@@ -1,49 +1,49 @@
 ## cast wallet new
 
-### NAME
+### 名称
 
-cast-wallet-new - Create a new random keypair.
+cast-wallet-new - 创建一个新的随机密钥对。
 
-### SYNOPSIS
+### 简介
 
 ``cast wallet new`` [*options*] [*path*]
 
-### DESCRIPTION
+### 描述
 
-Create a new random keypair.
+创建一个新的随机密钥对。
 
-If *path* is specified, then the new keypair will be written to a JSON keystore encrypted with a password.
-(*path* should be an existing directory.)
+如果 *path* 被指定，那么新的密钥对将被写入一个用密码加密的JSON密钥库。
+(*path* 应该是一个现有的目录)。
 
-### OPTIONS
+### 可选
 
-#### Keystore Options
+#### Keystore 选项
 
 `-p`  
 `--password`  
-&nbsp;&nbsp;&nbsp;&nbsp;Triggers a hidden password prompt for the JSON keystore.  
-&nbsp;&nbsp;&nbsp;&nbsp;**Deprecated: prompting for a hidden password is now the default.**
+&nbsp;&nbsp;&nbsp;&nbsp;触发 JSON 密钥库的隐藏密码提示。
+&nbsp;&nbsp;&nbsp;&nbsp;**已经过时：提示隐藏密码现在是默认的。**
 
 `--unsafe-password` *password*  
-&nbsp;&nbsp;&nbsp;&nbsp;Password for the JSON keystore in cleartext.
+&nbsp;&nbsp;&nbsp;&nbsp;JSON 密钥库的明文密码。
 
-&nbsp;&nbsp;&nbsp;&nbsp;This is **unsafe** to use and we recommend using `--password` instead.  
-&nbsp;&nbsp;&nbsp;&nbsp;Environment: `CAST_PASSWORD`
+&nbsp;&nbsp;&nbsp;&nbsp;这是 **不安全的**，我们建议使用 `--password` 来代替。 
+&nbsp;&nbsp;&nbsp;&nbsp;环境变量: `CAST_PASSWORD`
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Create a new keypair without saving it to a keystore:
+1. 创建一个新的密钥对，而不把它保存到密钥库中。
     ```sh
     cast wallet new
     ```
 
-2. Create a new keypair and save it in the `keystore` directory:
+2. 创建一个新的密钥对并将其保存在 `keystore` 目录下。
     ```sh
     cast wallet new keystore
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast wallet](./cast-wallet.md)

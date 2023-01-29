@@ -1,22 +1,22 @@
 ## cast tx
 
-### NAME
+### 名称
 
-cast-tx - Get information about a transaction.
+cast-tx - 获得有关交易的信息。
 
-### SYNOPSIS
+### 简介
 
 ``cast tx`` [*options*] *tx_hash* [*field*]
 
-### DESCRIPTION
+### 描述
 
-Get information about a transaction.
+获得有关交易的信息。
 
-If *field* is specified, then only the given field of the transaction is displayed.
+如果指定了 *field*，那么就只显示交易的指定字段。
 
-### OPTIONS
+### 可选
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
@@ -24,18 +24,18 @@ If *field* is specified, then only the given field of the transaction is display
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get information about a transaction:
+1. 获得有关交易的信息：
     ```sh
     cast tx $TX_HASH
     ```
 
-2. Get the sender of a transaction:
+2. 获取交易的发起人:
     ```sh
     cast tx $TX_HASH from
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast receipt](./cast-receipt.md)

@@ -1,32 +1,32 @@
 ## cast shr
 
-### NAME
+### 名称
 
-cast-shr - Perform a right shifting operation.
+cast-shr - 进行右移操作。
 
-### SYNOPSIS
+### 简介
 
 ``cast shr`` [*options*] *value* *shift*
 
-### DESCRIPTION
+### 描述
 
-Perform a left shifting operation.
+进行右移操作。
 
-### OPTIONS
+### 可选
 
 {{#include ../common/base-options.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Perform a single right bit shift of 0x12
+1. 对 0x12 的单一右移：
     ```sh
     cast shr --base-in 16 0x12 1
     ```
 
-> Note: The --base-in parameter is not enforced but will be needed if the input is ambiguous.
+> 注意： --base-in 参数不强制，但如果输入的内容不明确，则需要使用。
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast shl](./cast-shl.md)

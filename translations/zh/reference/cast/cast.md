@@ -1,284 +1,284 @@
 ## cast
 
-### NAME
+### 名称
 
-cast - Perform Ethereum RPC calls from the comfort of your command line.
+cast - 从你的命令行中舒适地执行 Ethereum RPC 调用。
 
-### SYNOPSIS
+### 简介
 
 `cast` [*options*] *command* [*args*]
 `cast` [*options*] `--version`
 `cast` [*options*] `--help`
 
-### DESCRIPTION
+### 描述
 
-This program is a set of tools to interact with Ethereum and perform conversions.
+这个程序是一套与以太坊互动并进行转换的工具。
 
-### COMMANDS
+### 命令
 
-#### General Commands
+#### General 命令
 
 [cast help](./cast-help.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Display help information about Cast.
+&nbsp;&nbsp;&nbsp;&nbsp;获取 Cast 命令的帮助。
 
 [cast completions](./cast-completions.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Generate shell autocompletions for Cast.
+&nbsp;&nbsp;&nbsp;&nbsp;生成 shell 自动补全脚本。
 
-#### Chain Commands
+#### Chain 命令
 
 [cast chain-id](./cast-chain-id.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the Ethereum chain ID.
+&nbsp;&nbsp;&nbsp;&nbsp;获取 Ethereum 的链 ID。
 
 [cast chain](./cast-chain.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the symbolic name of the current chain.
+&nbsp;&nbsp;&nbsp;&nbsp;获取当前链的名称。
 
 [cast client](./cast-client.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the current client version.
+&nbsp;&nbsp;&nbsp;&nbsp;获取当前客户端的版本。
 
-#### Transaction Commands
+#### Transaction 命令
 
 [cast publish](./cast-publish.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Publish a raw transaction to the network.
+&nbsp;&nbsp;&nbsp;&nbsp;向网络发布一个原始交易。
 
 [cast receipt](./cast-receipt.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the transaction receipt for a transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个交易的交易收据。
 
 [cast send](./cast-send.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Sign and publish a transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;签署并发布一项交易。
 
 [cast call](./cast-call.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Perform a call on an account without publishing a transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;在不发布交易的情况下对一个账户进行调用。
 
 [cast rpc](./cast-rpc.md)
-&nbsp;&nbsp;&nbsp;&nbsp; Perform a raw JSON-RPC request [aliases: rp]
+&nbsp;&nbsp;&nbsp;&nbsp;执行一个原始的 JSON-RPC 请求 [aliases: rp]
 
 [cast tx](./cast-tx.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get information about a transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;获得有关交易的信息。
 
 [cast run](./cast-run.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Runs a published transaction in a local environment and prints the trace.
+&nbsp;&nbsp;&nbsp;&nbsp;在本地环境中运行一个已发布的交易，并打印出跟踪。
 
 [cast estimate](./cast-estimate.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Estimate the gas cost of a transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;估算交易的 Gas 成本。
 
 [cast access-list](./cast-access-list.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Create an access list for a transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;为一个交易创建一个访问列表。
 
-#### Block Commands
+#### Block 命令
 
 [cast find-block](./cast-find-block.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the block number closest to the provided timestamp.
+&nbsp;&nbsp;&nbsp;&nbsp;获取与提供的时间戳最接近的区块编号。
 
 [cast gas-price](./cast-gas-price.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the current gas price.
+&nbsp;&nbsp;&nbsp;&nbsp;获取当前 Gas 价格。
 
 [cast block-number](./cast-block-number.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the latest block number.
+&nbsp;&nbsp;&nbsp;&nbsp;获取最新的区块号。
 
 [cast basefee](./cast-basefee.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the basefee of a block.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个区块的基础费用。
 
 [cast block](./cast-block.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get information about a block.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个区块的信息。
 
 [cast age](./cast-age.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the timestamp of a block.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个区块的时间戳。
 
-#### Account Commands
+#### Account 命令
 
 [cast balance](./cast-balance.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the balance of an account in wei.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个账户的余额，单位为 Wei。
 
 [cast storage](./cast-storage.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the raw value of a contract's storage slot.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个合约的存储槽的原始值。
 
 [cast proof](./cast-proof.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Generate a storage proof for a given storage slot.
+&nbsp;&nbsp;&nbsp;&nbsp;为一个给定的存储槽生成一个存储证明。
 
 [cast nonce](./cast-nonce.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the nonce for an account.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个账户的 nonce。
 
 [cast code](./cast-code.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the bytecode of a contract.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个合约的字节码。
 
-#### ENS Commands
+#### ENS 命令
 
 [cast lookup-address](./cast-lookup-address.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Perform an ENS reverse lookup.
+&nbsp;&nbsp;&nbsp;&nbsp;进行 ENS 反向查询。
 
 [cast resolve-name](./cast-resolve-name.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Perform an ENS lookup.
+&nbsp;&nbsp;&nbsp;&nbsp;进行 ENS 查询。
 
 [cast namehash](./cast-namehash.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Calculate the ENS namehash of a name.
+&nbsp;&nbsp;&nbsp;&nbsp;计算一个名字的 ENS namehash。
 
-#### Etherscan Commands
+#### Etherscan 命令
 
 [cast etherscan-source](./cast-etherscan-source.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the source code of a contract from Etherscan.
+&nbsp;&nbsp;&nbsp;&nbsp;从 Etherscan 获取合约的源代码。
 
-#### ABI Commands
+#### ABI 命令
 
 [cast abi-encode](./cast-abi-encode.md)
-&nbsp;&nbsp;&nbsp;&nbsp;ABI encode the given function arguments, excluding the selector.
+&nbsp;&nbsp;&nbsp;&nbsp;对给定的函数参数进行 ABI 编码，不包括选择器。
 
 [cast 4byte](./cast-4byte.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the function signatures for the given selector from <https://sig.eth.samczsun.com>.
+&nbsp;&nbsp;&nbsp;&nbsp;从 <https://sig.eth.samczsun.com> 中获取指定选择器的函数签名。
 
 [cast 4byte-decode](./cast-4byte-decode.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Decode ABI-encoded calldata using <https://sig.eth.samczsun.com>.
+&nbsp;&nbsp;&nbsp;&nbsp;使用 <https://sig.eth.samczsun.com> 对 ABI 编码的 calldata 进行解码。
 
 [cast 4byte-event](./cast-4byte-event.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the event signature for a given topic 0 from <https://sig.eth.samczsun.com>.
+&nbsp;&nbsp;&nbsp;&nbsp;从 <https://sig.eth.samczsun.com> 中获取 topic 0 的事件签名。
 
 [cast calldata](./cast-calldata.md)
-&nbsp;&nbsp;&nbsp;&nbsp;ABI-encode a function with arguments.
+&nbsp;&nbsp;&nbsp;&nbsp;ABI 编码一个带参数的函数。
 
 [cast pretty-calldata](./cast-pretty-calldata.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Pretty print calldata.
+&nbsp;&nbsp;&nbsp;&nbsp;漂亮地打印 Calldata。
 
 [cast --abi-decode](./cast--abi-decode.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Decode ABI-encoded input or output data.
+&nbsp;&nbsp;&nbsp;&nbsp;解码 ABI 编码的输入或输出数据。
 
 [cast --calldata-decode](./cast--calldata-decode.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Decode ABI-encoded input data.
+&nbsp;&nbsp;&nbsp;&nbsp;解码 ABI 编码的输入数据。
 
 [cast upload-signature](./cast-upload-signature.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Upload the given signatures to https://sig.eth.samczsun.com.
+&nbsp;&nbsp;&nbsp;&nbsp;将指定的签名上传到 https://sig.eth.samczsun.com.
 
-#### Conversion Commands
+#### Conversion 命令
 
 [cast --format-bytes32-string](./cast--format-bytes32-string.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Formats a string into bytes32 encoding.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个字符串转换成 bytes32 编码。
 
 [cast --from-bin](./cast--from-bin.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert binary data into hex data.
+&nbsp;&nbsp;&nbsp;&nbsp;将二进制数据转换为十六进制数据。
 
 [cast --from-fix](./cast--from-fix.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert a fixed point number into an integer.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个定点数转换成一个整数。
 
 [cast --from-utf8](./cast--from-utf8.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert UTF8 to hex.
+&nbsp;&nbsp;&nbsp;&nbsp;将 UTF8 文本转换为十六进制。
 
 [cast --parse-bytes32-string](./cast--parse-bytes32-string.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Parses a string from bytes32 encoding.
+&nbsp;&nbsp;&nbsp;&nbsp;从 bytes32 编码中解析出一个字符串。
 
 [cast --to-ascii](./cast--to-ascii.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert hex data to an ASCII string.
+&nbsp;&nbsp;&nbsp;&nbsp;将十六进制数据转换为ASCII字符串。
 
 [cast --to-base](./cast--to-base.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert a number of one base to another.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个进制底数转换为其它底数。
 
 [cast --to-bytes32](./cast--to-bytes32.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Right-pads hex data to 32 bytes.
+&nbsp;&nbsp;&nbsp;&nbsp;右移十六进制数据至 32 字节。
 
 [cast --to-fix](./cast--to-fix.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert an integer into a fixed point number.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个整数转换成一个定点数。
 
 [cast --to-hexdata](./cast--to-hexdata.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Normalize the input to lowercase, 0x-prefixed hex.
+&nbsp;&nbsp;&nbsp;&nbsp;将输入规范化为小写，0x- 前缀的十六进制。
 
 [cast --to-int256](./cast--to-int256.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert a number to a hex-encoded int256.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个数字转换为十六进制编码的 int256。
 
 [cast --to-uint256](./cast--to-uint256.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert a number to a hex-encoded uint256.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个数字转换成十六进制编码的 uint256。
 
 [cast --to-unit](./cast--to-unit.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert an ETH amount into another unit (ether, gwei, wei).
+&nbsp;&nbsp;&nbsp;&nbsp;将一个 eth 单位转换为另一个单位。 (ether, gwei, wei).
 
 [cast --to-wei](./cast--to-wei.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert an ETH amount to wei.
+&nbsp;&nbsp;&nbsp;&nbsp;将 eth 金额转换为 wei 单位。
 
 [cast shl](./cast-shl.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Perform a left shifting operation.
+&nbsp;&nbsp;&nbsp;&nbsp;进行左移操作。
 
 [cast shr](./cast-shr.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Perform a right shifting operation.
+&nbsp;&nbsp;&nbsp;&nbsp;进行右移操作。
 
 #### Utility Commands
 
 [cast sig](./cast-sig.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the selector for a function.
+&nbsp;&nbsp;&nbsp;&nbsp;获取一个函数的选择器。
 
 [cast keccak](./cast-keccak.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Hash arbitrary data using keccak-256.
+&nbsp;&nbsp;&nbsp;&nbsp;使用 keccak-256 对任意数据进行哈希。
 
 [cast compute-address](./cast-compute-address.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Compute the contract address from a given nonce and deployer address.
+&nbsp;&nbsp;&nbsp;&nbsp;从给定的 nonce 和部署者地址计算合约地址。
 
 [cast interface](./cast-interface.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Generate a Solidity interface from a given ABI.
+&nbsp;&nbsp;&nbsp;&nbsp;从一个给定的 ABI 生成一个 Solidity 接口。
 
 [cast index](./cast-index.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Compute the storage slot for an entry in a mapping.
+&nbsp;&nbsp;&nbsp;&nbsp;计算集合中条目的存储插槽位置。
 
 [cast --concat-hex](./cast--concat-hex.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Concatenate hex strings.
+&nbsp;&nbsp;&nbsp;&nbsp;串接十六进制字符串。
 
 [cast --max-int](./cast--max-int.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the maximum i256 value.
+&nbsp;&nbsp;&nbsp;&nbsp;获取 int256 最大值。
 
 [cast --min-int](./cast--min-int.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the minimum i256 value.
+&nbsp;&nbsp;&nbsp;&nbsp;获取 int256 最小值。
 
 [cast --max-uint](./cast--max-uint.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Get the maximum u256 value.
+&nbsp;&nbsp;&nbsp;&nbsp;获取 uint256 最大值。
 
 [cast --to-checksum-address](./cast--to-checksum-address.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert an address to a checksummed format (EIP-55).
+&nbsp;&nbsp;&nbsp;&nbsp;将一个地址转换为校验过的格式 (EIP-55).
 
 #### Wallet Commands
 
 [cast wallet](./cast-wallet.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Wallet management utilities.
+&nbsp;&nbsp;&nbsp;&nbsp;钱包管理实用工具。
 
 [cast wallet new](./cast-wallet-new.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Create a new random keypair.
+&nbsp;&nbsp;&nbsp;&nbsp;创建一个新的随机密钥对。
 
 [cast wallet address](./cast-wallet-address.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Convert a private key to an address.
+&nbsp;&nbsp;&nbsp;&nbsp;将一个私钥转换为一个地址。
 
 [cast wallet sign](./cast-wallet-sign.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Sign a message.
+&nbsp;&nbsp;&nbsp;&nbsp;签署消息。
 
 [cast wallet vanity](./cast-wallet-vanity.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Generate a vanity address.
+&nbsp;&nbsp;&nbsp;&nbsp;生成一个虚构的地址。
 
 [cast wallet verify](./cast-wallet-verify.md)
-&nbsp;&nbsp;&nbsp;&nbsp;Verify the signature of a message.
+&nbsp;&nbsp;&nbsp;&nbsp;验证一个信息的签名。
 
-### OPTIONS
+### 可选
 
-#### Special Options
+#### Special 选项
 
 `-V`
 `--version`
-&nbsp;&nbsp;&nbsp;&nbsp;Print version info and exit.
+&nbsp;&nbsp;&nbsp;&nbsp;打印版本信息并退出。
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Call a function on a contract:
+1. 在一个合约上调用一个函数。
 
     ```sh
     cast call 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 \
       "balanceOf(address)(uint256)" 0x...
     ```
 
-2. Decode raw calldata:
+2. 解码原始的 calldata。
 
     ```sh
     cast --calldata-decode "transfer(address,uint256)" \
       0xa9059cbb000000000000000000000000e78388b4ce79068e89bf8aa7f218ef6b9ab0e9d0000000000000000000000000000000000000000000000000008a8e4b1a3d8000
     ```
 
-3. Encode calldata:
+3. 编码 calldata:
     ```sh
     cast calldata "someFunc(address,uint256)" 0x... 1
     ```
 
 ### BUGS
 
-See <https://github.com/foundry-rs/foundry/issues> for issues.
+issues 请见 <https://github.com/foundry-rs/foundry/issues> 。

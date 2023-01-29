@@ -1,32 +1,32 @@
 ## cast find-block
 
-### NAME
+### 名称
 
-cast-find-block - Get the block number closest to the provided timestamp.
+cast-find-block - 获取与提供的时间戳最接近的区块编号。
 
-### SYNOPSIS
+### 简介
 
 ``cast find-block`` [*options*] *timestamp*
 
-### DESCRIPTION
+### 描述
 
-Get the block number closest to the provided timestamp.
+获取与提供的时间戳最接近的区块编号。
 
-### OPTIONS
+### 可选
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the block number closest to New Years 2021
+1. 获取最接近 2021 年新年的区块编号：
     ```sh
     cast find-block 1609459200
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

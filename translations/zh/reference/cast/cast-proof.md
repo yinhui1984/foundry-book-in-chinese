@@ -1,43 +1,43 @@
 ## cast proof
 
-### NAME
+### 名称
 
-cast-proof - Generate a storage proof for a given storage slot.
+cast-proof - 为一个给定的存储槽生成一个存储证明。
 
-### SYNOPSIS
+### 简介
 
 ``cast proof`` [*options*] *address* [*slots...*]
 
-### DESCRIPTION
+### 描述
 
-Generate a storage proof for a given storage slot.
+为一个给定的存储槽生成一个存储证明。
 
-The address (*address*) can be an ENS name or an address.
+地址（*address*）可以是 ENS 名称或地址。
 
-The displayed output is a JSON object with the following keys:
+显示的输出是一个 JSON 对象，其键值如下。
 
-- `accountProof`: Proof for the account itself
-- `address`: The address of the account
-- `balance`: The balance of the account
-- `codeHash`: A hash of the account's code
-- `nonce`: The nonce of the account
-- `storageHash`: A hash of the account's storage
-- `storageProof`: An array of storage proofs, one for each requested slot
-- `storageProof.key`: The slot
-- `storageProof.proof`: The proof for the slot
-- `storageProof.value`: The value of the slot
+- `accountProof`: 账户本身的证明
+- `address`: 账户的地址
+- `balance`: 账户的余额
+- `codeHash`: 账户代码的哈希值
+- `nonce`: 账户的 nonce
+- `storageHash`: 账户存储的哈希值
+- `storageProof`: 一个存储证明数组，每个请求的槽位都有一个存储证明
+- `storageProof.key`: 槽位
+- `storageProof.proof`: 槽位的证明
+- `storageProof.value`: 槽位的值
 
-### OPTIONS
+### 可选
 
-#### Query Options
+#### 查询选项
 
 `-B` *block*  
 `--block` *block*  
-&nbsp;&nbsp;&nbsp;&nbsp;The block height you want to query at.
+&nbsp;&nbsp;&nbsp;&nbsp;你想查询的区块高度。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Can be a block number, or any of the tags: `earliest`, `latest` or `pending`.
+&nbsp;&nbsp;&nbsp;&nbsp;可以是一个区块编号，或任何一个标签： `earliest`, `latest` 或者 `pending`.
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
@@ -45,13 +45,13 @@ The displayed output is a JSON object with the following keys:
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the proof for storage slot 0 on the WETH contract:
+1. 获取 WETH 合约上 0 号存储槽的证明。
     ```sh
     cast proof 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 0
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast storage](./cast-storage.md)

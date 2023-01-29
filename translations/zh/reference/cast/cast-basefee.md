@@ -1,45 +1,45 @@
 ## cast basefee
 
-### NAME
+### 名称
 
-cast-basefee - Get the basefee of a block.
+cast-basefee - 获取一个区块的基础费用。
 
-### SYNOPSIS
+### 简介
 
 ``cast basefee`` [*options*] *block*
 
-### DESCRIPTION
+### 描述
 
-Get the basefee of a block.
+获取一个区块的基础费用。
 
-### OPTIONS
+### 可选
 
-#### Query Options
+#### 查询选项
 
 `-B` *block*  
 `--block` *block*  
-&nbsp;&nbsp;&nbsp;&nbsp;The block height you want to query at.
+&nbsp;&nbsp;&nbsp;&nbsp;你想查询的区块高度。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Can be a block number, or any of the tags: `earliest`, `latest` or `pending`.
+&nbsp;&nbsp;&nbsp;&nbsp;可以是一个区块编号，或任何一个标签:  `earliest`, `latest` 或者 `pending`。
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the basefee of the latest block:
+1. 获取最新区块的基础费用：
     ```sh
     cast basefee latest
     ```
 
-2. Get the basefee of the genesis block:
+2. 获取创世区块的基础费用：
     ```sh
     cast basefee 1
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast block](./cast-block.md), [cast age](./cast-age.md)

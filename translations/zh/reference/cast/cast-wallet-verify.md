@@ -1,27 +1,27 @@
 ## cast wallet verify
 
-### NAME
+### 名称
 
-cast-wallet-verify - Verify the signature of a message.
+cast-wallet-verify -  验证一个信息的签名。
 
-### SYNOPSIS
+### 简介
 
 ``cast wallet verify`` [*options*] `--address` *address* *message* *signature*
 
-### DESCRIPTION
+### 描述
 
-Verify the signature of a message.
+ 验证一个信息的签名。
 
-### OPTIONS
+### 可选
 
-#### Signature Options
+#### Signature 选项
 
 `-a` *address*  
 `--address` *address*  
-&nbsp;&nbsp;&nbsp;&nbsp;The address of the message signer.
+&nbsp;&nbsp;&nbsp;&nbsp;信息签署者的地址。
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast wallet](./cast-wallet.md)

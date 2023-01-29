@@ -1,28 +1,28 @@
 ## cast namehash
 
-### NAME
+### 名称
 
-cast-namehash - Calculate the ENS namehash of a name.
+cast-namehash - 计算一个名字的 ENS namehash。
 
-### SYNOPSIS
+### 简介
 
 ``cast namehash`` [*options*] *name*
 
-### DESCRIPTION
+### 描述
 
-Calculate the ENS namehash of a name.
+计算一个名字的 ENS namehash。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Calculate the namehash of an ENS name.
+1. 计算一个名字的 ENS namehash。
     ```sh
     cast namehash vitalik.eth
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast lookup-address](./cast-lookup-address.md), [cast resolve-name](./cast-resolve-name.md)

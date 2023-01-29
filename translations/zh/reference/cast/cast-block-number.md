@@ -1,32 +1,32 @@
 ## cast block-number
 
-### NAME
+### 名称
 
-cast-block-number - Get the latest block number.
+cast-block-number - 获取最新的区块号。
 
-### SYNOPSIS
+### 简介
 
 ``cast block-number`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Get the latest block number.
+获取最新的区块号。
 
-### OPTIONS
+### 可选
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the latest block number:
+1. 获取最新的区块号：
     ```sh
     cast block-number
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast block](./cast-block.md)

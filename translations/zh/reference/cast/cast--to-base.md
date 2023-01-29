@@ -1,23 +1,23 @@
 ## cast --to-base
 
-### NAME
+### 名称
 
-cast---to-base - Convert a number of one base to another.
+cast---to-base - 将一个进制底数转换为其它底数。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-base`` [*options*] *value* *base*
 
-### DESCRIPTION
+### 描述
 
-Convert a number of one base to another.
+将一个进制底数转换为其它底数。
 
-### OPTIONS
+### 可选
 
-#### Base Options
+#### Base 选项
 
 `--base-in` *base*
-&nbsp;&nbsp;&nbsp;&nbsp;The base of the input number. Available options:
+&nbsp;&nbsp;&nbsp;&nbsp;输入数字的进制底数。可用的选项：
 
 &nbsp;&nbsp;&nbsp;&nbsp;10, d, dec, decimal
 
@@ -25,20 +25,20 @@ Convert a number of one base to another.
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Convert the decimal number 64 to hexadecimal
+1. 将十进制数字 64 转换为十六进制
     ```sh
     cast --to-base 64 hex
     ```
 
-2. Convert the hexadecimal number 100 to binary
+2. 将十六进制数字 100 转换为二进制
     ```sh
     cast --to-base 0x100 2
     ```
 
-> Note: The --base-in parameter is not enforced but will be needed if the input is ambiguous.
+> 注意： --base-in 参数不强制需要，但如果输入的内容不明确，则需要使用。
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

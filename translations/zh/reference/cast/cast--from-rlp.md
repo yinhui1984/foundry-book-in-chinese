@@ -1,26 +1,26 @@
 ## cast --from-rlp
 
-### NAME
+### 名称
 
-cast---from-rlp - Decodes RLP-encoded data.
+cast---from-rlp - 对 RLP 编码的数据进行解码。
 
-### SYNOPSIS
+### 简介
 
 ``cast --from-rlp`` *data*
 
-### DESCRIPTION
+### 描述
 
-Decodes RLP-encoded data.
+对 RLP 编码的数据进行解码。
 
-The *data* is a hexadecimal string with optional 0x prefix.
+*data* 是一个十六进制的字符串，前缀为可选的 0x。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Decode RLP data:
+1. 解码 RLP 数据:
     ```sh
     cast --from-rlp 0xc481f181f2
 

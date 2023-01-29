@@ -1,21 +1,21 @@
 ## cast --to-int256
 
-### NAME
+### 名称
 
-cast---to-int256 - Convert a number to a hex-encoded int256.
+cast---to-int256 - 将一个数字转换为十六进制编码的 int256。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-int256`` [*options*] *value*
 
-### DESCRIPTION
+### 描述
 
-Convert a number to a hex-encoded int256.
+将一个数字转换为十六进制编码的 int256。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)

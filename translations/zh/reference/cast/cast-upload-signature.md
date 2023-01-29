@@ -1,24 +1,24 @@
 ## cast upload-signature
 
-### NAME
+### 名称
 
 cast-upload-signature
 
-### SYNOPSIS
+### 简介
 
 `cast upload-signature` [*signatures...*]
 
-### DESCRIPTION
+### 描述
 
-Upload the given signatures to [https://sig.eth.samczsun.com](https://sig.eth.samczsun.com).
+将指定的签名上传到 [https://sig.eth.samczsun.com](https://sig.eth.samczsun.com)。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Upload signatures
+1. 上传签名
     ```sh
     cast upload-signature 'function approve(address,uint256)' \
    'transfer(uint256)' 'event Transfer(uint256,address)'

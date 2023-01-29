@@ -1,32 +1,32 @@
 ## cast gas-price
 
-### NAME
+### 名称
 
-cast-gas-price - Get the current gas price.
+cast-gas-price - 获取当前 Gas 价格。
 
-### SYNOPSIS
+### 简介
 
 ``cast gas-price`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Get the current gas price.
+获取当前 Gas 价格。
 
-### OPTIONS
+### 可选
 
-#### RPC Options
+#### RPC 选项
 
 {{#include ../common/rpc-url-option.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the current gas price:
+1. 获取当前 Gas 价格:
     ```sh
     cast gas-price
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast basefee](./cast-basefee.md)

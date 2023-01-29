@@ -1,20 +1,20 @@
 ## cast wallet address
 
-### NAME
+### 名称
 
-cast-wallet-address - Convert a private key to an address.
+cast-wallet-address - 将一个私钥转换为一个地址。
 
-### SYNOPSIS
+### 简介
 
 ``cast wallet address`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Convert a private key to an address.
+将一个私钥转换为一个地址。
 
-### OPTIONS
+### 可选
 
-#### Keystore Options
+#### Keystore 选项
 
 {{#include ../common/wallet-options-raw.md}}
 
@@ -24,13 +24,13 @@ Convert a private key to an address.
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Get the address of the keypair in `keystore.json`:
+1. 获取 `keystore.json` 中密钥对的地址：
     ```sh
     cast wallet address --keystore keystore.json
     ```
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md), [cast wallet](./cast-wallet.md)

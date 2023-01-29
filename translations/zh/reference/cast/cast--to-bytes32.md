@@ -1,23 +1,23 @@
 ## cast --to-bytes32
 
-### NAME
+### 名称
 
-cast---to-bytes32 - Right-pads hex data to 32 bytes.
+cast---to-bytes32 - 右移十六进制数据至 32 字节。
 
-### SYNOPSIS
+### 简介
 
 ``cast --to-bytes32`` [*options*] *bytes*
 
-### DESCRIPTION
+### 描述
 
-Right-pads hex data to 32 bytes.
+右移十六进制数据至 32 字节。
 
-Note that this command is for padding a byte string only. If you're looking to format a [Solidity string literal](https://docs.soliditylang.org/en/v0.8.16/types.html#string-literals-and-types) into `bytes32`, use [--format-bytes32-string](./cast--format-bytes32-string.md) instead.
+注意，这个命令只用于填充一个字节字符串。如果你想把 [Solidity string literal](https://docs.soliditylang.org/en/v0.8.16/types.html#string-literals-and-types) 格式化为`bytes32`，请使用 [--format-bytes32-string](./cast--format-bytes32-string.md) 来代替。
 
-### OPTIONS
+### 可选
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 请参阅
 
 [cast](./cast.md)
