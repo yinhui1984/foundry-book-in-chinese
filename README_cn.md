@@ -22,15 +22,7 @@ cargo install mdbook-i18n
 ```
 
 
-使用命令启动文档:
-
-```sh
-mdbook serve
-```
-
-启动后，浏览器打开 `http://localhost:3000/i18n/zh/` 看到对应的中文文档。
-
-构建文档使用：`mdbook build`
+构建文档使用：`mdbook build`， 然后在浏览器打开 `book/i18n/zh/` 下的文件即可预览。
 
 中文翻译在[feature-zh](https://github.com/lbc-team/foundry-book-in-chinese/tree/feature-zh)， 翻译内容在 `translations/zh` 目录下。
 参与者可以查看未翻译的部分，翻译提交 PR。 
