@@ -1,8 +1,8 @@
 ## Solidity compiler
 
-Configuration related to the behavior of the Solidity compiler.
+与 Solidity 编译器的行为有关的配置。
 
-**Sections**
+**栏目**
 
 - [General](#general)
 - [Optimizer](#optimizer)
@@ -10,29 +10,29 @@ Configuration related to the behavior of the Solidity compiler.
 
 ### General
 
-Configuration related to the behavior of the Solidity compiler.
+与 Solidity 编译器的行为有关的配置。
 
 ##### `remappings`
 
-- Type: array of strings (remappings)
-- Default: none
-- Environment: `FOUNDRY_REMAPPINGS` or `DAPP_REMAPPINGS`
+- 类型: 字符串数组 (remappings)
+- 默认值: none
+- 环境变量: `FOUNDRY_REMAPPINGS` 或 `DAPP_REMAPPINGS`
 
-An array of remappings in the following format: `<name>=<target>`.
+一个格式如下的重映射数组: `<name>=<target>`.
 
-A remapping _remaps_ Solidity imports to different directories. For example, the following remapping
+一个重映射 _重映射_ 让 Solidity 从不同的目录导入。例如，下面的重映射
 
 ```ignore
 @openzeppelin/=node_modules/@openzeppelin/openzeppelin-contracts/
 ```
 
-with an import like
+导入方式如
 
 ```solidity
 import "@openzeppelin/contracts/utils/Context.sol";
 ```
 
-becomes
+变成了
 
 ```solidity
 import "node_modules/@openzeppelin/openzeppelin-contracts/contracts/utils/Context.sol";
@@ -40,126 +40,126 @@ import "node_modules/@openzeppelin/openzeppelin-contracts/contracts/utils/Contex
 
 ##### `auto_detect_remappings`
 
-- Type: boolean
-- Default: true
-- Environment: `FOUNDRY_AUTO_DETECT_REMAPPINGS` or `DAPP_AUTO_DETECT_REMAPPINGS`
+- 类型: boolean
+- 默认值: true
+- 环境变量: `FOUNDRY_AUTO_DETECT_REMAPPINGS` 或 `DAPP_AUTO_DETECT_REMAPPINGS`
 
-If enabled, Foundry will automatically try auto-detect remappings by scanning the `libs` folder(s).
+如果启用，Foundry 将自动尝试通过扫描 `libs` 文件夹来自动检测重映射。
 
-If set to `false`, only the remappings in `foundry.toml` and `remappings.txt` are used.
+如果设置为 `false`，则只使用 `foundry.toml` 和 `remappings.txt` 中的重映射。
 
 ##### `allow_paths`
 
-- Type: array of strings (paths)
-- Default: none
-- Environment: `FOUNDRY_ALLOW_PATHS` or `DAPP_ALLOW_PATHS`
+- 类型: array of strings (paths)
+- 默认值: none
+- 环境变量: `FOUNDRY_ALLOW_PATHS` 或 `DAPP_ALLOW_PATHS`
 
-Tells solc to allow reading source files from additional directories. This is mainly relevant for complex workspaces managed by `pnmp` or similar.
+告诉 solc 允许从其他目录读取源文件。这主要适用于由 `pnmp` 或类似文件管理的复杂工作区。
 
-See also [solc allowed-paths](https://docs.soliditylang.org/en/latest/path-resolution.html#allowed-paths)
+另请参阅 [solc allowed-paths](https://docs.soliditylang.org/en/latest/path-resolution.html#allowed-paths)
 
 ##### `include_paths`
 
-- Type: array of strings (paths)
-- Default: none
-- Environment: `FOUNDRY_INCLUDE_PATHS` or `DAPP_INCLUDE_PATHS`
+- 类型: array of strings (paths)
+- 默认值: none
+- 环境变量: `FOUNDRY_INCLUDE_PATHS` 或 `DAPP_INCLUDE_PATHS`
 
-Make an additional source directory available to the  default import callback. Use this option if you want to  import contracts whose location is not fixed in relation  to your main source tree, e.g. third-party libraries  installed using a package manager. Can be used multiple  times. Can only be used if base path has a non-empty  value.
+为默认导入回调提供一个额外的源代码目录。如果你想导入与你的主源码树相比位置不固定的合约，例如，使用软件包管理器安装的第三方库，请使用此选项。可以多次使用。只有当基本路径有一个非空值时才能使用。
 
-See also [solc path resolution](https://docs.soliditylang.org/en/latest/path-resolution.html)
+另请参阅 [solc path resolution](https://docs.soliditylang.org/en/latest/path-resolution.html)
 
 ##### `libraries`
 
-- Type: array of strings (libraries)
-- Default: none
-- Environment: `FOUNDRY_LIBRARIES` or `DAPP_LIBRARIES`
+- 类型: array of strings (libraries)
+- 默认值: none
+- 环境变量: `FOUNDRY_LIBRARIES` 或 `DAPP_LIBRARIES`
 
-An array of libraries to link against in the following format: `<file>:<lib>:<address>`, for example: `src/MyLibrary.sol:MyLibrary:0xfD88CeE74f7D78697775aBDAE53f9Da1559728E4`.
+一个要链接的库的数组，格式如下。`<file>:<lib>:<address>`，例如：`src/MyLibrary.sol:MyLibrary:0xfD88CeE74f7D78697775aBDAE53f9Da1559728E4`。
 
 ##### `solc_version`
 
-- Type: string (semver)
-- Default: none
-- Environment: `FOUNDRY_SOLC_VERSION` or `DAPP_SOLC_VERSION`
+- 类型: string (semver)
+- 默认值: none
+- 环境变量: `FOUNDRY_SOLC_VERSION` 或 `DAPP_SOLC_VERSION`
 
-If specified, overrides the auto-detection system (more below) and uses a single Solidity compiler version for the project.
+如果指定，则覆盖自动检测系统（更多内容见下文）并为项目使用单一的 Solidity 编译器版本。
 
-Only strict versions are supported (i.e. `0.8.11` is valid, but `^0.8.0` is not).
+只支持严格的版本（即 `0.8.11` 有效，但 `^0.8.0` 无效）。
 
 ##### `auto_detect_solc`
 
-- Type: boolean
-- Default: true
-- Environment: `FOUNDRY_AUTO_DETECT_SOLC` or `DAPP_AUTO_DETECT_SOLC`
+- 类型: boolean
+- 默认值: true
+- 环境变量: `FOUNDRY_AUTO_DETECT_SOLC` or `DAPP_AUTO_DETECT_SOLC`
 
-If enabled, Foundry will automatically try to resolve appropriate Solidity compiler versions to compile your project.
+如果启用，Foundry 将自动尝试解决适当的 Solidity 编译器版本来编译您的项目。
 
-This key is ignored if `solc_version` is set.
+如果设置了 `solc_version`，这个键就会被忽略
 
 ##### `offline`
 
-- Type: boolean
-- Default: false
-- Environment: `FOUNDRY_OFFLINE` or `DAPP_OFFLINE`
+- 类型: boolean
+- 默认值: false
+- 环境变量: `FOUNDRY_OFFLINE` or `DAPP_OFFLINE`
 
-If enabled, Foundry will not attempt to download any missing solc versions.
+如果启用，Foundry 将不会尝试下载任何丢失的 solc 版本。
 
-If both `offline` and `auto-detect-solc` are set to `true`, the required version(s) of solc will be auto detected but any missing versions will _not_ be installed.
+如果 `offline` 和 `auto-detect-solc` 都被设置为 `true`，所需的 solc 版本将被自动检测，但任何缺失的版本将 _不会_ 被安装。
 
 ##### `ignored_error_codes`
 
-- Type: array of integers
-- Default: none for source, SPDX license identifiers and contract size for tests
-- Environment: `FOUNDRY_IGNORED_ERROR_CODES` or `DAPP_IGNORED_ERROR_CODES`
+- 类型: array of integers
+- 默认值: none for source, SPDX license identifiers and contract size for tests
+- 环境变量: `FOUNDRY_IGNORED_ERROR_CODES` or `DAPP_IGNORED_ERROR_CODES`
 
-An array of Solidity compiler error codes to ignore during build, such as warnings.
+Solidity 编译器错误代码的数组，以便在构建期间忽略，例如警告。
 
 ##### `evm_version`
 
-- Type: string
-- Default: london
-- Environment: `FOUNDRY_EVM_VERSION` or `DAPP_EVM_VERSION`
+- 类型: string
+- 默认值: london
+- 环境变量: `FOUNDRY_EVM_VERSION` or `DAPP_EVM_VERSION`
 
-The EVM version to use during tests. The value **must** be an EVM hardfork name, such as `london`, `byzantium`, etc.
+测试中使用的 EVM 版本。该值必须是 EVM 的硬分叉名称，如 `london`，`byzantium` 等等。
 
 ##### `revert_strings`
 
-- Type: string
-- Default: default
-- Environment: `FOUNDRY_REVERT_STRINGS` or `DAPP_REVERT_STRINGS`
+- 类型: string
+- 默认值: default
+- 环境变量: `FOUNDRY_REVERT_STRINGS` or `DAPP_REVERT_STRINGS`
 
-Possible values are:
+有效值为：
 
-- `default` does not inject compiler-generated revert strings and keeps user-supplied ones.
-- `strip` removes all revert strings (if possible, i.e. if literals are used) keeping side-effects.
-- `debug` injects strings for compiler-generated internal reverts, implemented for ABI encoders V1 and V2 for now.
-- `verboseDebug` even appends further information to user-supplied revert strings (not yet implemented).
+- `default` 不注入编译器生成的 revert 字符串，而是保留用户提供的 revert 字符串。
+- `strip` 删除所有的 revert 字符串（如果可能的话，即如果使用了字面量），以保持副作用。
+- `debug` 为编译器生成的内部 revert 注入字符串，目前为ABI编码器 V1 和 V2 实现。
+- `verboseDebug` 甚至为用户提供的 revert 字符串添加进一步的信息（尚未实现）。
 
 ##### `extra_output_files`
 
-- Type: array of strings
-- Default: none
-- Environment: N/A
+- 类型: array of strings
+- 默认值: none
+- 环境变量: N/A
 
-Extra output from the Solidity compiler that should be written to files in the artifacts directory.
+来自 Solidity 编译器的额外输出，应该被写入 artifacts 目录中的文件。
 
-Valid values are:
+有效值为：
 
-- `metadata`: Written as a `metadata.json` file in the artifacts directory
-- `ir`: Written as a `.ir` file in the artifacts directory
-- `irOptimized`: Written as a `.iropt` file in the artifacts directory
-- `ewasm`: Written as a `.ewasm` file in the artifacts directory
-- `evm.assembly`: Written as a `.asm` file in the artifacts directory
+- `metadata`: 在 artifacts 目录中写入 `metadata.json` 文件
+- `ir`: 在 artifacts 目录中写入 `.ir` 文件
+- `irOptimized`: 在 artifacts 目录中写入 `.iropt` 文件
+- `ewasm`: 在 artifacts 目录中写入 `.ewasm` 文件
+- `evm.assembly`: 在 artifacts 目录中写入 `.asm` 文件
 
 ##### `extra_output`
 
-- Type: array of strings
-- Default: see below
-- Environment: N/A
+- 类型: array of strings
+- 默认值: see below
+- 环境变量: N/A
 
-Extra output to include in the contract's artifact.
+在合约 artifact 目录中的额外输出
 
-The following values are always set, since they're required by Forge:
+以下数值总是被设置，因为它们是Forge所需要的：
 
 ```toml
 extra_output = [
@@ -170,17 +170,17 @@ extra_output = [
 ]
 ```
 
-For a list of valid values, see the [Solidity docs][output-desc].
+关于有效值的列表，请参见 [Solidity docs][output-desc]。
 
 ##### `bytecode_hash`
 
-- Type: string
-- Default: ipfs
-- Environment: `FOUNDRY_BYTECODE_HASH` or `DAPP_BYTECODE_HASH`
+- 类型: string
+- 默认值: ipfs
+- 环境变量: `FOUNDRY_BYTECODE_HASH` or `DAPP_BYTECODE_HASH`
 
-Determines the hash method for the metadata hash that is appended to the bytecode.
+确定附加到字节码上的元数据哈希值的哈希方法。
 
-Valid values are:
+有效值为：
 
 - ipfs (default)
 - bzzr1
@@ -188,43 +188,43 @@ Valid values are:
 
 ##### `sparse_mode`
 
-- Type: boolean
-- Default: false
-- Environment: `FOUNDRY_SPARSE_MODE` or `DAPP_SPARSE_MODE`
+- 类型: boolean
+- 默认值: false
+- 环境变量: `FOUNDRY_SPARSE_MODE` or `DAPP_SPARSE_MODE`
 
-Enables [sparse mode](./forge/forge-build.md#sparse-mode-experimental) for builds.
+启用 [sparse mode](./forge/forge-build.md#sparse-mode-experimental) 进行构建。
 
 ### Optimizer
 
-Configuration related to the Solidity optimizer.
+与 Solidity 优化器有关的配置。
 
 ##### `optimizer`
 
-- Type: boolean
-- Default: true
-- Environment: `FOUNDRY_OPTIMIZER` or `DAPP_OPTIMIZER`
+- 类型: boolean
+- 默认值: true
+- 环境变量: `FOUNDRY_OPTIMIZER` 或 `DAPP_OPTIMIZER`
 
-Whether or not to enable the Solidity optimizer.
+是否要启用 Solidity 优化器。
 
 ##### `optimizer_runs`
 
-- Type: integer
-- Default: 200
-- Environment: `FOUNDRY_OPTIMIZER_RUNS` or `DAPP_OPTIMIZER_RUNS`
+- 类型: integer
+- 默认值: 200
+- 环境变量: `FOUNDRY_OPTIMIZER_RUNS` 或 `DAPP_OPTIMIZER_RUNS`
 
-The amount of optimizer runs to perform.
+要执行的优化器 runs 的数量。
 
 ##### `via_ir`
 
-- Type: boolean
-- Default: false
-- Environment: `FOUNDRY_VIA_IR` or `DAPP_VIA_IR`
+- 类型: boolean
+- 默认值: false
+- 环境变量: `FOUNDRY_VIA_IR` 或 `DAPP_VIA_IR`
 
-If set to true, changes compilation pipeline to go through the new IR optimizer.
+如果设置为 `true`，通过新的 IR 优化器改变编译管道.
 
 ##### `[optimizer_details]`
 
-The optimizer details section is used to tweak how the Solidity optimizer behaves. There are several configurable values in this section (each of them are booleans):
+优化器细节部分用于调整 Solidity 优化器的行为方式。在此部分有几个可配置的值（每个都是布尔值）。
 
 - `peephole`
 - `inliner`
@@ -235,32 +235,32 @@ The optimizer details section is used to tweak how the Solidity optimizer behave
 - `constant_optimizer`
 - `yul`
 
-Refer to the Solidity [compiler input description](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description) for the default values.
+关于默认值，请参考 Solidity [编译器输入说明](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description)。
 
 ##### `[optimizer_details.yul_details]`
 
-The Yul details subsection of the optimizer details section is used to tweak how the new IR optimizer behaves. There are two configuration values:
+优化器细节部分的 Yul 细节小节是用来调整新的 IR 优化器的行为方式的。有两个配置值：
 
-- `stack_allocation`: Tries to improve the allocation of stack slots by freeing them up earlier.
-- `optimizer_steps`: Selects the optimizer steps to be applied.
+- `stack_allocation`: 试图通过提前释放堆栈槽来改善堆栈槽的分配。
+- `optimizer_steps`: 选择要应用的优化器步骤。
 
-Refer to the Solidity [compiler input description](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description) for the default values.
+关于默认值，请参考 Solidity [编译器输入说明](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description)。
 
-> ℹ️ **Note**  
-> If you encounter compiler errors when using `via_ir`, explicitly enable the legacy `optimizer` and leave `optimizer_steps` as an empty string
+> ℹ️ **注意**  
+> 如果你在使用 `via_ir` 时遇到编译器错误，请明确启用传统的 `optimizer`，并将`optimizer_steps` 设为空字符串。
 
 ### Model checker
 
-The Solidity model checker is a built-in opt-in module that is available in Solidity compilers for OSX and Linux. Learn more about the model checker in the [Solidity compiler documentation](https://docs.soliditylang.org/en/latest/smtchecker.html#tutorial)
+Solidity 模型检查器是一个内置的选择模块，可用于 OSX 和 Linux 的 Solidity 编译器中。在 [Solidity 编译器文档](https://docs.soliditylang.org/en/latest/smtchecker.html#tutorial) 中了解更多关于模型检查器的信息。
 
-> ℹ️ **Note**  
-> The model checker requires `z3` version 4.8.8 or 4.8.14 on Linux.
+> ℹ️ **注意**  
+> 模型检查器需要在 Linux 上的 `z3` 版本为 4.8.8 或 4.8.14。
 
-The model checker settings are configured in the `[model_checker]` section of the configuration.
+模型检查器的设置是在配置的 `[model_checker]` 部分配置的
 
-The model checker will run when `forge build` is invoked, and any findings will show up as warnings.
+当调用 `forge build` 时，模型检查器将运行，任何发现将显示为警告。
 
-These are the recommended settings when using the model checker:
+以下是使用模型检查器时的推荐设置：
 
 ```toml
 [profile.default.model_checker]
@@ -270,29 +270,29 @@ timeout = 10000
 targets = ['assert']
 ```
 
-Setting which contract should be verified is extremely important, otherwise all available contracts will be verified which may take a long time.
+设置哪个合约需要被验证是非常重要的，否则所有可用的合约都会被验证，这可能需要很长的时间。
 
-The recommended engine is `chc`, but `bmc` and `all` (which runs both) are also accepted.
+推荐的引擎是 `chc`，但 `bmc` 和 `all` (同时运行) 也可以接受。
 
-It is also important to set a proper timeout (given in milliseconds), since the default time given to the underlying solver may not be enough.
+设置适当的超时（以毫秒为单位）也很重要，因为给底层编码器的默认时间可能是不够的。
 
-If no verification targets are given, only assertions will be checked.
+如果没有给出验证目标，将只检查断言。
 
 ##### `[model_checker]`
 
-The following keys are available in the model checker section.
+在模型检查器部分有以下键。
 
 ###### `model_checker.contracts`
 
-- Type: table
-- Default: all
-- Environment: N/A
+- 类型: table
+- 默认值: all
+- 环境变量: N/A
 
-Specifies what contracts the model checker will analyze.
+指定模型检查器分析哪些合约。
 
-The key of the table is the path to a source file, and the value is an array of contract names to check.
+table 的键是源文件的路径，而值是要检查的合约名称的数组。
 
-For example:
+例如：
 
 ```toml
 [profile.default.model_checker]
@@ -301,39 +301,39 @@ contracts = { "src/MyContracts.sol" = ["ContractA", "ContractB"] }
 
 ###### `model_checker.engine`
 
-- Type: string (see below)
-- Default: all
-- Environment: N/A
+- 类型: string (see below)
+- 默认值: all
+- 环境变量: N/A
 
-Specifies the model checker engine to run. Valid values are:
+指定要运行的模型检查器引擎。有效值是：
 
-- `chc`: The constrained horn clauses engine
-- `bmc`: The bounded model checker engine
-- `all`: Runs both engines
+- `chc`: 受约束 horn clauses 引擎
+- `bmc`: 有界限的模型检查器引擎
+- `all`: 同时运行两种引擎
 
-Refer to the [Solidity documentation](https://docs.soliditylang.org/en/latest/smtchecker.html#model-checking-engines) for more information on the engines.
+请参阅 [Solidity 文档](https://docs.soliditylang.org/en/latest/smtchecker.html#model-checking-engines) 了解更多关于引擎信息
 
 ###### `model_checker.timeout`
 
-- Type: number (milliseconds)
-- Default: N/A
-- Environment: N/A
+- 类型: number (milliseconds)
+- 默认值: N/A
+- 环境变量: N/A
 
-Sets the timeout for the underlying model checker engines (in milliseconds).
+设置底层模型检查器引擎的超时（以毫秒为单位）。
 
 ###### `model_checker.targets`
 
-- Type: array of strings
-- Default: assert
-- Environment: N/A
+- 类型: array of strings
+- 默认值: assert
+- 环境变量: N/A
 
-Sets the model checker targets. Valid values are:
+设置模型检查器的目标。有效值是：
 
-- `assert`: Assertions
-- `underflow`: Arithmetic underflow
-- `overflow`: Arithmetic overflow
-- `divByZero`: Division by zero
-- `constantCondition`: Trivial conditions and unreachable code
-- `popEmptyArray`: Popping an empty array
-- `outOfBounds`: Out of bounds array/fixed bytes index access
-- `default`: All of the above (note: not the default for Forge)
+- `assert`: 断言
+- `underflow`: 算术下溢
+- `overflow`: 算术溢出
+- `divByZero`: 除以零
+- `constantCondition`: 琐碎的条件和无法到达的代码
+- `popEmptyArray`: 弹出一个空数组
+- `outOfBounds`: 越界的数组/固定字节索引访问
+- `default`: 以上所有（注意：不是Forge的默认值）

@@ -1,16 +1,16 @@
 ## Etherscan
 
-Configuration related to Etherscan, such as API keys. This configuration is used in various places by Forge.
+与 Etherscan 相关的配置，如 API 密钥。 这个配置被 Forge 用在各个地方。
 
-The `[etherscan]` section is a mapping of keys to Etherscan configuration tables. The Etherscan configuration tables hold the following keys:
+`[etherscan]` 部分是密钥与 Etherscan 配置表的映射。Etherscan配置表持有以下密钥：
 
-- `key` (string) (**required**): The Etherscan API key for the given network. The value of this property can also point to an environment variable.
-- `chain`: The chain name or ID of the chain this Etherscan configuration is for.
-- `url`: The Etherscan API URL.
+- `key` (字符串) (**必须**): 给定网络的 Etherscan API 密钥。这个属性的值也可以指向一个环境变量。
+- `chain`: 该 Etherscan 配置的链的名称或 ID。
+- `url`: Etherscan的 API URL。
 
-If the key of the configuration is a chain name, then `chain` is not required, otherwise it is. `url` can be used to explicitly set the Etherscan API URL for chains not natively supported by name.
+如果配置的 key 是一个链的名称，那么就不需要 `chain`，否则就需要。`url` 可以用来为不支持名称的链明确设置 Etherscan API URL。
 
-Using TOML inline table syntax, all of these are valid:
+使用 TOML 内联表语法，所有这些都是有效的:
 
 ```toml
 [etherscan]

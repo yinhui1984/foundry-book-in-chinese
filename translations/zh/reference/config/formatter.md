@@ -1,71 +1,71 @@
 ## Formatter
 
-Configuration related to the behavior of the Forge formatter. Each of these keys live under the `[fmt]` section.
+与 Forge 格式化器的行为有关的配置。关键都在 `[fmt]` 部分。
 
 ##### `line_length`
 
-- Type: number
-- Default: 120
-- Environment: `FOUNDRY_FMT_LINE_LENGTH` or `DAPP_FMT_LINE_LENGTH`
+- 类型: number
+- 默认值: 120
+- 环境变量: `FOUNDRY_FMT_LINE_LENGTH` or `DAPP_FMT_LINE_LENGTH`
 
-Specifies the maximum line length where the formatter will try to wrap the line.
+指定格式化程序尝试换行的最大行长。
 
 ##### `tab_width`
 
-- Type: number
-- Default: 4
-- Environment: `FOUNDRY_FMT_TAB_WIDTH` or `DAPP_FMT_TAB_WIDTH`
+- 类型: number
+- 默认值: 4
+- 环境变量: `FOUNDRY_FMT_TAB_WIDTH` or `DAPP_FMT_TAB_WIDTH`
 
-Number of spaces per indentation level.
+每个缩进级别的空格数。
 
 ##### `bracket_spacing`
 
-- Type: bool
-- Default: false
-- Environment: `FOUNDRY_FMT_BRACKET_SPACING` or `DAPP_FMT_BRACKET_SPACING`
+- 类型: bool
+- 默认值: false
+- 环境变量: `FOUNDRY_FMT_BRACKET_SPACING` or `DAPP_FMT_BRACKET_SPACING`
 
-Whether or not to print spaces between brackets.
+是否在括号之间打印空格。
 
 ##### `int_types`
 
-- Type: string
-- Default: long
-- Environment: `FOUNDRY_FMT_INT_TYPES` or `DAPP_FMT_INT_TYPES`
+- 类型: string
+- 默认值: long
+- 环境变量: `FOUNDRY_FMT_INT_TYPES` or `DAPP_FMT_INT_TYPES`
 
-Style of uint/int256 types. Valid values are:
+uint/int256 类型的风格。 有效值为:
 
-- `long` (default): Use the explicit `uint256` or `int256`
-- `short`: Use the implicit `uint` or `int`
-- `preserve`: Use the type defined in the source code
+- `long` (默认): 使用明确的 `uint256` 或 `int256`
+- `short`: 使用隐式的 `uint` 或 `int`
+- `preserve`: 使用源代码中定义的类型
 
 ##### `func_attrs_with_params_multiline`
 
-- Type: bool
-- Default: true
-- Environment: `FOUNDRY_FMT_FUNC_ATTRS_WITH_PARAMS_MULTILINE` or `DAPP_FMT_FUNC_ATTRS_WITH_PARAMS_MULTILINE`
+- 类型: bool
+- 默认值: true
+- 环境变量: `FOUNDRY_FMT_FUNC_ATTRS_WITH_PARAMS_MULTILINE` or `DAPP_FMT_FUNC_ATTRS_WITH_PARAMS_MULTILINE`
 
-If function parameters are multiline then always put the function attributes on separate lines.
+如果函数参数是多行的，那么总是把函数属性放在不同的行上。
 
 ##### `quote_style`
 
-- Type: string
-- Default: double
-- Environment: `FOUNDRY_FMT_QUOTE_STYLE` or `DAPP_FMT_QUOTE_STYLE`
+- 类型: string
+- 默认值: double
+- 环境变量: `FOUNDRY_FMT_QUOTE_STYLE` or `DAPP_FMT_QUOTE_STYLE`
 
-Defines the quotation mark style. Valid values are:
+定义了引号的样式。 有效值为：
 
-- `double` (default): Use double quotes where possible (`"`)
-- `single`: Use single quotes where possible (`'`)
-- `preserve`: Use quotation mark defined in the source code
+- `double` (默认): 尽可能使用双引号 (`"`)
+- `single`: 尽可能使用单引号 (`'`)
+- `preserve`: 使用源代码中定义的引号
 
 ##### `number_underscore`
 
-- Type: string
-- Default: preserve
-- Environment: `FOUNDRY_FMT_NUMBER_UNDERSCORE` or `DAPP_FMT_NUMBER_UNDERSCORE`
+- 类型: string
+- 默认值: preserve
+- 环境变量: `FOUNDRY_FMT_NUMBER_UNDERSCORE` or `DAPP_FMT_NUMBER_UNDERSCORE`
 
-Style of underscores in number literals. Valid values are:
+数字字段中下划线的样式。 有效值为：
 
-- `preserve` (default): Use the underscores defined in the source code
-- `thousands`: Add an underscore every thousand, if greater than 9999. i.e. `1000` is formatted as `1000` and `10000` as `10_000`
-- `remove`: Remove all underscores
+- `preserve` (默认): 使用源代码中定义的下划线
+- `thousands`: 如果大于 9999，则每 1000 加一个下划线。例如 `1000` 的格式为 `1000`，`10000` 的格式为 `10_000`
+- `remove`: 去除所有下划线
