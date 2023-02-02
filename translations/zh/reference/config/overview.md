@@ -1,4 +1,4 @@
-## Config Overview
+## Config 概述
 
 Foundry 的配置系统允许你对其工具进行配置。
 
@@ -14,11 +14,11 @@ Foundry 的配置系统允许你对其工具进行配置。
 
 你可以使用 `FOUNDRY_PROFILE` 环境变量选择要使用的配置文件。
 
-### Global configuration
+### 全局配置
 
 你可以在主文件夹创建一个 `foundry.toml` 文件来全局配置 Foundry。
 
-### Environment variables
+### 环境变量
 
 可以通过 `FOUNDRY_` 和 `DAPP_` 前缀的环境变量来覆盖配置。
 

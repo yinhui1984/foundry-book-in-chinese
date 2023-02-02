@@ -1,4 +1,4 @@
-## Solidity compiler
+## Solidity 编译器
 
 与 Solidity 编译器的行为有关的配置。
 

@@ -1,8 +1,8 @@
-## Config Reference
+## Config 参考
 
-- [Overview](./overview.md)
+- [概述](./overview.md)
 - [Project](./project.md)
-- [Solidity Compiler](./solidity-compiler.md)
+- [Solidity 编译器](./solidity-compiler.md)
 - [Testing](./testing.md)
 - [Formatter](./formatter.md)
 - [Etherscan](./etherscan.md)

@@ -2,7 +2,7 @@
 
 与 Etherscan 相关的配置，如 API 密钥。 这个配置被 Forge 用在各个地方。
 
-`[etherscan]` 部分是密钥与 Etherscan 配置表的映射。Etherscan配置表持有以下密钥：
+`[etherscan]` 部分是密钥与 Etherscan 配置表的映射。Etherscan配置表持有以下键（属性）：
 
 - `key` (字符串) (**必须**): 给定网络的 Etherscan API 密钥。这个属性的值也可以指向一个环境变量。
 - `chain`: 该 Etherscan 配置的链的名称或 ID。

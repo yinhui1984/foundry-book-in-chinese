@@ -17,9 +17,9 @@
 - 默认值: 0
 - 环境变量: `FOUNDRY_VERBOSITY` 或 `DAPP_VERBOSITY`
 
-在测试中使用的详细级别。
+在测试中使用的详细日志级别。
 
-- **Level 2 (`-vv`)**: 显示测试中的 emitted 日志。
+- **Level 2 (`-vv`)**: 显示测试中的触发的事件(日志)。
 - **Level 3 (`-vvv`)**: 显示失败测试的堆栈跟踪。
 - **Level 4 (`-vvvv`)**: 显示所有测试的堆栈跟踪，并显示失败测试的设置跟踪。
 - **Level 5 (`-vvvvv`)**: 堆栈跟踪和设置跟踪总是被显示。
@@ -56,7 +56,7 @@
 - 默认值: 0xffffffffffffffffffffffff
 - 环境变量: `FOUNDRY_INITIAL_BALANCE` 或 `DAPP_INITIAL_BALANCE`
 
-测试合同的初始余额为Wei，以16进制书写.
+测试合约的初始余额为Wei，以16进制书写。
 
 ##### `block_number`
 
@@ -84,9 +84,9 @@
 
 > ℹ️ **注意**
 >
-> 由于 Forge 的一个依赖关系的限制，你 **不能改变气体限制** 在不改变数值为字符串的情况下提高到超过默认值。
+> 由于 Forge 的一个依赖关系的限制，如果不把数值修改为字符串，就无法修改让 Gas 限制 提高到超过默认值。
 >
-> 为了使用更高的气体限值，使用一个字符串：
+> 为了使用更高的Gas限制，使用一个字符串：
  ```toml
 gas_limit = "18446744073709551615" # u64::MAX
 ```
@@ -137,7 +137,7 @@ gas_limit = "18446744073709551615" # u64::MAX
 - 默认值: ["*"]
 - 环境变量: `FOUNDRY_GAS_REPORTS` 或 `DAPP_GAS_REPORTS`
 
-打印 Gas 报告的合约。
+打印合约 Gas 报告。
 
 ##### `no_storage_caching`
 
@@ -145,11 +145,11 @@ gas_limit = "18446744073709551615" # u64::MAX
 - 默认值: false
 - 环境变量: `FOUNDRY_NO_STORAGE_CACHING` 或 `DAPP_NO_STORAGE_CACHING`
 
-如果设置为 `true`，那么测试中的 RPC 端点的块数据将不会被缓存。否则，数据将被缓存到 `$HOME/.foundry/cache/<chain id>/<block number>`。
+如果设置为 `true`，那么测试中的 RPC 端点的区块数据将不会被缓存。否则，数据将被缓存到 `$HOME/.foundry/cache/<chain id>/<block number>`。
 
 ##### `[rpc_storage_caching]`
 
-`[rpc_storage_caching]` 块决定了哪些 RPC 端点被缓存。
+`[rpc_storage_caching]` 区块定义哪些 RPC 端点需要被缓存。
 
 ###### `rpc_storage_caching.chains`
 
@@ -166,7 +166,7 @@ gas_limit = "18446744073709551615" # u64::MAX
 
 ###### `rpc_storage_caching.endpoints`
 
-- 类型: string or array of regex patterns (to match URLs)
+- 类型: string 或匹配 URL 的正则数组
 - 默认值: remote
 - 环境变量: N/A
 
@@ -176,7 +176,7 @@ gas_limit = "18446744073709551615" # u64::MAX
 
 - all
 - remote (default)
-- 一个正则匹配的列表，例如 `["localhost"]`
+- 一个正则匹配的数组，例如 `["localhost"]`
 
 ##### `eth_rpc_url`
 
@@ -412,7 +412,7 @@ mainnet = "${RPC_MAINNET}"
 - 默认值: 80
 - 环境变量: `FOUNDRY_INVARIANT_DICTIONARY_WEIGHT`
 
-字典的权重。 另见 [fuzz.dictionary_weight](#dictionary_weight)
+字典的权重。另见 [fuzz.dictionary_weight](#dictionary_weight)
 
 ##### `include_storage`
 
@@ -420,7 +420,7 @@ mainnet = "${RPC_MAINNET}"
 - 默认值: true
 - 环境变量: `FOUNDRY_FUZZ_INCLUDE_STORAGE`
 
-指示是否包括存储中的值的标志。 另见 [fuzz.include_storage](#include_storage)
+指示是否包括存储中的值的标志。另见 [fuzz.include_storage](#include_storage)
 
 ##### `include_push_bytes`
 
