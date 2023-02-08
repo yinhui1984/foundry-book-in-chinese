@@ -1,4 +1,5 @@
 ## 📖 Foundry 中文文档
+[![](https://img.learnblockchain.cn/pics/20230203152047.png)](https://img.learnblockchain.cn/pics/20230208153852.png)[![](https://img.learnblockchain.cn/pics/20230203152058.png)](https://twitter.com/NUpchain)[![](https://img.learnblockchain.cn/pics/20230203152217.png)](https://discord.gg/hRZrM92hfw)
 
 
 Foundry 中文文档是 [Foundry book](https://book.getfoundry.sh) 的同步翻译版。
