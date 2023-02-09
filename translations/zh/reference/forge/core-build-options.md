@@ -1,16 +1,16 @@
-#### Cache Options
+#### 缓存选项
 
 `--force`  
-&nbsp;&nbsp;&nbsp;&nbsp;Clear the cache and artifacts folder and recompile.
+&nbsp;&nbsp;&nbsp;&nbsp;清除缓存和 artifacts 文件夹并重新编译。
 
-#### Linker Options
+#### 链接器选项
 
 `--libraries` *libraries*  
-&nbsp;&nbsp;&nbsp;&nbsp;Set pre-linked libraries.
+&nbsp;&nbsp;&nbsp;&nbsp;设置预链接库。
 
-&nbsp;&nbsp;&nbsp;&nbsp;The parameter must be in the format `<remapped path to lib>:<library name>:<address>`, e.g. `src/Contract.sol:Library:0x...`.
+&nbsp;&nbsp;&nbsp;&nbsp;参数的格式必须是 `<remapped path to lib>:<library name>:<address>`，例如 `src/Contract.sol:Library:0x...`。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Can also be set in your configuration file as `libraries = ["<path>:<lib name>:<address>"]`.
+&nbsp;&nbsp;&nbsp;&nbsp;也可以在你的配置文件中设置为 `libraries = ["<path>:<lib name>:<address>"]`.
 
 {{#include compiler-options.md}}
 
@@ -18,7 +18,7 @@
 
 `-o` *path*  
 `--out` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;The project's artifacts directory.
+&nbsp;&nbsp;&nbsp;&nbsp;项目的 artifacts 目录。
 
 `--silent`   
-&nbsp;&nbsp;&nbsp;&nbsp;Suppress all output.
+&nbsp;&nbsp;&nbsp;&nbsp;抑制所有输出。

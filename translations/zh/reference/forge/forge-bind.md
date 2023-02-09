@@ -1,84 +1,84 @@
 ## forge bind
 
-### NAME
+### 名称
 
-forge-bind - Generate Rust bindings for smart contracts.
+forge-bind - 为智能合约生成 Rust 绑定。
 
-### SYNOPSIS
+### 简介
 
 ``forge bind`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Generates Rust bindings for smart contracts using [ethers-rs](https://github.com/gakonst/ethers-rs).
+使用 [ethers-rs](https://github.com/gakonst/ethers-rs) 为智能合约生成 Rust 绑定。
 
-The bindings are generated from the project's artifacts, which by default is `./out/`.
-If you want to generate bindings for artifacts in a different directory, pass `--bindings-path <PATH>`.
+绑定是由项目的 artifacts 生成的，默认情况下是 `./out/`。
+如果你想为不同目录下的 artifacts 生成绑定，请传入 `--bindings-path <PATH>`。
 
-There are three output options:
+有三个输出选项：
 
-- Generate bindings in a crate (default)
-- Generate bindings in a module by passing `--module`
-- Generate bindings in a single file by passing `--single-file`
+- 在一个 crate 中生成绑定（默认）
+- 在一个模块中生成绑定，通过传递 `--module`
+- 在一个单一的文件中生成绑定，通过传递 `--single-file`
 
-By default, the command will check that existing bindings are correct and exit accordingly.
-You can overwrite the existing bindings by passing `--overwrite`.
+默认情况下，该命令将检查现有绑定是否正确，并相应退出。
+你可以通过传递以下标志来覆盖现有的绑定 `--overwrite`.
 
-### OPTIONS
+### 选项
 
-#### Project Options
+#### Project 选项
 
 `-b` *path*  
 `--bindings-path` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;The project's root path. By default, this is the root directory of the current git repository, or the current working directory.
+&nbsp;&nbsp;&nbsp;&nbsp;项目的根路径。默认情况下，这是当前 git 仓库的根目录，或当前工作目录。
 
 `--crate-name` *name*  
-&nbsp;&nbsp;&nbsp;&nbsp;The name of the Rust crate to generate, if you are generating a crate (default).  
-&nbsp;&nbsp;&nbsp;&nbsp;This should be a valid crates.io crate name.
+&nbsp;&nbsp;&nbsp;&nbsp;要生成的 Rust crate 的名称，如果你正在生成一个 crate（默认）。
+&nbsp;&nbsp;&nbsp;&nbsp;这应该是一个在 crates.io 里有效的 crate 名称。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Default: foundry-contracts
+&nbsp;&nbsp;&nbsp;&nbsp;默认值：foundry-contracts
 
 `--crate-version` *semver*  
-&nbsp;&nbsp;&nbsp;&nbsp;The version of the Rust crate to generate, if you are generating a crate (default).  
-&nbsp;&nbsp;&nbsp;&nbsp;This should be a standard semver version string.
+&nbsp;&nbsp;&nbsp;&nbsp;要生成的 Rust crate 的版本，如果你要生成一个 Rust crate（默认）。 
+&nbsp;&nbsp;&nbsp;&nbsp;这应该是一个标准的 semver 版本字符串。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Default: 0.0.1
+&nbsp;&nbsp;&nbsp;&nbsp;默认：0.0.1
 
 `--module`  
-&nbsp;&nbsp;&nbsp;&nbsp;Generate the bindings as a module instead of a crate.
+&nbsp;&nbsp;&nbsp;&nbsp;以模块的形式而不是以 crate 的形式生成绑定。
 
 `--single-file`  
-&nbsp;&nbsp;&nbsp;&nbsp;Generate bindings as a single file.
+&nbsp;&nbsp;&nbsp;&nbsp;将绑定生成为一个文件。
 
 `--overwrite`  
-&nbsp;&nbsp;&nbsp;&nbsp;Overwrite existing generated bindings. By default, the command will check that the bindings are correct, and then exit.  
-&nbsp;&nbsp;&nbsp;&nbsp;If `--overwrite` is passed, it will instead delete and overwrite the bindings.
+&nbsp;&nbsp;&nbsp;&nbsp;覆盖现有的生成的绑定。默认情况下，该命令将检查绑定是否正确，然后退出。
+&nbsp;&nbsp;&nbsp;&nbsp;如果传递了 `--overwrite`，它将删除并覆盖绑定。
 
 `--root` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;The project's root path. By default, this is the root directory of the current git repository, or the current working directory.
+&nbsp;&nbsp;&nbsp;&nbsp;项目的根路径。默认情况下，这是当前 git 仓库的根目录，或当前工作目录。
 
 `--skip-cargo-toml`  
-&nbsp;&nbsp;&nbsp;&nbsp;Skip Cargo.toml consistency checks.  
-&nbsp;&nbsp;&nbsp;&nbsp;This allows you to manage the [ethers](https://github.com/gakonst/ethers-rs) version without giving up on consistency checks.  
-&nbsp;&nbsp;&nbsp;&nbsp;An example would be if you use additional features of ethers like `ws`, `ipc`, or `rustls` and get an `ethers-providers` version mismatch.
+&nbsp;&nbsp;&nbsp;&nbsp;跳过 Cargo.toml 的一致性检查。
+&nbsp;&nbsp;&nbsp;&nbsp;这允许你管理 [ethers](https://github.com/gakonst/ethers-rs) 版本而不放弃一致性检查。
+&nbsp;&nbsp;&nbsp;&nbsp;一个例子是，如果你使用 ethers 的额外功能，如 `ws`，`ipc`，或 `rustls`，并提示 `ethers-providers` 版本不匹配。
 
 `--skip-build`  
-&nbsp;&nbsp;&nbsp;&nbsp;Skips running forge build before generating binding.  
-&nbsp;&nbsp;&nbsp;&nbsp;This allows you to skip the default `forge build` step that's executed first and instead generate bindings using the already existing artifacts.  
+&nbsp;&nbsp;&nbsp;&nbsp;在生成绑定之前跳过运行锻造构建。
+&nbsp;&nbsp;&nbsp;&nbsp;这允许你跳过首先执行的默认 `forge build` 步骤，而是使用已经存在的 artifacts 生成绑定。
 
 `--select-all`  
-&nbsp;&nbsp;&nbsp;&nbsp;By default all contracts ending with `Test` or `Script` are excluded. This will explicitly generate bindings for all contracts. Conflicts with `--select` and `--skip`.
+&nbsp;&nbsp;&nbsp;&nbsp;默认情况下，所有以 `Test` 或 `Script` 结尾的合约都被排除在外。这将明确地生成所有合约的绑定关系。与 `--select` 和 `--skip` 相冲突。
 
 `--select` *regex+*  
-&nbsp;&nbsp;&nbsp;&nbsp;Create bindings only for contracts whose names match the specified filter(s). Conflicts with `--skip`.
+&nbsp;&nbsp;&nbsp;&nbsp;只为名称符合指定过滤器的合约创建绑定。与 `--skip` 相冲突。
 
 `--skip` *regex+*  
-&nbsp;&nbsp;&nbsp;&nbsp;Create bindings only for contracts whose names do not match the specified filter(s). Conflicts with `--select`.
+&nbsp;&nbsp;&nbsp;&nbsp;只为名称不符合指定过滤器的合约创建绑定。与 `--select` 相冲突。
 
 {{#include common-options.md}}
 
 {{#include core-build-options.md}}
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md)

@@ -1,49 +1,46 @@
 ## forge build
 
-### NAME
+### 名称
 
-forge-build - Build the project's smart contracts.
+forge-build - 构建项目的智能合约。
 
-### SYNOPSIS
+### 简介
 
 ``forge build`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Build the project's smart contracts.
+构建项目的智能合约。
 
-The command will try to detect the latest version that can compile your project by looking at the
-version requirements of all your contracts and dependencies.
+该命令将通过查看所有合约和依赖的版本要求，尝试检测能够编译你的项目的最新版本。
 
-You can override this behaviour by passing `--no-auto-detect`. Alternatively, you can pass `--use <SOLC_VERSION>`.
+你可以通过传递 `--no-auto-detect` 来覆盖这一行为。或者，你也可以通过 `--use <SOLC_VERSION>`。
 
-If the command detects that the Solidity compiler version it is using to build is not installed,
-it will download it and install it in `~/.svm`. You can disable this behavior by passing `--offline`.
+如果该命令检测到它用来构建的 Solidity 编译器版本没有安装，它将下载它并安装在 `~/.svm` 中。你可以通过传递 `--offline` 来禁用这种行为。
 
-The build is incremental, and the build cache is saved in `cache/` in the project root by default. If you
-want to clear the cache, pass `--force`, and if you want to change the cache directory, pass `--cache-path <PATH>`.
+构建是增量的，构建缓存默认保存在项目根目录下的 `cache/`。如果你想清除缓存，请传递 `--force`，如果你想改变缓存目录，请传递 `--cache-path <PATH>`。
 
-#### Build Modes
+#### Build 模式
 
-There are three build modes:
+有三种 build 模式:
 
-- Just compilation (default): Builds the project and saves the contract artifacts in `out/` (or the path specified by `--out <PATH>`).
-- Size mode (`--sizes`): Builds the project, displays the size of non-test contracts and exits with code 1 if any of them are above the size limit.
-- Name mode (`--names`): Builds the project, displays the names of the contracts and exits.
+- 只是编译（默认）：构建项目并将合约 artifacts 保存在 `out/`（或由 `--out <PATH>` 指定的路径）。
+- 大小模式（`--sizes`）：构建项目，显示非测试合约的大小，如果任何合约超过大小限制，则以代码 1 退出。
+- 命名模式（`--names`）：构建项目，显示合约的名称并退出。
 
-#### The Optimizer
+#### 优化器
 
-You can enable the optimizer by passing `--optimize`, and you can adjust the number of optimizer runs by passing `--optimizer-runs <RUNS>`.
+你可以通过 `--optimize` 来启用优化器，你可以通过 `--optimizer-runs <RUNS>` 来调整优化器的 runs 数量。
 
-You can also opt-in to the Solidity IR compilation pipeline by passing `--via-ir`. Read more about the IR pipeline in the [Solidity docs][ir-pipeline].
+您也可以通过传递 `--via-ir` 来选择加入 Solidity IR 编译管道。在 [Solidity 文档][ir-pipeline] 中阅读更多关于 IR 管道的信息。
 
-By default, the optimizer is enabled and runs for 200 cycles.
+默认情况下，优化器被启用并设置 runs 为 200 个周期。
 
-##### Conditional Optimizer Usage
+##### 有条件使用优化器
 
-Many projects use the solc optimizer, either through the standard compilation pipeline or the IR pipeline. But in some cases, the optimizer can significantly slow down compilation speeds.
+许多项目使用 solc 优化器，无论是通过标准编译管道还是 IR 管道。但在某些情况下，优化器会大大降低编译速度。
 
-A config file for a project using the optimizer may look like this for regular compilation:
+对于常规编译，使用优化器的项目配置文件可能如下所示：
 
 ```toml
 [profile.default]
@@ -52,7 +49,7 @@ optimizer = true
 optimizer-runs = 10_000_000
 ```
 
-Or like this for `via-ir`:
+或者像这样的 `via-ir`：
 
 ```toml
 [profile.default]
@@ -60,7 +57,7 @@ solc-version = "0.8.17"
 via_ir = true
 ```
 
-To reduce compilation speeds during development and testing, one approach is to have a `lite` profile that has the optimizer off and use this for development/testing cycle. The updated config file for regular compilation may look like this:
+为了减少开发和测试过程中的编译时间，一种方法是有一个关闭优化器的 `lite` 配置文件，并在开发/测试周期中使用它。用于常规编译的的配置文件可能看起来像这样：
 
 ```toml
 [profile.default]
@@ -72,7 +69,7 @@ optimizer-runs = 10_000_000
 optimizer = false
 ```
 
-Or like this for `via-ir`:
+或者像这样的 `via-ir`：
 
 ```toml
 [profile.default]
@@ -83,44 +80,41 @@ via_ir = true
 optimizerSteps = ''
 ```
 
-When setup like this, `forge build` (or `forge test` / `forge script`) still uses the standard profile, so by default a `forge script` invocation will deploy your contracts with the production setting. Running `FOUNDRY_PROFILE=lite forge build` (and again, same for the test and script commands) will use the lite profile to reduce compilation times.
+当这样设置时，`forge build`（或 `forge test`/`forge script`）仍然使用标准配置文件，所以默认情况下，`forge script` 调用将以生产环境设置部署你的合约。运行 `FOUNDRY_PROFILE=lite forge build`（同样，test 和 script 命令也是如此）将使用 lite 配置文件来减少编译时间。
 
-> There are additional optimizer details you can configure, see the [Additional Optimizer Settings](#additional-optimizer-settings) section below for more info.
+> 还有一些额外的优化器细节可以配置，更多信息见下面的 [额外优化器设置](#additional-optimizer-settings) 部分。
 
 #### Artifacts
 
-You can add extra output from the Solidity compiler to your artifacts by passing `--extra-output <SELECTOR>`.
+您可以通过传递 `--extra-output <SELECTOR>` 将 Solidity 编译器的额外输出添加到您的 artifacts 中。
 
-The selector is a path in the Solidity compiler output, which you can read more about in the [Solidity docs][output-desc].
+选择器是 Solidity 编译器输出中的一个路径，你可以在 [Solidity 文档][output-desc] 中阅读更多关于它的信息。
 
-You can also write some of the compiler output to separate files by passing `--extra-output-files <SELECTOR>`.
+你也可以通过传递 `--extra-output-files <SELECTOR>` 将一些编译器的输出写入单独的文件中。
 
-Valid selectors for `--extra-output-files` are:
+`--extra-output-files` 有效选择器是：
 
-- `metadata`: Written as a `metadata.json` file in the artifacts directory
-- `ir`: Written as a `.ir` file in the artifacts directory
-- `irOptimized`: Written as a `.iropt` file in the artifacts directory
-- `ewasm`: Written as a `.ewasm` file in the artifacts directory
-- `evm.assembly`: Written as a `.asm` file in the artifacts directory
+- `metadata`: 在 artifacts 目录中写入 `metadata.json` 文件
+- `ir`: 在 artifacts 目录中写入 `.ir` 文件
+- `irOptimized`: 在 artifacts 目录中写入 `.iropt` 文件
+- `ewasm`: 在 artifacts 目录中写入 `.ewasm` 文件
+- `evm.assembly`: 在 artifacts 目录中写入 `.asm` 文件
 
-#### Watch Mode
+#### 监视模式
 
-The command can be run in watch mode by passing `--watch [PATH...]`, which will rebuild every time a
-watched file or directory is changed. The source directory is watched by default.
+该命令可以通过传递 `--watch [PATH...]` 在监视模式下运行，每当被监视的文件或目录发生变化时就会重建。默认情况下，源目录是被监视的。
 
-#### Sparse Mode (experimental)
+#### 稀疏模式（实验性）
 
-Sparse mode only compiles files that match certain criteria.
+稀疏模式只编译符合某些标准的文件。
 
-By default, this filter applies to files that have not been changed since the last build, but for commands that
-take file filters (e.g. [forge test](./forge-test.md)), sparse mode will only recompile files that match the filter.
+默认情况下，这个过滤器适用于自上次构建以来没有被改变的文件，但对于接受文件过滤器的命令（例如[forge test](./forge-test.md)），稀疏模式将只重新编译符合过滤器的文件。
 
-Sparse mode is opt-in until the feature is stabilized. To opt-in to sparse mode and try it out, set [`sparse_mode`][sparse-mode]
-in your configuration file.
+稀疏模式是选择加入的，直到该功能稳定下来。要选择加入稀疏模式并试用它，请在你的配置文件中设置[`sparse_mode`][sparse-mode]。
 
-#### Additional Optimizer Settings
+#### 优化器额外设置
 
-The optimizer can be fine-tuned with additional settings. Simply set the `optimizer_details` table in your configuration file. For example:
+优化器可以通过额外的设置进行微调。只需在你的配置文件中设置 `optimizer_details` 数据。比如说。
 
 ```toml
 [profile.default.optimizer_details]
@@ -132,26 +126,25 @@ stackAllocation = true
 optimizerSteps = 'dhfoDgvulfnTUtnIf'
 ```
 
-See the [compiler input description documentation](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description)
-for more information on available settings (specifically `settings.optimizer.details`).
+参见 [编译器输入描述文档](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description) 获取更多关于可用设置的信息（特别是 `settings.optimizer.details`）。
 
-#### Revert Strings
+#### Revert 设置
 
-You can control how revert strings are generated by the compiler. By default, only user supplied revert strings are included in the bytecode, but there are other options:
+你可以控制编译器如何生成 revert 字符串。默认情况下，只有用户提供的 revert 字符串被包含在字节码中，但也有其他选项。
 
-- `strip`: Removes all revert strings (if possible, i.e. if literals are used) keeping side-effects.
-- `debug`:  Injects strings for compiler-generated internal reverts, implemented for ABI encoders V1 and V2 for now.
-- `verboseDebug`: Appends further information to user-supplied revert strings (not yet implemented).
+- `strip` 删除所有的 revert 字符串（如果可能的话，即如果使用了字面量），以保持副作用。
+- `debug` 为编译器生成的内部 revert 注入字符串，目前为ABI编码器 V1 和 V2 实现。
+- `verboseDebug` 甚至为用户提供的 revert 字符串添加进一步的信息（尚未实现）。
 
-#### Additional Model Checker settings
+#### 额外的模型检查器设置
 
-[Solidity's built-in model checker](https://docs.soliditylang.org/en/latest/smtchecker.html#tutorial) is an opt-in module that can be enabled via the `ModelChecker` object.
+[Solidity 的内置模型检查器](https://docs.soliditylang.org/en/latest/smtchecker.html#tutorial) 是一个可以通过 `ModelChecker` 对象启用的选择模块。
 
-See [Compiler Input Description `settings.modelChecker`](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description) and [the model checker's options](https://docs.soliditylang.org/en/latest/smtchecker.html#smtchecker-options-and-tuning).
+参见 [编译器输入说明 `settings.modelChecker`](https://docs.soliditylang.org/en/latest/using-the-compiler.html#compiler-input-and-output-json-description) 和 [模型检查器的选项](https://docs.soliditylang.org/en/latest/smtchecker.html#smtchecker-options-and-tuning)。
 
-The module is available in `solc` release binaries for OSX and Linux. The latter requires the z3 library version [4.8.8, 4.8.14] to be installed in the system (SO version 4.8).
+该模块在 OSX 和 Linux 的 `solc` 发布二进制文件中可用。后者需要在系统中安装 z3 库版本[4.8.8, 4.8.14]（SO 版本 4.8）。
 
-Similarly to the optimizer settings above, the `model_checker` settings must be prefixed with the profile they correspond to: `[profile.default.model_checker]` belongs to the `[profile.default]`.
+与上面的优化器设置类似，`model_checker` 的设置必须以其对应的配置文件为前缀。`[profile.default.model_checker]` 属于 `[profile.default]`。
 
 ```toml
 ## foundry.toml
@@ -162,23 +155,23 @@ timeout = 10000
 targets = [ 'assert' ]
 ```
 
-The fields above are recommended when using the model checker.
-Setting which contract should be verified is extremely important, otherwise all available contracts will be verified which can consume a lot of time.
-The recommended engine is `chc`, but `bmc` and `all` (runs both) are also accepted.
-It is also important to set a proper timeout (given in milliseconds), since the default time given to the underlying solvers may not be enough.
-If no verification targets are given, only assertions will be checked.
+上面的字段是在使用模型检查器时推荐的。
+设置哪个合约应该被验证是非常重要的，否则所有可用的合约都会被验证，这会消耗大量的时间。
+推荐的引擎是 `chc`，但 `bmc` 和 `all`（同时运行）也可以接受。
+设置适当的超时（以毫秒为单位）也很重要，因为给底层解析器的默认时间可能是不够的。
+如果没有给出验证目标，将只检查断言。
 
-The model checker will run when `forge build` is invoked, and will show findings as warnings if any.
+模型检查器将在调用 `forge build` 时运行，如果有的话，将以警告的形式显示结果。
 
-### OPTIONS
+### 可选
 
-#### Build Options
+#### Build 选项
 
 `--names`
-&nbsp;&nbsp;&nbsp;&nbsp;Print compiled contract names.
+&nbsp;&nbsp;&nbsp;&nbsp;打印编译的合约名称。
 
 `--sizes`
-&nbsp;&nbsp;&nbsp;&nbsp;Print compiled non-test contract sizes, exiting with code 1 if any of them are above the size limit.
+&nbsp;&nbsp;&nbsp;&nbsp;打印已编译的非测试合约大小，如果其中任何一个超过大小限制，则以代码 1 退出。
 
 {{#include core-build-options.md}}
 
@@ -186,29 +179,29 @@ The model checker will run when `forge build` is invoked, and will show findings
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Build the project:
+1. 构建项目：
     ```sh
     forge build
     ```
 
-2. Build the project with solc 0.6.0:
+2. 使用 solc 0.6.0 构建项目：
     ```sh
     forge build --use solc:0.6.0
     ```
 
-3. Build the project with additional artifact output:
+3. 用额外的 artifact 输出来构建项目：
     ```sh
     forge build --extra-output evm.assembly
     ```
 
-4. Build the project in watch mode:
+4. 使用监听模式构建项目：
     ```sh
     forge build --watch
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge clean](./forge-clean.md), [forge inspect](./forge-inspect.md)
 

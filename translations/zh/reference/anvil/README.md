@@ -301,7 +301,7 @@ anvil --port <PORT>
 &nbsp;&nbsp;&nbsp;&nbsp; 通过一个远程端点从一个特定的区块号中获取状态（必须在同一个命令行中传递--fork-url）。
 
 `--fork-retry-backoff <BACKOFF>`  
-&nbsp;&nbsp;&nbsp;&nbsp; 遇到错误时的初始重试退避。
+&nbsp;&nbsp;&nbsp;&nbsp; 初始化遇到错误时的重试退避。
 
 `--retries <retries>`  
 &nbsp;&nbsp;&nbsp;&nbsp; 虚拟网络（超时请求）的重试次数。[默认值=5］
