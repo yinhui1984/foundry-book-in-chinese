@@ -2,7 +2,7 @@
 
 ### 名称
 
-forge-tree - Display a tree visualization of the project's dependency graph.
+forge-tree - 显示项目的树状可视化的依赖关系图。
 
 ### 简介
 
@@ -10,7 +10,7 @@ forge-tree - Display a tree visualization of the project's dependency graph.
 
 ### 描述
 
-Display a visualization of the project's dependency graph.
+显示项目的可视化依赖关系图。
 
 ```ignore
 {{#include ../../output/forge_tree/forge-tree:all}}
@@ -18,13 +18,13 @@ Display a visualization of the project's dependency graph.
 
 ### 选项
 
-#### Flatten Options
+#### Flatten 选项
 
 `--charset` *charset*  
-&nbsp;&nbsp;&nbsp;&nbsp;Character set to use in output: utf8, ascii. Default: utf8
+&nbsp;&nbsp;&nbsp;&nbsp;输出中使用的字符集：utf8，ascii。 默认：utf8
 
 `--no-dedupe`  
-&nbsp;&nbsp;&nbsp;&nbsp;Do not de-duplicate (repeats all shared dependencies)
+&nbsp;&nbsp;&nbsp;&nbsp;不要去重复（重复所有共享的依赖关系）。
 
 {{#include project-options.md}}
 

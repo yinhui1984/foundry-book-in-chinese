@@ -2,7 +2,7 @@
 
 ### 名称
 
-forge-update - Update one or more dependencies.
+forge-update - 更新一个或多个依赖。
 
 ### 简介
 
@@ -10,12 +10,12 @@ forge-update - Update one or more dependencies.
 
 ### 描述
 
-Update one or more dependencies.
+更新一个或多个依赖。
 
-The argument *dep* is a path to the dependency you want to update.
-Forge will update to the latest version on the ref you specified for the dependency when you ran [`forge install`](./forge-install.md).
+参数 *dep* 是你要更新的依赖关系的路径。
+Forge 将更新到你在运行 [`forge install`](./forge-install.md) 时为依赖关系指定的ref 上的最新版本。
 
-If no argument is provided, then all dependencies are updated.
+如果没有提供参数，那么所有的依赖都会被更新。
 
 ### 选项
 
@@ -23,12 +23,12 @@ If no argument is provided, then all dependencies are updated.
 
 ### 例子
 
-1. Update a dependency:
+1. 更新一个依赖：
     ```sh
     forge update lib/solmate
     ```
 
-2. Update all dependencies:
+2. 更新所有依赖：
     ```sh
     forge update
     ```

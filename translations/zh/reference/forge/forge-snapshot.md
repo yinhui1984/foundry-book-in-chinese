@@ -16,38 +16,38 @@ forge-snapshot - 创建每个测试的 Gas 使用快照。
 
 在快照中默认包括模糊测试。它们使用一个静态种子来实现确定性的结果。
 
-快照可以用 `--diff` 和 `--check` 来比较。第一个标志将输出一个差异，第二个标志将输出一个差异，如果快照不匹配，则以代码1退出。
+快照可以用 `--diff` 和 `--check` 来比较。第一个标志将输出一个差异，第二个标志将输出一个差异 *同时* 如果快照不匹配，则以代码 1 退出。
 
 ### 选项
 
-#### Snapshot Options
+#### 快照选项
 
 `--asc`  
-Sort results by gas used (ascending).
+按所用 Gas 对结果进行排序（升序）。
 
 `--desc`  
-&nbsp;&nbsp;&nbsp;&nbsp;Sort results by gas used (descending).
+&nbsp;&nbsp;&nbsp;&nbsp;按所用 Gas 对结果进行排序（降序）。
 
 `--min` *min_gas*  
-&nbsp;&nbsp;&nbsp;&nbsp;Only include tests that used more gas that the given amount.
+&nbsp;&nbsp;&nbsp;&nbsp;只包括使用了超过给定数量的 Gas 的测试。
 
 `--max` *max_gas*  
-&nbsp;&nbsp;&nbsp;&nbsp;Only include tests that used less gas that the given amount.
+&nbsp;&nbsp;&nbsp;&nbsp;只包括使用了小于给定数量的 Gas 的测试。
 
 `--diff` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;Output a diff against a pre-existing snapshot.
+&nbsp;&nbsp;&nbsp;&nbsp;输出一个与预先存在的快照的差异。
 
-&nbsp;&nbsp;&nbsp;&nbsp;By default the comparison is done with `.gas-snapshot`.
+&nbsp;&nbsp;&nbsp;&nbsp;默认情况下，比较是通过 `.gas-snapshot` 完成的。
 
 `--check` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;Compare against a pre-existing snapshot, exiting with code 1 if they do not match.
+&nbsp;&nbsp;&nbsp;&nbsp;与预先存在的快照进行比较，如果它们不匹配，则以代码 1 退出。
 
-&nbsp;&nbsp;&nbsp;&nbsp;Outputs a diff if the snapshots do not match.
+&nbsp;&nbsp;&nbsp;&nbsp;如果快照不匹配，则输出一个差异。
 
-&nbsp;&nbsp;&nbsp;&nbsp;By default the comparison is done with `.gas-snapshot`.
+&nbsp;&nbsp;&nbsp;&nbsp;默认情况下，比较是通过 `.gas-snapshot` 完成的。
 
 `--snap` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;Output file for the snapshot. Default: `.gas-snapshot`.
+&nbsp;&nbsp;&nbsp;&nbsp;快照的输出文件。默认：`.gas-snapshot`。
 
 {{#include test-options.md}}
 
@@ -63,17 +63,17 @@ Sort results by gas used (ascending).
 
 ### 例子
 
-1. Create a snapshot:
+1. 创建一个快照：
     ```sh
     forge snapshot
     ```
 
-2. Generate a diff:
+2. 生成一个差异：
     ```sh
     forge snapshot --diff
     ```
 
-3. Check that the snapshots match:
+3. 检查快照是否匹配：
     ```sh
     forge snapshot --check
     ```

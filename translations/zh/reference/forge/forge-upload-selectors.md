@@ -2,7 +2,7 @@
 
 ### 名称
 
-forge-upload-selectors - Uploads abi of given contract to https://sig.eth.samczsun.com function selector database.
+forge-upload-selectors - 将给定合约的 ABI 上传至 https://sig.eth.samczsun.com 函数选择器数据库。
 
 ### 简介
 
@@ -10,7 +10,7 @@ forge-upload-selectors - Uploads abi of given contract to https://sig.eth.samczs
 
 ### 描述
 
-Uploads abi of given contract to https://sig.eth.samczsun.com function selector database.
+将给定合约的 ABI 上传至 https://sig.eth.samczsun.com 函数选择器数据库。
 
 ### 选项
 
@@ -20,7 +20,7 @@ Uploads abi of given contract to https://sig.eth.samczsun.com function selector 
 
 ### 例子
 
-1. Upload ABI to selector database
+1. 上传 ABI 到函数选择器数据库：
     ```sh
     forge upload-selectors LinearVestingVault
     ```
