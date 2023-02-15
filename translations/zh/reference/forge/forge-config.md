@@ -1,48 +1,45 @@
 ## forge config
 
-### NAME
+### 名称
 
-forge-config - Display the current config.
+forge-config - 显示当前的配置。
 
-### SYNOPSIS
+### 简介
 
 ``forge config`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Display the current config.
+显示当前的配置。
 
-This command can be used to create a new basic `foundry.toml` or to see
-what values are currently set, taking environment variables and the global
-configuration file into account.
+这个命令可以用来创建一个新的基本的 `foundry.toml` 或查看当前设置的值，将环境变量和全局配置文件考虑在内。
 
-The command supports almost all flags of the other commands in Forge to allow
-overriding values in the displayed configuration.
+该命令支持 Forge 中其他命令的几乎所有标志，以允许在显示的配置中覆盖数值。
 
-### OPTIONS
+### 选项
 
-#### Config Options
+#### 配置选项
 
 `--basic`  
-&nbsp;&nbsp;&nbsp;&nbsp;Prints a basic configuration file.
+&nbsp;&nbsp;&nbsp;&nbsp;打印一个基本的配置文件。
 
 `--fix`  
-&nbsp;&nbsp;&nbsp;&nbsp;Attempts to fix any configuration warnings.
+&nbsp;&nbsp;&nbsp;&nbsp;试图修复任何配置警告。
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Create a new basic config:
+1. 创建一个新的基本配置：
     ```sh
     forge config > foundry.toml
     ```
 
-2. Enable FFI in `foundry.toml`:
+2. 在 `foundry.toml` 开启 FFI：
     ```sh
     forge config --ffi > foundry.toml
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md)

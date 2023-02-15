@@ -1,14 +1,14 @@
 ## forge update
 
-### NAME
+### 名称
 
 forge-update - Update one or more dependencies.
 
-### SYNOPSIS
+### 简介
 
 ``forge update`` [*options*] [*dep*]
 
-### DESCRIPTION
+### 描述
 
 Update one or more dependencies.
 
@@ -17,11 +17,11 @@ Forge will update to the latest version on the ref you specified for the depende
 
 If no argument is provided, then all dependencies are updated.
 
-### OPTIONS
+### 选项
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
 1. Update a dependency:
     ```sh
@@ -33,6 +33,6 @@ If no argument is provided, then all dependencies are updated.
     forge update
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge install](./forge-install.md), [forge remove](./forge-remove.md)

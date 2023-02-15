@@ -1,61 +1,56 @@
 ## forge debug
 
-### NAME
+### 名称
 
-forge-debug - Debug a single smart contract as a script.
+forge-debug - 将单个智能合约作为脚本进行调试。
 
-### SYNOPSIS
+### 简介
 
 ``forge debug`` [*options*] *path* [*args...*]
 
-### DESCRIPTION
+### 描述
 
-Debugs a single smart contract located in the source file (*path*) as a script.
+将位于源文件（*path*）中的单个智能合约作为脚本进行调试。
 
-If multiple contracts are in the specified source file, you must pass `--target-contract` to specify
-what contract you want to run.
+如果在指定的源文件中有多个合约，你必须通过 `--target-contract` 来指定你要运行的合约。
 
-#### Calls
+#### 调用
 
-After the script is deployed to the internal EVM a call is made to a function with the signature `setUp()`, if present.
+在脚本被部署到内部 EVM 后，如果一个签名为 `setUp()` 的函数存在的话，将被调用。
 
-By default, the script is assumed to be contained in a function with the signature `run()`. If you wish to
-run a different function, pass `--sig <SIGNATURE>`.
+默认情况下，脚本被认为是包含在一个签名为 `run()` 的函数中。如果你想运行一个不同的函数，请传递 `--sig <SIGNATURE>`。
 
-The signature can be a fragment (`<function name>(<types>)`), or raw calldata.
+签名可以是一个片段（`<函数名>(<类型>)`），或者是原始的 Calldata。
 
-If you pass a fragment, and the function has parameters, you can add the call parameters to the end of the command (*args*).
+如果你传递一个片段，并且该函数有参数，你可以将调用参数添加到命令的末尾（*args*）。
 
-#### Forking
+#### 分叉
 
-It is possible to run the script in a forked environment by passing `--fork-url <URL>`.
+通过传递 `--fork-url <URL>`，可以在分叉的环境中运行脚本
 
-When the script is running in a forked environment, you can access all the state of the forked chain as you would
-if you had deployed the script. [Cheatcodes][cheatcodes] are still available.
+当脚本在分叉环境中运行时，你可以像部署脚本那样访问分叉链的所有状态。[作弊代码][cheatcodes] 仍然可用。
 
-You can also specify a block number to fork from by passing `--fork-block-number <BLOCK>`. When forking from a
-specific block, the chain data is cached to `~/.foundry/cache`. If you do not want to cache the chain data,
-pass `--no-storage-caching`.
+你也可以通过 `--fork-block-number <BLOCK>` 来指定分叉的区块编号。当从一个特定的区块分叉时，链上的数据会被缓存到 `~/.foundry/cache`。如果你不想缓存链上的数据，请传递`--no-store-caching`。
 
-#### Debugging
+#### 调试
 
-It is possible to run the script in an interactive debugger. To start the debugger, pass `--debug`.
+可以在交互式调试器中运行该脚本。要启动调试器，请传递 `--debug`。
 
-More information on the debugger can be found in the [debugger chapter][debugger].
+关于调试器的更多信息可以在 [调试器章节][debugger] 中找到。
 
-### OPTIONS
+### 选项
 
-#### Debug Options
+#### 调试选项
 
 `--target-contract` *contract_name*  
-&nbsp;&nbsp;&nbsp;&nbsp;The name of the contract you want to run
+&nbsp;&nbsp;&nbsp;&nbsp;你想要运行的合约名称
 
 `-s` *signature*  
 `--sig` *signature*  
-&nbsp;&nbsp;&nbsp;&nbsp;The signature of the function you want to call in the contract, or raw calldata. Default: `run()`
+&nbsp;&nbsp;&nbsp;&nbsp;你想在合约中调用的函数的签名，或原始的 calldata。默认：`run()`。
 
 `--debug`  
-&nbsp;&nbsp;&nbsp;&nbsp;Open the script in the [debugger][debugger].
+&nbsp;&nbsp;&nbsp;&nbsp;在 [调试器][debugger] 中打开脚本。
 
 {{#include evm-options.md}}
 
@@ -65,34 +60,34 @@ More information on the debugger can be found in the [debugger chapter][debugger
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Execute the `run()` function in a contract:
+1. 在一个合约中执行 `run()` 函数：
     ```sh
     forge debug src/Contract.sol
     ```
 
-2. Open a script in the debugger:
+2. 在调试器中打开一个脚本：
     ```sh
     forge debug src/Contract.sol --debug
     ```
 
-3. Execute the `foo()` function in a contract:
+3. 在一个合约中执行 `foo()` 函数：
     ```sh
     forge debug src/Contract.sol --sig "foo()"
     ```
 
-4. Execute a contract with a function that takes parameters:
+4. 用一个带参数的函数执行一个合约：
     ```sh
     forge debug src/Contract.sol --sig "foo(string,uint256)" "hello" 100
     ```
 
-5. Execute a contract with raw calldata:
+5. 执行一个带有原始 Calldata 的合约：
     ```sh
     forge debug src/Contract.sol --sig "0x..."
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge test](./forge-test.md)
 

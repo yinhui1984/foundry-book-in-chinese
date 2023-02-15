@@ -1,37 +1,37 @@
 ## `forge cache ls`
 
-### NAME
+### 名称
 
-forge-cache-ls - Shows cached data from ``~/.foundry``.
+forge-cache-ls - 显示来自 ``~/.foundry`` 的缓存数据。
 
-### SYNOPSIS
+### 简介
 
 `forge cache ls` [*chains..*]
 
-### DESCRIPTION
+### 描述
 
-Lists what is in the `~/.foundry/cache` folder currently.
+列出目前在 `~/.foundry/cache` 文件夹中的内容。
 
-### OPTIONS
+### 选项
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Show the entire cache (also, ``forge cache ls`` is an alias for this)
+1. 显示整个缓存（另外，`forge cache ls` 是这个的一个别名）。
     ```sh
     forge cache ls all
     ```
 
-2. Show cache data for a specific chain, by name
+2. 按名称显示特定链的缓存数据
     ```sh
     forge cache ls rinkeby
     ```
    
-3. Specify multiple chains
+3. 指定多条链
     ```sh
     forge cache ls rinkeby mainnet
     ```
 
-### SEE ALSO
+### 另请参阅
 [forge](./forge.md), [forge cache](./forge-cache.md)

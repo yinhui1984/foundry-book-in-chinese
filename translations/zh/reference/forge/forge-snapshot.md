@@ -1,26 +1,24 @@
 ## forge snapshot
 
-### NAME
+### 名称
 
-forge-snapshot - Create a snapshot of each test's gas usage.
+forge-snapshot - 创建每个测试的 Gas 使用快照。
 
-### SYNOPSIS
+### 简介
 
 ``forge snapshot`` [*options*]
 
-### DESCRIPTION
+### 描述
 
-Create a snapshot of each test's gas usage.
+创建每个测试的 Gas 使用快照。
 
-The results are written to a file named `.gas-snapshot`. You can change the name of the file
-by passing `--snap <PATH>`.
+结果被写入一个名为 `.gas-snapshot` 的文件中。你可以通过传递 `--snap <PATH>` 来改变该文件的名称。
 
-Fuzz tests are included by default in the snapshot. They use a static seed to achieve deterministic results.
+在快照中默认包括模糊测试。它们使用一个静态种子来实现确定性的结果。
 
-Snapshots can be compared with `--diff` and `--check`. The first flag will output a diff, and the second
-will output a diff *and* exit with code 1 if the snapshots do not match.
+快照可以用 `--diff` 和 `--check` 来比较。第一个标志将输出一个差异，第二个标志将输出一个差异，如果快照不匹配，则以代码1退出。
 
-### OPTIONS
+### 选项
 
 #### Snapshot Options
 
@@ -63,7 +61,7 @@ Sort results by gas used (ascending).
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
 1. Create a snapshot:
     ```sh
@@ -80,6 +78,6 @@ Sort results by gas used (ascending).
     forge snapshot --check
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge test](./forge-test.md)

@@ -1,67 +1,67 @@
 ## forge script
 
-### NAME
+### 名称
 
-forge-script - Run a smart contract as a script, building transactions that can be sent onchain.
+forge-script - 以脚本形式运行智能合约，建立可在链上发送的交易。
 
-### SYNOPSIS
+### 简介
 
 ``forge script`` [*options*] *path* [*args...*]
 
-### DESCRIPTION
+### 描述
 
 
-Run a smart contract as a script, building transactions that can be sent onchain.
+以脚本形式运行智能合约，建立可在链上发送的交易。
 
-Scripts can be used to apply state transitions on live contracts, or deploy and initialize a complex set of smart contracts using Solidity.
+脚本可用于在实时合约上应用状态转换，或使用 Solidity 部署和初始化一组复杂的智能合约。
 
-### OPTIONS
+### 选项
 
 `--broadcast`  
-&nbsp;&nbsp;&nbsp;&nbsp;Broadcasts the transactions.
+&nbsp;&nbsp;&nbsp;&nbsp;广播交易。
 
 `--debug`  
-&nbsp;&nbsp;&nbsp;&nbsp;Open the script in the [debugger][debugger]. Takes precedence over broadcast.
+&nbsp;&nbsp;&nbsp;&nbsp;在 [调试器][debugger] 中打开脚本。优先于 broadcast。
 
 `-g`  
 `--gas-estimate-multiplier` *multiplier*  
-&nbsp;&nbsp;&nbsp;&nbsp;Relative percentage by which to multiply all gas estimates. (i.e. set to 200 to double them)
-&nbsp;&nbsp;&nbsp;&nbsp;Default: 130
+&nbsp;&nbsp;&nbsp;&nbsp;相对百分比，所有 Gas 估计值都要乘以这个百分比。(即设置为 200 以使其加倍)
+&nbsp;&nbsp;&nbsp;&nbsp;默认: 130
 
 `--json`  
-&nbsp;&nbsp;&nbsp;&nbsp;Output results in JSON format.  
-&nbsp;&nbsp;&nbsp;&nbsp;Note: The output is under development and prone to change.
+&nbsp;&nbsp;&nbsp;&nbsp;以 JSON 格式输出结果。
+&nbsp;&nbsp;&nbsp;&nbsp;注意：该输出正在开发中，容易发生变化。
 
 `--legacy`  
-&nbsp;&nbsp;&nbsp;&nbsp;Use legacy transactions instead of EIP1559 ones. This is auto-enabled for common networks without EIP1559.
+&nbsp;&nbsp;&nbsp;&nbsp;使用传统的交易而不是 EIP1559 交易。这对于没有 EIP1559 的普通网络来说是自动启用的。
 
 `--resume`  
-&nbsp;&nbsp;&nbsp;&nbsp;Resumes submitting transactions that failed or timed-out previously.
+&nbsp;&nbsp;&nbsp;&nbsp;恢复并提交之前失败或超时的交易。
 
 `-s`  
 `--sig` *signature*  
-&nbsp;&nbsp;&nbsp;&nbsp;The signature of the function you want to call in the contract, or raw calldata.  
-&nbsp;&nbsp;&nbsp;&nbsp;Default: `run()`  
+&nbsp;&nbsp;&nbsp;&nbsp;你想在合约中调用的函数的签名，或原始的 calldata。 
+&nbsp;&nbsp;&nbsp;&nbsp;默认：`run()`  
 
 `--skip-simulation`  
-&nbsp;&nbsp;&nbsp;&nbsp;Skips on-chain simulation.
+&nbsp;&nbsp;&nbsp;&nbsp;跳过链上模拟。
 
 `--slow`  
-&nbsp;&nbsp;&nbsp;&nbsp;Makes sure a transaction is sent, only after its previous one has been confirmed and succeeded.
+&nbsp;&nbsp;&nbsp;&nbsp;确保只有在前一个交易得到确认和成功之后才发送交易。
 
 `--target-contract` *contract_name*  
-&nbsp;&nbsp;&nbsp;&nbsp;The name of the contract you want to run.
+&nbsp;&nbsp;&nbsp;&nbsp;你想要运行的合约名称。
 
 `--with-gas-price` *price*  
-&nbsp;&nbsp;&nbsp;&nbsp;Sets the gas price for **broadcasted** legacy transactions, or the max fee for broadcasted EIP1559 transactions.  
-&nbsp;&nbsp;&nbsp;&nbsp;Note: To set the gas price in the execution environment of the script use `--gas-price` instead (see below).
+&nbsp;&nbsp;&nbsp;&nbsp;设置 **广播** 传统交易的 Gas 价格，或广播 EIP1559 交易的最大费用。 
+&nbsp;&nbsp;&nbsp;&nbsp;注意：要在脚本的执行环境中设置 Gas 价格，请使用 `--gas-price` 代替（见下文）。
 
 {{#include ../common/etherscan-options.md}}
 
 #### Verification Options
 
 `--verify`  
-&nbsp;&nbsp;&nbsp;&nbsp;If it finds a matching broadcast log, it tries to verify every contract found in the receipts.
+&nbsp;&nbsp;&nbsp;&nbsp;如果它发现一个匹配的广播日志，它就会尝试验证在交易回执中发现的每一个合约。
 
 {{#include ../common/verifier-options.md}}
 
@@ -69,13 +69,13 @@ Scripts can be used to apply state transitions on live contracts, or deploy and 
 
 {{#include core-build-options.md}}
 
-#### Build Options
+#### 构建选项
 
 `--names`  
-&nbsp;&nbsp;&nbsp;&nbsp;Print compiled contract names.
+&nbsp;&nbsp;&nbsp;&nbsp;打印编译的合约名称。
 
 `--sizes`  
-&nbsp;&nbsp;&nbsp;&nbsp;Print compiled non-test contract sizes, exiting with code 1 if any of them are above the size limit.
+&nbsp;&nbsp;&nbsp;&nbsp;打印已编译的非测试合约大小，如果其中任何一个超过大小限制，则以代码 1 退出。
 
 {{#include watch-options.md}}
 
@@ -87,9 +87,9 @@ Scripts can be used to apply state transitions on live contracts, or deploy and 
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Run `BroadcastTest` as a script, broadcasting generated transactions on-chain
+1. 以脚本形式运行 `BroadcastTest`，在链上广播产生的交易
     ```sh
     forge script ./test/Broadcast.t.sol --tc BroadcastTest --sig "deploy()" \
                  -vvv --fork-url $GOERLI_RPC_URL

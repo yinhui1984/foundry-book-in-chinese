@@ -1,20 +1,20 @@
 ## forge
 
-### NAME
+### 名称
 
 forge - Build, test, fuzz, debug and deploy Solidity contracts.
 
-### SYNOPSIS
+### 简介
 
 `forge` [*options*] *command* [*args*]  
 `forge` [*options*] `--version`  
 `forge` [*options*] `--help`
 
-### DESCRIPTION
+### 描述
 
 This program is a set of tools to build, test, fuzz, debug and deploy Solidity smart contracts.
 
-### COMMANDS
+### 命令
 
 #### General Commands
 
@@ -103,7 +103,7 @@ This program is a set of tools to build, test, fuzz, debug and deploy Solidity s
 [forge upload-selectors](./forge-upload-selectors.md)  
 &nbsp;&nbsp;&nbsp;&nbsp;Uploads abi of given contract to https://sig.eth.samczsun.com function selector database.
 
-### OPTIONS
+### 选项
 
 #### Special Options
 
@@ -130,7 +130,7 @@ This program is a set of tools to build, test, fuzz, debug and deploy Solidity s
 `~/.svm`  
 &nbsp;&nbsp;&nbsp;&nbsp;The location of the Forge-managed solc binaries.
 
-### EXAMPLES
+### 例子
 
 1. Create a new Forge project:
     ```sh

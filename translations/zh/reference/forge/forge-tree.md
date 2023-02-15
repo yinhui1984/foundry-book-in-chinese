@@ -1,14 +1,14 @@
 ## forge tree
 
-### NAME
+### 名称
 
 forge-tree - Display a tree visualization of the project's dependency graph.
 
-### SYNOPSIS
+### 简介
 
 ``forge tree`` [*options*]
 
-### DESCRIPTION
+### 描述
 
 Display a visualization of the project's dependency graph.
 
@@ -16,7 +16,7 @@ Display a visualization of the project's dependency graph.
 {{#include ../../output/forge_tree/forge-tree:all}}
 ```
 
-### OPTIONS
+### 选项
 
 #### Flatten Options
 
@@ -30,6 +30,6 @@ Display a visualization of the project's dependency graph.
 
 {{#include common-options.md}}
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md)

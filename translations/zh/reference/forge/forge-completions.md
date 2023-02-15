@@ -1,18 +1,18 @@
 ## forge completions
 
-### NAME
+### 名称
 
-forge-completions - Generate shell completions script
+forge-completions - 生成 shell 自动补全脚本
 
-### SYNOPSIS
+### 简介
 
 ``forge completions`` *shell*
 
-### DESCRIPTION
+### 描述
 
-Generates a shell completions script for the given shell.
+为给定的 shell 生成一个 shell 自动补全脚本。
 
-Supported shells are:
+支持的 shells 为：
 
 - bash
 - elvish
@@ -20,17 +20,17 @@ Supported shells are:
 - powershell
 - zsh
 
-### OPTIONS
+### 选项
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Generate shell completions script for zsh:
+1. 为 zsh 生成 shell 自动补全脚本。
     ```sh
     forge completions zsh > $HOME/.oh-my-zsh/completions/_forge
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md)

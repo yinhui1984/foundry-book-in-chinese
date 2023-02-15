@@ -1,24 +1,24 @@
 ## forge upload-selectors
 
-### NAME
+### 名称
 
 forge-upload-selectors - Uploads abi of given contract to https://sig.eth.samczsun.com function selector database.
 
-### SYNOPSIS
+### 简介
 
 ``forge upload-selectors`` [*options*] *contract*
 
-### DESCRIPTION
+### 描述
 
 Uploads abi of given contract to https://sig.eth.samczsun.com function selector database.
 
-### OPTIONS
+### 选项
 
 {{#include project-options.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
 1. Upload ABI to selector database
     ```sh

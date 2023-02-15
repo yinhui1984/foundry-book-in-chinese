@@ -1,35 +1,35 @@
 ## forge remove
 
-### NAME
+### 名称
 
-forge-remove - Remove one or multiple dependencies.
+forge-remove - 删除一个或多个依赖。
 
-### SYNOPSIS
+### 简介
 
 ``forge remove`` [*options*] [*deps...*]
 
-### DESCRIPTION
+### 描述
 
-Remove one or multiple dependencies.
+删除一个或多个依赖。
 
-Dependencies can be a raw URL (`https://foo.com/dep`), the path to a GitHub repository (`owner/repo`) or the path to the dependency in the project tree.
+依赖可以是一个原始的 URL（`https://foo.com/dep`）、GitHub 仓库的路径（`owner/repo`）或项目树中的依赖的路径。
 
-### OPTIONS
+### 选项
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Remove a dependency by path:
+1. 按路径删除一个依赖：
     ```sh
     forge remove lib/solmate
     ```
 
-2. Remove a dependency by GitHub repository name:
+2. 通过 GitHub 仓库名称删除一个依赖。
     ```sh
     forge remove dapphub/solmate
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge install](./forge-install.md), [forge update](./forge-update.md)

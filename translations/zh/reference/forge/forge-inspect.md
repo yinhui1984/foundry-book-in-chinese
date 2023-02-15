@@ -1,18 +1,18 @@
 ## forge inspect
 
-### NAME
+### 名称
 
-forge-inspect - Get specialized information about a smart contract
+forge-inspect - 获得关于智能合约的专门信息
 
-### SYNOPSIS
+### 简介
 
 ``forge inspect`` [*options*] *contract_name* *field*
 
-### DESCRIPTION
+### 描述
 
-Get specialized information about a smart contract.
+获得关于智能合约的专门信息
 
-The field to inspect (*field*) can be any of:
+要检查的字段（*字段*）可以是以下任何一种。
 
 - `abi`
 - `b`/`bytes`/`bytecode`
@@ -29,27 +29,27 @@ The field to inspect (*field*) can be any of:
 - `userdoc`/`userDoc`/`user-doc`
 - `ewasm`/`e-wasm`
 
-### OPTIONS
+### 选项
 
 `--pretty`  
-&nbsp;&nbsp;&nbsp;&nbsp;Pretty print the selected field, if supported.
+&nbsp;&nbsp;&nbsp;&nbsp;如果支持的话，漂亮地打印所选字段。
 
 {{#include core-build-options.md}}
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Inspect the bytecode of a contract:
+1. 检查一个合约的字节码。
     ```sh
     forge inspect MyContract bytecode
     ```
 
-2. Inspect the storage layout of a contract:
+2. 检查合约的存储布局。
     ```sh
     forge inspect MyContract storage
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge build](./forge-build.md)

@@ -1,85 +1,84 @@
 ## forge install
 
-### NAME
+### 名称
 
-forge-install - Install one or more dependencies.
+forge-install - 安装一个或多个依赖。
 
-### SYNOPSIS
+### 简介
 
 ``forge install`` [*options*] [*deps...*]
 
-### DESCRIPTION
+### 描述
 
-Install one or more dependencies.
+安装一个或多个依赖。
 
-Dependencies are installed as git submodules. If you do not want this behavior, pass `--no-git`.
+依赖项被安装为 git 子模块。如果你不想要这种行为，请传递 `--no-git`。
 
-If no arguments are provided, then existing dependencies are installed.
+如果没有提供参数，那么就会安装现有的依赖。
 
-Dependencies can be a raw URL (`https://foo.com/dep`), an SSH URL (`git@github.com:owner/repo`), or the path to a GitHub repository (`owner/repo`).
-Additionally, a ref can be added to the dependency path to install a specific version of a dependency.
+依赖关系可以是一个原始的 URL（`https://foo.com/dep`），一个 SSH URL（`git@github.com:owner/repo`），或者一个 GitHub 仓库的路径（`owner/repo`）。
+此外，可以在依赖路径中添加一个 ref，以安装一个依赖的特定版本。
 
-A ref can be:
+一个 ref 可以是:
 
-- A branch: `owner/repo@master`
-- A tag: `owner/repo@v1.2.3`
-- A commit: `owner/repo@8e8128`
+- 一个分支: `owner/repo@master`
+- 一个标签: `owner/repo@v1.2.3`
+- 一个提交: `owner/repo@8e8128`
 
-The ref defaults to `master`.
+默认的 ref 为 `master`.
 
-You can also choose the name of the folder the dependency will be in. By default, the folder name is the name of
-the repository. If you want to change the name of the folder, prepend `<folder>=` to the dependency.
+你也可以选择依赖关系所在的文件夹名称。默认情况下，文件夹的名称是版本库的名称。如果你想改变文件夹的名称，请在依赖项前加上 `<folder>=`。
 
-### OPTIONS
+### 选项
 
-#### Project Options
+#### 项目选项
 
 `--root` *path*  
-&nbsp;&nbsp;&nbsp;&nbsp;The project's root path. By default, this is the root directory of the current git repository, or the current working directory.
+&nbsp;&nbsp;&nbsp;&nbsp;项目的根路径。默认情况下，这是当前 git 仓库的根目录，或当前工作目录。
 
-#### VCS Options
+#### VCS 选项
 
 `--no-commit`  
-&nbsp;&nbsp;&nbsp;&nbsp;Do not create a commit.
+&nbsp;&nbsp;&nbsp;&nbsp;不要创建一个提交。
 
 `--no-git`  
-&nbsp;&nbsp;&nbsp;&nbsp;Install without adding the dependency as a submodule.
+&nbsp;&nbsp;&nbsp;&nbsp;安装时不需要将依赖关系作为一个子模块添加。
 
-#### Display Options
+#### 显示选项
 
 `-q`  
 `--quiet`  
-&nbsp;&nbsp;&nbsp;&nbsp;Do not print any messages.
+&nbsp;&nbsp;&nbsp;&nbsp;不要打印任何信息。
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
-1. Install a dependency:
+1. 安装一个依赖：
     ```sh
     forge install transmissions11/solmate
     ```
 
-2. Install a specific version of a dependency:
+2. 安装一个指定版本的依赖：
     ```sh
     forge install transmissions11/solmate@v7
     ```
 
-3. Install multiple dependencies:
+3. 安装多个依赖：
     ```sh
     forge install transmissions11/solmate@v7 OpenZeppelin/openzeppelin-contracts
     ```
 
-4. Install a dependency without creating a submodule:
+4. 安装一个依赖而不创建一个子模块：
     ```sh
     forge install --no-git transmissions11/solmate
     ```
 
-5. Install a dependency in a specific folder:
+5. 在指定的目录安装依赖：
     ```sh
     forge install soulmate=transmissions11/solmate
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge update](./forge-update.md), [forge remove](./forge-remove.md)

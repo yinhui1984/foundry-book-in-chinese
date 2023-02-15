@@ -1,14 +1,14 @@
 ## forge verify-contract
 
-### NAME
+### 名称
 
 forge-verify-contract - Verify smart contracts on a chosen verification provider.
 
-### SYNOPSIS
+### 简介
 
 ``forge verify-contract`` [*options*] *address* *contract*
 
-### DESCRIPTION
+### 描述
 
 Verifies a smart contract on a chosen verification provider.
 
@@ -30,7 +30,7 @@ You can specify **ABI-encoded** constructor arguments with `--constructor-args`.
 you can specify a file containing **space-separated** constructor arguments with `--constructor-args-path`.
 (Note that [cache](../config/project.html#cache) must be enabled in the config for the latter to work.)
 
-### OPTIONS
+### 选项
 
 #### Verify Contract Options
 
@@ -76,7 +76,7 @@ you can specify a file containing **space-separated** constructor arguments with
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
 1. Verify a contract with JSON standard input on Etherscan
     ```sh
@@ -106,6 +106,6 @@ you can specify a file containing **space-separated** constructor arguments with
     ```
 
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge create](./forge-create.md), [forge flatten](./forge-flatten.md), [forge verify-check](./forge-verify-check.md)

@@ -1,14 +1,14 @@
 ## forge test
 
-### NAME
+### 名称
 
 forge-test - Run the project's tests.
 
-### SYNOPSIS
+### 简介
 
 ``forge test`` [*options*]
 
-### DESCRIPTION
+### 描述
 
 Run the project's tests.
 
@@ -52,7 +52,7 @@ More information on gas reports can be found in the [gas reports chapter][gas-re
 It is possible to list the tests without running them.
 You can pass `--json` to make it easier for outside extensions to parse structured content.
 
-### OPTIONS
+### 选项
 
 {{#include test-options.md}}
 
@@ -71,7 +71,7 @@ You can pass `--json` to make it easier for outside extensions to parse structur
 
 {{#include common-options.md}}
 
-### EXAMPLES
+### 例子
 
 1. Run the tests:
     ```sh
@@ -101,7 +101,7 @@ You can pass `--json` to make it easier for outside extensions to parse structur
     forge test --list --json --match-test "testFail*" | tail -n 1 | json_pp
     ```
 
-### SEE ALSO
+### 另请参阅
 
 [forge](./forge.md), [forge build](./forge-build.md), [forge snapshot](./forge-snapshot.md)
 
