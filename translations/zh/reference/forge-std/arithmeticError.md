@@ -1,18 +1,18 @@
 ## `arithmeticError`
 
-### Signature
+### 签名
 
 ```solidity
 stdError.arithmeticError
 ```
 
-### Description
+### 描述
 
-The internal Solidity error when an arithmetic operation fails, e.g. underflow and overflow.
+当算术运算失败时，Solidity 内部的错误，例如下溢和溢出。
 
-### Example
+### 例子
 
-Assume we have a basic vault contract that can store some token (`wmdToken`):
+假设我们有一个基本的金库合同，可以存储一些代币（`wmdToken`）。
 
 ```solidity
 contract BasicVault {
@@ -43,7 +43,7 @@ contract BasicVault {
 }
 ```
 
-We have a test function to ensure that a user is unable to withdraw tokens in excess of his deposit, like so:
+我们有一个测试功能，确保用户无法提取超过其存款的代币，像这样：
 
 ```solidity
     function testUserCannotWithdrawExcessOfDeposit() public {
@@ -53,8 +53,8 @@ We have a test function to ensure that a user is unable to withdraw tokens in ex
     }
 ```
 
-1. User has tokens of amount `userTokens` deposited in a Vault contract.
-2. User attempts to withdraw tokens of amount in excess of his deposits.
-3. This leads to an underflow error, resulting from: `balances[msg.sender] -= amount;` as it would evaluate into a negative value.
+1. 用户有数额为 `userTokens` 的代币存放在 Vault 合约中。
+2. 用户试图提取超过其存款数额的代币。
+3. 这导致了一个下溢错误，其原因是：`balances[msg.sender] -= amount;`，因为它将计算为一个负值。
 
-To catch the error "Arithmetic over/underflow", we insert `vm.expectRevert(stdError.arithmeticError)` just before the function call that is expected to result in an underflow.
+为了捕捉 "算术溢出/下溢" 的错误，我们在预计会导致下溢的函数调用之前插入 `vm.expectRevert(stdError.arithmeticError)`。

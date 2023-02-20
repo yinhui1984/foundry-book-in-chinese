@@ -1,18 +1,18 @@
 ## `makeAddr`
 
-### Signature
+### 签名
 
 ```solidity
 function makeAddr(string memory name) internal returns(address addr);
 ```
 
-### Description
+### 描述
 
-Creates an address derived from the provided `name`.
+创建一个由所提供的 `name` 衍生的地址。
 
-A [`label`](../../cheatcodes/label.md) is created for the derived address with the provided `name` used as the label value.
+一个 [`label`](.../.../cheatcodes/label.md) 被创建为派生地址，所提供的 `name` 被作为标签值使用。
 
-### Examples
+### 例子
 
 ```solidity
 address alice = makeAddr("alice");

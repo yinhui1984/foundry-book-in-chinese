@@ -1,6 +1,6 @@
 ## `assertEq`
 
-### Signature
+### 签名
 
 ```solidity
 function assertEq(bool a, bool b) internal;
@@ -39,8 +39,8 @@ function assertEq(int256[] memory a, int256[] memory b, string memory err) inter
 function assertEqUint(uint256 a, uint256 b) internal;
 ```
 
-### Description
+### 描述
 
-Asserts `a` is equal to `b`.
+断言 `a` 等于 `b`。
 
-Works with `bool`, `bytes`, and `int256` and `uint256` arrays.
+对 `bool`、`bytes`、`int256` 和 `uint256` 数组起作用。

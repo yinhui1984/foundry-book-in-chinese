@@ -1,13 +1,13 @@
 ## `indexOOBError`
 
-### Signature
+### 签名
 
 ```solidity
 stdError.indexOOBError
 ```
 
-### Description
+### 描述
 
-The internal Solidity error when trying to access an element of an array that is out of bounds.
+当试图访问一个超出边界的数组元素时，Solidity 内部的错误。
 
-Will not work for empty arrays in external contracts. For those, use `expectRevert` without any arguments.
+对于外部合约中的空数组将不起作用。对于这种情况，请使用不需要任何参数的 `expectRevert`。

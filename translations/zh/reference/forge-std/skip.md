@@ -1,16 +1,16 @@
 ## `skip`
 
-### Signature
+### 签名
 
 ```solidity
 function skip(uint256 time) public;
 ```
 
-### Description
+### 描述
 
-Skips forward `block.timestamp` by the specified number of seconds.
+将 `block.timestamp` 向前跳过指定的秒数。
 
-### Examples
+### 例子
 
 ```solidity
 assertEq(block.timestamp, 0);

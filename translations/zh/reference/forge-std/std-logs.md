@@ -1,8 +1,8 @@
 ## Std Logs
 
-Std Logs expand upon the logging events from the [`DSTest`](../ds-test.md#logging) library.
+Std Logs 在 [`DSTest`](.../ds-test.md#logging) 库的日志事件基础上进行扩展。
 
-### Events
+### 事件
 
 ```solidity
 event log_array(uint256[] val);
@@ -11,9 +11,9 @@ event log_named_array(string key, uint256[] val);
 event log_named_array(string key, int256[] val);
 ```
 
-### Usage
+### 使用方法
 
-This section provides usage examples.
+本节提供了使用实例。
 
 #### log\_array
 
@@ -21,12 +21,12 @@ This section provides usage examples.
 event log_array(<type>[] val);
 ```
 
-Where `<type>` can be `int256`, `uint256`, `address`.
+其中 `<type>` 可以是 `int256`，`uint256`，`address`。
 
-##### Example
+##### 例子
 
 ```solidity
-// Assuming storage
+// 假设存储
 // uint256[] data = [10, 20, 30, 40, 50]; 
 
 emit log_array(data);
@@ -38,9 +38,9 @@ emit log_array(data);
 event log_named_array(string key, <type>[] val);
 ```
 
-Where `<type>` can be `int256`, `uint256`, `address`.
+其中 `<type>` 可以是 `int256`, `uint256`, `address`.
 
-##### Example
+##### 例子
 
 ```solidity
 // Assuming storage

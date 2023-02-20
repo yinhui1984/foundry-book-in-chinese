@@ -1,18 +1,18 @@
 ## `noGasMetering`
 
-### Signature
+### 签名
 
 ```solidity
 modifier noGasMetering();
 ```
 
-### Description
+### 描述
 
-A function modifier that turns off gas metering for the life of the function.
+一个函数修改器，在函数的生命周期内关闭 Gas 计量。
 
-Note, there is some gas associated with calling the cheatcode, so you will see some gas usage (albeit small) when using this modifier.
+注意，调用作弊代码需要一些 Gas，所以在使用这个修改器时，你会看到一些 Gas 的使用（尽管很小）。
 
-### Examples
+### 例子
 
 ```solidity
 function addInLoop() internal returns (uint256) {

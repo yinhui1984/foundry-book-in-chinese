@@ -1,33 +1,33 @@
 ## Std Storage
 
-Std Storage is a library that makes manipulating storage easy.
+Std Storage 是一个库，使操纵存储变得容易。
 
-To use Std Storage, add the following line to your test contract:
+要使用 Std Storage，在你的测试合约中添加以下一行：
 
 ```solidity
 using stdStorage for StdStorage;
 ```
 
-Then, access Std Storage via the `stdstore` instance.
+然后，通过 `stdstore` 实例访问 Std Storage。
 
-### Functions
+### 功能
 
-Query functions:
+查询功能：
 
-- [`target`](./target.md): Set the address of the target contract
-- [`sig`](./sig.md): Set the 4-byte selector of the function to static call
-- [`with_key`](./with_key.md): Pass an argument to the function (can be used multiple times)
-- [`depth`](./depth.md): Set the position of the value in the `tuple` (e.g. inside a `struct`)
+- [`target`](./target.md): 设置目标合约的地址
+- [`sig`](./sig.md): 将函数的 4 字节选择器设置为静态调用
+- [`with_key`](./with_key.md): 向函数传递一个参数（可以多次使用）。
+- [`depth`](./depth.md): 设置值在 `tuple` 中的位置（例如，在 `struct` 中）。
 
-Terminator functions:
+终端功能：
 
-- [`find`](./find.md): Return the slot number
-- [`checked_write`](./checked_write.md): Set the data to be written to the storage slot(s)
-- [`read_<type>`](./read.md): Read the value from the storage slot as `<type>`
+- [`find`](./find.md): 返回槽编号
+- [`checked_write`](./checked_write.md): 设置要写到存储槽的数据
+- [`read_<type>`](./read.md): 从存储槽中读取值为 `<type>`。
 
-### Example
+### 例子
 
-`playerToCharacter` tracks info about players' characters.
+`playerToCharacter` 跟踪玩家的角色信息。
 
 ```solidity
 // MetaRPG.sol
@@ -40,7 +40,7 @@ struct Character {
 mapping (address => Character) public playerToCharacter;
 ```
 
-Let's say we want to set the level of our character to 120.
+比方说，我们想把我们的角色的等级设置为 120。
 
 ```solidity
 // MetaRPG.t.sol
@@ -53,10 +53,10 @@ stdstore
     .checked_write(120);
 ```
 
-### Limitations
+### 限制因数
 
-- Accessing packed slots is not supported
+- 不支持访问打包的槽位
 
-### Known issues
+### 已知问题
 
-- Slot(s) may not be found if the `tuple` contains types shorter than 32 bytes
+- 如果 `tuple` 包含短于 32 字节的类型，可能找不到槽。

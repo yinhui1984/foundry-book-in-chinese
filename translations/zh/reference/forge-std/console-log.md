@@ -1,15 +1,15 @@
 ## Console Logging
 
-- Similar to Hardhat's console functions.
-- You can use it in calls and transactions. It works with view functions, but not in pure ones.
-- It always works, regardless of the call or transaction failing or being successful.
-- To use it you need to import forge-std/console.sol.
-- You can call console.log with up to 4 parameters in any order of following types:
+- 与 Hardhat 的控制台功能类似。
+- 你可以在调用和事务中使用它。它可以与视图函数一起使用，但不能在纯函数中使用。
+- 无论调用或交易失败还是成功，它总是有效的。
+- 要使用它，你需要导入 forge-std/console.sol。
+- 你可以用以下类型的任何顺序的最多 4 个参数调用 console.log：
     - `uint`
     - `string`
     - `bool`
     - `address`
-- There's also the single parameter API for the types above, and additionally bytes, bytes1... up to bytes32:
+- 还有上述类型的单参数 API，另外还有 bytes, bytes1...直到 bytes32。
     - `console.logInt(int i)`
     - `console.logUint(uint i)`
     - `console.logString(string memory s)`
@@ -20,40 +20,40 @@
     - `console.logBytes2(bytes2 b)`
     - ...
     - `console.logBytes32(bytes32 b)`
-- console.log implements the same formatting options that can be found in Hardhat's console.log.
-    - Example: `console.log("Changing owner from %s to %s", currentOwner, newOwner)`
-- console.log is implemented in standard Solidity and it is compatible Anvil and Hardhat Networks.
-- console.log calls can run in other networks, like mainnet, kovan, ropsten, etc. They do nothing in those networks, but do spend a minimal amount of gas.
+- console.log 实现了与 Hardhat 的 console.log 中相同的格式化选项。
+    - 例子：`console.log("Changing owner from %s to %s", currentOwner, newOwner)`
+- console.log 是用标准的 Solidity 实现的，它兼容 Anvil 和Hardhat 网络。
+- console.log 调用可以在其他网络中运行，如 mainnet、kovan、ropsten 等。它们在这些网络中什么都不做，但确实花费了极少的 Gas。
 
 
 ### `console.log(format[,...args])`
-The `console.log()` method prints a formatted string using the first argument as a printf-like format string which can contain zero or more format specifiers. Each specifier is replaced with the converted value from the corresponding argument. Supported specifiers are:
+`console.log()` 方法打印一个格式化的字符串，使用第一个参数作为类似 printf 的格式字符串，其中可以包含零个或多个格式指定符。每个指定符被替换成相应参数的转换值。支持的指定器有：
 
-- `%s`: String will be used to convert all values to a human-readable string. `uint256`, `int256` and `bytes` values are converted to their `0x` hex encoded values.
-- `%d`: Number will be used to convert all values to a human-readable string. This is identical to `%s`.
-- `%i`: Works the same way as `%d`.
-- `%o`: Object. A string representation of an object with generic JavaScript-styled object formatting. For solidity types, this basically surround the string representation of the value in single-quotes.
-- `%%`: single percent sign ('%'). This does not consume an argument.
-- Returns: `<string>` The formatted string
+- `%s`: 字符串将被用来把所有的值转换为人类可读的字符串。`uint256`、`int256` 和 `bytes` 值将被转换为其 `0x` 十六进制编码值。
+- `%d`: 数字将被用来把所有的值转换为人类可读的字符串。这与 `%s`相同。
+- `%i`: 与 `%d` 的工作方式相同。
+- `%o`: 对象。一个对象的字符串表示，具有通用的 JavaScript 风格的对象格式。对于 Solidity 类型，这基本上是用单引号包围了值的字符串表示。
+- `%%`: 单一百分号（'%'）。这并不是一个参数。
+- 返回：`<string>` 格式化的字符串
 
-If a specifier does not have a corresponding argument, it is not replaced:
+如果一个指定符没有相应的参数，它就不会被替换。
 ```solidity
 console.log("%s:%s", "foo");
 // Returns: "foo:%s"
 ```
 
-Values that are not part of the format string are formatted using as a human-readable string representation.
+不属于格式化字符串的值被格式化为人类可读的字符串表示。
 
-If there are more arguments passed to the console.log() method than the number of specifiers, the extra arguments are concatenated to the returned string, separated by spaces:
+如果传递给 console.log() 方法的参数多于指定的数量，额外的参数将被串联到返回的字符串中，用空格分隔：
 ```solidity
 console.log("%s:%s", "foo", "bar", "baz");
 // Returns: "foo:bar baz"
 ```
 
-If only one argument is passed to console.log(), it is returned as it is without any formatting:
+如果只有一个参数被传递给 console.log()，它将被原样返回，没有任何格式化。
 ```solidity
 console.log("%% %s");
 // Returns: "%% %s"
 ```
 
-The String format specifier (`%s`) should be used in most cases unless specific functionality is needed from other format specifiers.
+在大多数情况下应该使用字符串格式指定器（`%s`），除非需要其他格式指定器的特定功能。

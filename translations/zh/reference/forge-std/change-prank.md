@@ -1,13 +1,13 @@
 ## `changePrank`
 
-### Signature
+### 签名
 
 ```solidity
 function changePrank(address who) internal;
 ```
 
-### Description
+### 描述
 
-Stops the active prank with `stopPrank` and passes address to `startPrank`.  
+用 `stopPrank` 停止正在进行的 prank，并将地址传给  `startPrank`。
 
-Useful for starting a global prank in the `setUp` function and deactivating it in certain tests.
+对于在 `setUp` 函数中启动全局 prank 和在某些测试中停用它很有用。

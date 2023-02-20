@@ -1,6 +1,6 @@
 ## `checked_write`
 
-### Signature
+### 签名
 
 ```solidity
 function checked_write(StdStorage storage self, address who) internal;
@@ -18,8 +18,8 @@ function checked_write(StdStorage storage self, bool write) internal;
 function checked_write(StdStorage storage self, bytes32 set) internal;
 ```
 
-### Description
+### 描述
 
-Sets the data to be written to the storage slot(s).
+设置要写到存储槽的数据。
 
-Reverts with a message if unsuccessful.
+如果不成功，则 Reverts，并提供一个信息。

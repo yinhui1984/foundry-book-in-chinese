@@ -1,11 +1,11 @@
 ## `assertionError`
 
-### Signature
+### 签名
 
 ```solidity
 stdError.assertionError
 ```
 
-### Description
+### 描述
 
-The internal Solidity error when an `assert` fails.
+当 `断言` 失败时，Solidity 内部的错误。

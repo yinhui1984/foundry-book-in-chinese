@@ -1,8 +1,8 @@
 ## DSTest Reference
 
-Dappsys Test (DSTest for short) provides basic logging and assertion functionality. It is included in the Forge Standard Library.
+Dappsys Test（简称DSTest）提供基本的日志和断言功能。它被包含在Forge 标准库中。
 
-To get access to the functions, import `forge-std/Test.sol` and inherit from `Test` in your test contract:
+要获得这些函数，请导入 `forge-std/Test.sol` 并在你的测试合约中继承 `Test`。
 
 ```solidity
 import "forge-std/Test.sol";
@@ -12,9 +12,9 @@ contract ContractTest is Test {
 }
 ```
 
-### Logging
+### 日志记录
 
-This is a complete overview of all the available logging events. For detailed descriptions and example usage, see below.
+这是对所有可用的日志事件的完整概述。关于详细的描述和使用实例，见下文。
 
 ```solidity
 event log                    (string);
@@ -37,9 +37,9 @@ event log_named_bytes        (string key, bytes val);
 event log_named_string       (string key, string val);
 ```
 
-### Logging events
+### 日志事件
 
-This section documents all events for logging and provides usage examples. 
+本节记录了所有用于记录的事件，并提供了使用实例。
 
 #### `log`
 
@@ -47,7 +47,7 @@ This section documents all events for logging and provides usage examples.
 event log(string);
 ```
 
-##### Example
+##### 例子
 
 ```solidity
 emit log("here");
@@ -58,13 +58,13 @@ emit log("here");
 
 ---
 
-#### logs
+#### 日志
 
 ```solidity
 event logs(bytes);
 ```
 
-##### Example
+##### 例子
 
 ```solidity
 emit logs(bytes("abcd"));
@@ -81,9 +81,9 @@ emit logs(bytes("abcd"));
 event log_<type>(<type>);
 ```
 
-Where `<type>` can be `address`, `bytes32`, `int`, `uint`, `bytes`, `string`
+其中 `<type>` 可以是 `address`, `bytes32`, `int`, `uint`, `bytes`, `string`
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 amount = 1 ether;
@@ -101,9 +101,9 @@ emit log_uint(amount);
 event log_named_<type>(string key, <type> val);
 ```
 
-Where `<type>` can be `address`, `bytes32`, `int`, `uint`, `bytes`, `string`
+其中 `<type>` 可以是 `address`, `bytes32`, `int`, `uint`, `bytes`, `string`
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 amount = 1 ether;
@@ -121,9 +121,9 @@ emit log_named_uint("Amount: ", amount);
 event log_named_decimal_<type>(string key, <type> val, uint decimals);
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 amount = 1 ether;
@@ -131,16 +131,16 @@ emit log_named_decimal_uint("Amount: ", amount, 18);
 // amount: 1.000000000000000000
 ```
 
-### Asserting
+### 断言
 
-This is a complete overview of all the available assertion functions. For detailed descriptions and example usage, see below.
+这是对所有可用断言功能的完整概述。关于详细的描述和使用实例，见下文。
 
 ```solidity
-// Assert the `condition` is true
+// 断言 `条件` 为真
 function assertTrue(bool condition) internal;
 function assertTrue(bool condition, string memory err) internal;
 
-// Assert `a` is equal to `b`
+// 断言 `a` 等于 `b`
 function assertEq(address a, address b) internal;
 function assertEq(address a, address b, string memory err) internal;
 function assertEq(bytes32 a, bytes32 b) internal;
@@ -160,7 +160,7 @@ function assertEq32(bytes32 a, bytes32 b, string memory err) internal;
 function assertEq0(bytes memory a, bytes memory b) internal;
 function assertEq0(bytes memory a, bytes memory b, string memory err) internal;
 
-// Assert  `a` is greater than `b`
+// 断言  `a` 大于 `b`
 function assertGt(uint a, uint b) internal;
 function assertGt(uint a, uint b, string memory err) internal;
 function assertGt(int a, int b) internal;
@@ -170,7 +170,7 @@ function assertGtDecimal(int a, int b, uint decimals, string memory err) interna
 function assertGtDecimal(uint a, uint b, uint decimals) internal;
 function assertGtDecimal(uint a, uint b, uint decimals, string memory err) internal;
 
-// Assert  `a` is greater than or equal to `b`
+// 断言  `a` 大于等于 `b`
 function assertGe(uint a, uint b) internal;
 function assertGe(uint a, uint b, string memory err) internal;
 function assertGe(int a, int b) internal;
@@ -180,7 +180,7 @@ function assertGeDecimal(int a, int b, uint decimals, string memory err) interna
 function assertGeDecimal(uint a, uint b, uint decimals) internal;
 function assertGeDecimal(uint a, uint b, uint decimals, string memory err) internal;
 
-// Assert  `a` is lesser than `b`
+// 断言  `a` 小于 `b`
 function assertLt(uint a, uint b) internal;
 function assertLt(uint a, uint b, string memory err) internal;
 function assertLt(int a, int b) internal;
@@ -190,7 +190,7 @@ function assertLtDecimal(int a, int b, uint decimals, string memory err) interna
 function assertLtDecimal(uint a, uint b, uint decimals) internal;
 function assertLtDecimal(uint a, uint b, uint decimals, string memory err) internal;
 
-// Assert  `a` is lesser than or equal to `b`
+// 断言  `a` 小于等于 `b`
 function assertLe(uint a, uint b) internal;
 function assertLe(uint a, uint b, string memory err) internal;
 function assertLe(int a, int b) internal;
@@ -201,9 +201,9 @@ function assertLeDecimal(uint a, uint b, uint decimals) internal;
 function assertLeDecimal(uint a, uint b, uint decimals, string memory err) internal;
 ```
 
-### Assertion functions
+### 断言函数
 
-This section documents all functions for asserting and provides usage examples. 
+本节记录了断言的所有函数，并提供了使用实例。
 
 #### `assertTrue`
 
@@ -211,9 +211,9 @@ This section documents all functions for asserting and provides usage examples.
 function assertTrue(bool condition) internal;
 ```
 
-Asserts the `condition` is true.
+断言 `条件` 为真。
 
-##### Example
+##### 例子
 
 ```solidity
 bool success = contract.fun();
@@ -230,11 +230,11 @@ assertTrue(success);
 function assertEq(<type> a, <type> b) internal;
 ```
 
-Where `<type>` can be `address`, `bytes32`, `int`, `uint`
+其中 `<type>` 可以是 `address`, `bytes32`, `int`, `uint`
 
-Asserts `a` is equal to `b`.
+断言 `a` 等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -252,11 +252,11 @@ assertEq(a, b);
 function assertEqDecimal(<type> a, <type> b, uint decimals) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts `a` is equal to `b`.
+断言 `a` 等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -274,9 +274,9 @@ assertEqDecimal(a, b, 18);
 function assertEq32(bytes32 a, bytes32 b) internal;
 ```
 
-Asserts `a` is equal to `b`.
+断言 `a` 等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 assertEq(bytes32("abcd"), 0x6162636400000000000000000000000000000000000000000000000000000000);
@@ -292,9 +292,9 @@ assertEq(bytes32("abcd"), 0x6162636400000000000000000000000000000000000000000000
 function assertEq0(bytes a, bytes b) internal;
 ```
 
-Asserts `a` is equal to `b`.
+断言 `a` 等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 string memory name1 = "Alice";
@@ -312,11 +312,11 @@ assertEq0(bytes(name1), bytes(name2)); // [FAIL]
 function assertGt(<type> a, <type> b) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is greater than `b`.
+断言 `a` 大于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 2 ether;
@@ -334,11 +334,11 @@ assertGt(a, b);
 function assertGtDecimal(<type> a, <type> b, uint decimals) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is greater than `b`.
+断言 `a` 大于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 2 ether;
@@ -356,11 +356,11 @@ assertGtDecimal(a, b, 18);
 function assertGe(<type> a, <type> b) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is greater than or equal to `b`.
+断言 `a` 大于或等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -378,11 +378,11 @@ assertGe(a, b);
 function assertGeDecimal(<type> a, <type> b, uint decimals) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is greater than or equal to `b`.
+断言 `a` 大于或等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -400,11 +400,11 @@ assertGeDecimal(a, b, 18);
 function assertLt(<type> a, <type> b) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is lesser than `b`.
+断言 `a` 小于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -422,11 +422,11 @@ assertLt(a, b);
 function assertLtDecimal(<type> a, <type> b, uint decimals) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是  `int`, `uint`
 
-Asserts  `a` is lesser than `b`.
+断言 `a` 小于  `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -444,11 +444,11 @@ assertLtDecimal(a, b, 18);
 function assertLe(<type> a, <type> b) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is lesser than or equal to `b`.
+断言  `a` 小于或等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -466,11 +466,11 @@ assertLe(a, b);
 function assertLeDecimal(<type> a, <type> b, uint decimals) internal;
 ```
 
-Where `<type>` can be `int`, `uint`
+其中 `<type>` 可以是 `int`, `uint`
 
-Asserts  `a` is lesser than or equal to `b`.
+断言  `a` 小于或等于 `b`.
 
-##### Example
+##### 例子
 
 ```solidity
 uint256 a = 1 ether;
@@ -479,6 +479,6 @@ assertLeDecimal(a, b, 18);
 ```
 <br>
 
-> ℹ️ **Information**
+> ℹ️ **知识**
 >
-> You can pass a custom error message to the above functions by providing an additional parameter `string err`.
+> 你可以通过提供一个额外的参数 `string err` 向上述函数传递一个自定义的错误信息。

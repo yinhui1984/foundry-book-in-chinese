@@ -1,6 +1,6 @@
 ## `assertApproxEqRel`
 
-### Signature
+### 签名
 
 ```solidity
 function assertApproxEqRel(uint256 a, uint256 b, uint256 maxPercentDelta) internal virtual;
@@ -10,11 +10,11 @@ function assertApproxEqRel(uint256 a, uint256 b, uint256 maxPercentDelta) intern
 function assertApproxEqRel(uint256 a, uint256 b, uint256 maxPercentDelta, string memory err) internal virtual;
 ```
 
-### Description
+### 描述
 
-Asserts `a` is approximately equal to `b` with delta in percentage, where `1e18` is 100%.
+断言 `a` 近似等于 `b`，delta 为百分比，其中 `1e18` 为100%。
 
-### Examples
+### 例子
 
 ```solidity
 function testFail () external {

@@ -1,6 +1,6 @@
 ## `assertApproxEqAbs`
 
-### Signature
+### 签名
 
 ```solidity
 function assertApproxEqAbs(uint256 a, uint256 b, uint256 maxDelta) internal virtual;
@@ -10,11 +10,11 @@ function assertApproxEqAbs(uint256 a, uint256 b, uint256 maxDelta) internal virt
 function assertApproxEqAbs(uint256 a, uint256 b, uint256 maxDelta, string memory err) internal virtual;
 ```
 
-### Description
+### 描述
 
-Asserts `a` is approximately equal to `b` with delta in absolute value.
+断言 `a` 近似等于 `b`，delta 为百分比
 
-### Examples
+### 例子
 
 ```solidity
 function testFail () external {
