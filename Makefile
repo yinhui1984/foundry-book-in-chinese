@@ -4,7 +4,7 @@ all: run
 
 build:
 	mdbook build
-	cd ./fileserver && go tidy && go build
+	cd ./fileserver && go mod tidy && go build
 init:
 	cargo install mdbook && cargo install mdbook-i18n
 clean:

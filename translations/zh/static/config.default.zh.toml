@@ -1,0 +1,194 @@
+[profile.default]
+#源代码目录
+src = 'src'
+#测试目录
+test = 'test'
+#脚本目录
+script = 'script'
+#构件目录
+out = 'out'
+#一个包含库路径的列表
+libs = ['lib']
+#重新映射列表
+remappings = []
+#是否通过递归扫描 libs 目录来自动检测重新映射
+auto_detect_remappings = true
+#链接的部署库列表
+libraries = []
+#是否缓存构建
+cache = true
+#如果cache启用，则缓存目录为
+cache_path = 'cache'
+#存储广播日志的位置
+broadcast = 'boradcast'
+#额外的 solc 允许路径
+allow_paths = []
+#额外的 solc 包含路径
+include_paths = []
+#是否忽略缓存
+force = false
+#硬分叉名称的 EVM 版本
+evm_version = 'london'
+#输出 gas 报告的合约列表
+gas_reports = ['*']
+#忽略 gas 报告的合约列表
+gas_reports_ignore = []
+#覆盖 Solidity 版本（会覆盖 auto_detect_solc）
+#solc_version = '0.8.10'
+#Forge 是否应自动检测要使用的 solc 版本
+auto_detect_solc = true
+#离线模式（禁止下载缺失的 solc 版本）
+offline = false
+#启用或禁用优化器
+optimizer = true
+#优化器运行次数
+optimizer_runs = 200
+#测试(显示)的详细程度
+verbosity = 0
+#忽略的 solc 错误代码列表
+ignored_error_codes = [1878, 5574]
+#配置操作文件系统的作弊码权限
+fs_permissions = []
+#是否发出额外的构建信息文件
+build_info = false
+#是否启用 vm.ffi
+ffi = false
+#测试中 msg.sender 的地址
+sender = '0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38'
+#测试中 tx.origin 的地址
+tx_origin = '0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38'
+#测试合约的初始余额
+initial_balance = '0xffffffffffffffffffffffff'
+#在测试中使用的链 ID
+chain_id = 31337
+#在 EVM 执行期间的 block.number 值
+block_number = 1
+#测试中的 gas 限制
+gas_limit = 9223372036854775807
+#测试中的 gas 价格（以 wei 为单位）
+gas_price = 0
+#测试中的块基础费用（以 wei 为单位）
+block_base_fee_per_gas = 0
+#测试中的 block.coinbase 地址
+block_coinbase = '0x0000000000000000000000000000000000000000'
+#测试中的块时间戳
+block_timestamp = 1
+#在测试中使用的块难度
+block_difficulty = 0
+#EVM 的内存限制（默认为 32 MB, 1024 × 1024 x 32）
+memory_limit = 33554432
+#包含在合约产物中的额外输出
+extra_output = []
+#写入到单独文件的额外输出
+extra_output_files = []
+#打印已编译合约的名称
+names = false
+#打印已编译合约的大小
+sizes = false
+#是否使用Yul的中间表示法编译管道
+via_ir = false
+#在分叉时启用或禁用 RPC 缓存
+no_storage_caching = false
+
+#用于追加到字节码中的元数据哈希的哈希方法
+#通过设置“none”可以从字节码中删除元数据哈希
+bytecode_hash = "ipfs"
+#如何处理 revert（和 require）原因字符串
+revert_strings = "default"
+
+#sparse_mode如果启用，则 Solidity 编译器会生成仅针对所需合约的字节码。
+#这可以减少“forge test”的编译时间，但是是实验性的。
+sparse_mode = false
+#包含 alias -> URL|Env 键值对，用于测试期间访问的 RPC 终端点
+rpc_endpoints = { optimism = "https://optimism.alchemyapi.io/v2/...", mainnet = "${RPC_MAINNET}" }
+
+#如果设置，将使用该 Solc 实例。
+#如果设置了版本，则会覆盖自动检测。
+#solc = None
+
+#打开或关闭优化器组件的细节
+#optimizer_details = None
+
+#模型检查器设置。
+#model_checker = None,
+
+#用于任何 RPC 调用的 RPC 服务器的 URL
+#eth_rpc_url = None
+
+#Etherscan API 密钥
+#etherscan_api_key = None
+
+#仅运行与指定正则表达式模式匹配的测试函数
+#test_pattern = None
+
+#仅运行与指定正则表达式模式不匹配的测试函数
+#test_pattern_inverse = None
+
+#仅在与指定正则表达式模式匹配的合约中运行测试
+#contract_pattern = None
+
+#仅在与指定正则表达式模式不匹配的合约中运行测试
+#contract_pattern_inverse = None
+
+#仅在与指定全局模式匹配的源文件中运行测试
+#path_pattern = None
+
+#仅在与指定全局模式不匹配的源文件中运行测试
+#path_pattern_inverse = None
+
+#固定用于状态分叉的区块号
+#fork_block_number = None
+
+#区块的 gas 限制
+#block_gas_limit = None
+
+#包含构建信息 json 文件的“build-info”目录的路径
+#build_info_path = None
+
+[fmt]
+#格式化程序将尝试换行的最大行长度
+line_length = 120
+#每个缩进级别的空格数
+tab_width = 4
+#在括号之间打印空格
+bracket_spacing = false
+#uint/int256类型的样式
+int_types = "long"
+#如果函数参数是多行的，则始终将函数属性放在单独的行上
+func_attrs_with_params_multiline = true
+#引号的样式
+quote_style = "double"
+
+#数字文字中下划线的样式
+number_underscore = "preserve"
+
+[fuzz]
+#模糊测试运行次数
+runs = 256
+#proptest允许的最大拒绝测试用例数，在使用vm.assume欺骗码期间遇到。这将用于设置proptest测试运行器配置中的max_global_rejects值。
+#此处未公开max_local_rejects选项，因为我们未使用prop_filter。
+max_test_rejects = 65536
+#正在被弃用，以支持max_test_rejects。将在以后的版本中删除。
+max_global_rejects = 65536
+#字典的权重
+dictionary_weight = 40
+#表示是否包括存储的值的标志
+include_storage = true
+#表示是否包括push字节值的标志
+include_push_bytes = true
+
+[invariant]
+#每个不变量测试组必须执行的运行次数
+runs = 256
+#在一次运行中尝试破坏不变性的执行调用次数
+depth = 15
+#如果出现revert，则不变式模糊测试宣告失败
+fail_on_revert = false
+#在运行不变量测试时允许覆盖不安全的外部调用。例如，重入检查
+call_override = false
+#字典的权重
+dictionary_weight = 80
+#表示是否包括存储的值的标志
+include_storage = true
+#表示是否包括push字节值的标志
+include_push_bytes = true

@@ -30,7 +30,7 @@ Foundry 的配置系统允许你对其工具进行配置。
 
 配置文件是以 [TOML 格式](https://toml.io) 编写的，章节内有简单的键-值对。
 
-本页详细描述了每一个配置项。 查看默认值，可以参考本文中的特定键, 或参阅 [default config](/static/config.default.toml).
+本页详细描述了每一个配置项。 查看默认值，可以参考本文中的特定键, 或参阅 [default config](/static/config.default.toml)  或  [含中文注释的默认配置](/static/config.default.zh.toml)
 
 ### Configuration keys
 
