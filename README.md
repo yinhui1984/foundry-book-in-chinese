@@ -4,6 +4,7 @@
 >
 > 1. add make file
 > 2. add fileserver to open chinese document in default browser
+> 2. add the default forge config file with Chinese comments 
 
 
 
