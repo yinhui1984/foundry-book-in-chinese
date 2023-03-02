@@ -6,6 +6,7 @@
 > 2. add fileserver to open chinese document in default browser
 > 2. add the default forge config file with Chinese comments 
 > 2. fixed some typos and outdated command options
+> 2. translate more English pages to Chinese
 
 
 
